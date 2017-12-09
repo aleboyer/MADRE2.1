@@ -456,6 +456,7 @@ void GPIO_ODD_IRQHandler(void) {
 	GPIO_PinModeSet(gpioPortD, 3, gpioModeInputPull, 0);
 
 	uint32_t sample=0;
+
 	count_analog=(pending_samples*byte_per_sample+sensorID*madre_setup_ptr->ADCword_length) % buffer_size;
 	uint8_t cmdBuffer;
     cmdBuffer = AD7124_COMM_READ | AD7124_REG_DATA;
