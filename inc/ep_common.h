@@ -74,7 +74,7 @@ typedef struct AuxSetup {
 460800,                          \
 3,								 \
 1483228800,                      \
-1}
+0}
 //default TX baud  460800
 
 #define MAP_SETUP_DEFAULT         \

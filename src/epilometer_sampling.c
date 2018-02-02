@@ -70,7 +70,7 @@ void MADRE_Sampling(void) {
  * @Author A. Le Boyer
  *****************************************************************************/
 
-/*enum madre_states poll_RX(void){
+enum madre_states poll_RX(void){
 
 	// quick check if the RX buffer empty
 	//uint16_t rxData = USART_RxDouble(USART1);
@@ -94,4 +94,7 @@ void MADRE_Sampling(void) {
 
 	return madre_state;
 
-}*/
+}
+
+
+
