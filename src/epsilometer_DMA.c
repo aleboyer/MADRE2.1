@@ -8,6 +8,7 @@
 
 #include "ep_DMA.h"
 #include "em_cmu.h"
+#include "ep_menu.h"
 #include "ep_auxiliary.h"
 #include "em_usart.h"
 
@@ -95,6 +96,7 @@ void initDMA(void){
 void DMA_IRQHandler(void)
 {
 	int DMAif=DMA_IntGet();
+	uint8_t test;
 	DMA_IntDisable(DMAif);
 	DMA_IntClear(0xffffffff);
 		// Start frame detection
@@ -103,19 +105,20 @@ void DMA_IRQHandler(void)
 			if (aux1_sample[aux1_setup_ptr->Auxword_length-1]==(uint8_t) aux1_setup_ptr->endchar){ //aux_buffer is pointer !!! need to think here
 				int DMAcount;
 				LEUART0->CMD = LEUART_CMD_CLEARRX;
-				aux1_count++;
-				DMAcount=(aux1_count % aux1sample_per_block) *  \
+				DMAcount=aux1_count  *  \
 						 (aux1_setup_ptr->Auxword_length + 2*sizeof(uint32_t)+sizeof(uint8_t));
+				aux1_count++;
         		for (int i=0;i<aux1_word_length;i++){
-        			if (i<4){
-        				aux1_buffer[i+DMAcount]=itohexa_helper(pending_samples>>((sizeof(uint32_t)-i)*8));
+        			if (i<8){
+        				aux1_buffer[i+DMAcount]=itohexa_helper((uint8_t) (pending_samples>>((7-i)*4) & 15));
         			}
-        			if(i==4){
+        			if(i==8){
         				aux1_buffer[i+DMAcount]=44; //decimal 44 = ','
         			}
-        			if(i>4){
-            			aux1_buffer[i+DMAcount]=aux1_sample[i-(sizeof(uint32_t)+1)];
+        			if(i>8){
+            			aux1_buffer[i+DMAcount]=aux1_sample[i-9];
         			}
+        			chcksum_aux1_header^= aux1_buffer[i+DMAcount];
         		}
 
 				DMA_IntEnable(DMA_IEN_CH0DONE);

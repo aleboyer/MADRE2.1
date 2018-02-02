@@ -43,7 +43,7 @@ void init_MADRE(void);
 void init_MAP(void);
 void standby4setup(uint8_t delay);
 enum madre_states MADRE_resume_sampling(void);
-char itohexa_helper(uint8_t x);
+uint8_t itohexa_helper(uint8_t x);
 
 
 #endif /* INC_EP_MENU_H_ */

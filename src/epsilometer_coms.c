@@ -97,15 +97,20 @@ void USART1_TX_IRQHandler(void)
 			}
 			USART_IntEnable(USART1, USART_IEN_TXBL);
 			break;
-
 		case TransmitAux1:
 			dataLen         = aux1_buffer_length-aux1_bytes_sent;
 			if(aux1_bytes_sent==0){
-
+				for(int i=0;i<5;i++){
+					USART_Tx(USART1, aux1header[i]);
+				}
 			}
 			if(dataLen ==0){
+				aux1_count=0; //reinitialize the number of aux sample
+				aux1_bytes_sent=0;
 				tx_state=TransmitMap;
-				if (madre_setup_ptr->AUX_flag>1){tx_state=TransmitAux2;}
+				if (madre_setup_ptr->AUX_flag>1){
+					tx_state=TransmitAux2;
+				}
 			}
 			else{
 				aux1_bytes_sent = sendblock(dataLen, aux1_buffer, aux1_bytes_sent);
@@ -119,16 +124,21 @@ void USART1_TX_IRQHandler(void)
 			USART_IntEnable(USART1, USART_IEN_TXBL);
 			break;
 		case TransmitMap:
-			dataLen    = bytes_per_block-map_bytes_sent;
 			if(map_bytes_sent==0){
 				for(int i=0;i<5;i++){
 					USART_Tx(USART1, mapheader[i]);
 				}
 			}
-			map_bytes_sent= sendblock(dataLen,(char *) data_buffer, map_bytes_sent);
-			tx_state=TransmitMap;
-			if (dataLen==0){tx_state=Stop;}
-			else{USART_IntEnable(USART1, USART_IEN_TXBL);}
+			dataLen    = bytes_per_block-map_bytes_sent;
+			if (dataLen==0){
+				tx_block_sent++;
+				tx_state=Stop;
+				map_bytes_sent=0;
+			}
+			else{
+				map_bytes_sent= sendblock_databuffer(dataLen,(char *) data_buffer,map_bytes_sent);
+				USART_IntEnable(USART1, USART_IEN_TXBL);
+			}
 			break;
 	}
 }  //end of handler
@@ -152,13 +162,34 @@ uint32_t sendblock(uint32_t dataLen,char * Buffer, uint32_t bytes_sent)
 		bytes_sent=0;
 		break;
 	case 1:
-		USART_Tx(USART1, Buffer[ bytes_sent]);
+		USART_Tx(USART1, Buffer[bytes_sent]);
 		 bytes_sent++;
 		break;
 	default:
 		for(int i=0;i<2;i++){
 			/* Transmit pending character */
-			USART_Tx(USART1, Buffer[ bytes_sent]);
+			USART_Tx(USART1, Buffer[bytes_sent]);
+			 bytes_sent++;
+		} //end of for
+		break;
+	}//end of switch
+	return bytes_sent;
+
+}
+uint32_t sendblock_databuffer(uint32_t dataLen,char * Buffer, uint32_t bytes_sent)
+{
+	switch (dataLen){
+	case 0:
+		bytes_sent=0;
+		break;
+	case 1:
+		USART_Tx(USART1, Buffer[(tx_block_sent%2)*bytes_per_block+bytes_sent]);
+		 bytes_sent++;
+		break;
+	default:
+		for(int i=0;i<2;i++){
+			/* Transmit pending character */
+			USART_Tx(USART1, Buffer[(tx_block_sent%2)*bytes_per_block+bytes_sent]);
 			 bytes_sent++;
 		} //end of for
 		break;

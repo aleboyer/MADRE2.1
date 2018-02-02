@@ -21,6 +21,7 @@
 
 /*local library */
 #include "ep_common.h"
+#include "ep_auxiliary.h"
 #include "ep_analog.h"
 #include "ep_coms.h"
 #include "clock_tc.h"

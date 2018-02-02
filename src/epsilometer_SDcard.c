@@ -124,6 +124,8 @@ void writeSD(){
 
 	int32_t count=(sd_bytes_sent+bytes_per_block)%buffer_size;
 	SDwritten = 0;
+    f_write(&fsrc, "$EPSI",5, &SDwritten);
+    SDwritten = 0;
     if (count<bytes_per_block){ //in case sd_byte_sent is close to the end of the buffer. and we want to avoid memory leak
     	f_write(&fsrc, data_buffer+(sd_bytes_sent% buffer_size),bytes_per_block-count, &SDwritten);
     	SDwritten = 0;
@@ -146,7 +148,9 @@ void writeSD(){
  * @Author A. Le Boyer
  *****************************************************************************/
 
-void writeSD_aux(char * Buffer, uint32_t Bufferlength){
+void writeSD_aux(uint8_t * Buffer, uint32_t Bufferlength){
+	SDwritten = 0;
+    f_write(&fsrc, "$AUX1",5, &SDwritten);
 	SDwritten = 0;
     f_write(&fsrc, Buffer,Bufferlength, &SDwritten);
 	SDwritten = 0;

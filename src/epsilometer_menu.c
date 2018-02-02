@@ -185,16 +185,16 @@ void init_MADRE(void){
 	timer1_phase_shift = .5 * coreclock_cycle;
 	bytes_per_block    = madre_setup_ptr->blocksize*byte_per_sample;
 
-	pending_samples    = 0; 	 // samples from ADC
-	aux1_bytes_sent    = 0;
-	aux1_count         = 0;
-	tx_pending_bytes   = 0;
-	sensorID           = 0;
-	sd_bytes_sent      = 0;
-	block_chcksum      = 0;
-	aux1_chcksum       = 0;
-	aux2_chcksum       = 0;
-	voltage            = 0;
+	pending_samples     = 0; 	 // samples from ADC
+	aux1_bytes_sent     = 0;
+	aux1_count          = 0;
+	tx_pending_bytes    = 0;
+	sensorID            = 0;
+	sd_bytes_sent       = 0;
+	block_chcksum       = 0;
+	chcksum_aux1_header = 0;
+	aux2_chcksum        = 0;
+	voltage             = 0;
 
 	// uint32 array where data are stored and from where data are sent to the serial port
     data_buffer       = malloc(sizeof(uint8_t)*buffer_size);
@@ -267,14 +267,15 @@ enum madre_states MADRE_resume_sampling(void){
 }
 
 
-char itohexa_helper(uint8_t x) {
-	char i2hexa[16]="0123456789abcdef";
-    char dest;
-    if (x >= 16) {
-    	dest = itohexa_helper(x/16);
-    }
-    dest = i2hexa[x];
-    return dest;
+uint8_t itohexa_helper(uint8_t x) {
+	uint8_t dest;
+	if (x<=9){
+		dest=x+48;
+	}
+	else{
+		dest=x+55;
+	}
+	return dest;
 }
 
 

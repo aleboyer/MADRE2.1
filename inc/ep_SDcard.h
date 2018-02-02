@@ -44,6 +44,6 @@ UINT SDwritten;
 void initSD(void);
 void writeSD(void);
 void writeSD_header(char * Buffer, uint32_t Bufferlength);
-void writeSD_aux(char * Buffer, uint32_t Bufferlength);
+void writeSD_aux(uint8_t * Buffer, uint32_t Bufferlength);
 
 #endif /* INC_EP_SDCARD_H_ */

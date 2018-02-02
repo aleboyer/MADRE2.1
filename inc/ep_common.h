@@ -50,8 +50,12 @@ typedef struct AuxSetup {
 	uint32_t	usart_baudrate;         // baudrate ot the RS232 TX/RX
 	uint32_t  	Auxword_length;         // Aux word length
 	uint32_t  	aux_frequency;          // Aux frequency in hertz
-	uint8_t  	endchar;                // Aux frequency in hertz
+	uint8_t  	endchar;                // default \n
 } AuxSetup, *AuxSetupPtr;
+
+// TODO change time_t to a fixed type and then cast the variable Start_time when called
+
+//TODO get rid of the variable with different size.
 
 
 /*************************************************************************/
@@ -68,9 +72,9 @@ typedef struct AuxSetup {
 0x13,                            \
 2000000,                         \
 460800,                          \
-6,								 \
+3,								 \
 1483228800,                      \
-0}
+1}
 //default TX baud  460800
 
 #define MAP_SETUP_DEFAULT         \
@@ -148,7 +152,7 @@ uint32_t buffer_size;        // numChannel*maxSamples
 extern MadreSetupPtr  madre_setup_ptr;
 
 uint8_t * data_buffer;                  // main buffer for EPSI samples. Size of MadreSetup.maximumSample. Memory is allocated in the main
-char * header_buffer;                // buffer the header block. Memory is allocated in the main
+char * header_buffer;                   // buffer the header block. Memory is allocated in the main
 volatile uint32_t map_bytes_sent;       // counter for nb byte from the Epsi block send to 422
 volatile uint32_t header_bytes_sent;    // counter for nb byte from the Header send to 422
 volatile uint32_t header_length;        // length of the header
@@ -157,10 +161,12 @@ volatile uint32_t gulclockset;          // used in the interrupt enabling the HF
 volatile uint32_t bytes_per_block;      // nb of EPSI bytes in 1 block
 volatile uint32_t tx_pending_bytes;     // ?? what is the difference with map_bytes sent??
 volatile uint32_t sd_bytes_sent;        // number of bytes send on the sd_card
+volatile uint32_t tx_block_sent;        // number of blocks sent through 422
 volatile uint32_t block_chcksum;        // checksum for the Epsi sample updated at every sample
 volatile uint32_t chcksum_block_header; // final checksum for the header to send re-initialize after every block
 volatile uint32_t epsi_stamp_block;     // epsi sample count for the Header
-volatile uint32_t voltage;     // epsi sample count for the Header
+volatile uint32_t voltage;              // epsi sample count for the Header
+
 
 
 // Epsi sample variable
@@ -175,10 +181,11 @@ volatile uint32_t coreclock_cycle;
 volatile uint32_t timer1_phase_shift;
 
 //Auxiliary Sea bird variable
+uint8_t *   aux1header;
 extern MapSetupPtr   map_setup_ptr;
 extern AuxSetupPtr  aux1_setup_ptr;
 
-char    * aux1_buffer;			        // Aux1 buffer. memory Allocation in init_aux.c
+uint8_t * aux1_buffer;			        // Aux1 buffer. memory Allocation in init_aux.c
 uint8_t * aux1_sample;			        // Aux1 sample. Read with DMA.
 uint8_t * aux1_end_block;               // fill up the end of the SD block when needed
 volatile uint32_t aux1_count;           // counter for samples gathered from the aux
@@ -187,7 +194,6 @@ volatile uint32_t aux1_bytes_sent;      // counter for nb byte send on the SD ca
 volatile uint32_t aux1_buffer_length;
 volatile uint32_t aux1_word_length;
 volatile uint32_t aux1sample_per_block;
-volatile uint32_t aux1_chcksum;         //
 volatile uint32_t chcksum_aux1_header;  // final checksum to send re-initialize after every block
 
 //Auxiliary 2 variable

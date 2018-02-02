@@ -100,8 +100,8 @@ void rtcSetup (void)
   /* Select LFXO as clock source for the RTC */
 //  CMU_ClockSelectSet(cmuClock_LFA,cmuSelect_LFXO);
   // PMM: Changed to LFRCO as the epsilometer board does not have a 32KHz clock...
-//  CMU_ClockSelectSet(cmuClock_LFA,cmuSelect_LFRCO);
-  CMU_ClockSelectSet(cmuClock_LFA,cmuSelect_LFXO);
+  CMU_ClockSelectSet(cmuClock_LFA,cmuSelect_LFRCO);
+//  CMU_ClockSelectSet(cmuClock_LFA,cmuSelect_LFXO);
   CMU_ClockEnable(cmuClock_RTC, true);
   CMU_ClockEnable(cmuClock_CORELE, true);
 

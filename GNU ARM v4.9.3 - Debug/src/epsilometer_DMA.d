@@ -58,10 +58,28 @@ src/epsilometer_DMA.o: ../src/epsilometer_DMA.c \
  /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_cmu.h \
  /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_assert.h \
  /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_bus.h \
- /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_auxiliary.h \
+ /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_menu.h \
  /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_gpio.h \
+ /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_usart.h \
+ /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_chip.h \
+ /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_system.h \
+ /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_gpio.h \
+ /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_rtc.h \
+ /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//hardware/kit/common/drivers/microsd.h \
+ /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/microsdconfig.h \
+ /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/FatFS/src/integer.h \
+ /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/FatFS/src/diskio.h \
+ /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_analog.h \
+ /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_coms.h \
  /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_leuart.h \
- /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_usart.h
+ /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/Device/SiliconLabs/EFM32WG/Include/efm32wg_uart.h \
+ /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_CMU_init.h \
+ /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_GPIO_init.h \
+ /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_TIMER_init.h \
+ /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_SDcard.h \
+ /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/Calendar/clock_tc.h \
+ /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_auxiliary.h \
+ /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_auxiliary.h
 
 /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_DMA.h:
 
@@ -181,10 +199,46 @@ src/epsilometer_DMA.o: ../src/epsilometer_DMA.c \
 
 /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_bus.h:
 
-/Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_auxiliary.h:
+/Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_menu.h:
 
 /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_gpio.h:
 
+/Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_usart.h:
+
+/Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_chip.h:
+
+/Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_system.h:
+
+/Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_gpio.h:
+
+/Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_rtc.h:
+
+/Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//hardware/kit/common/drivers/microsd.h:
+
+/Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/microsdconfig.h:
+
+/Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/FatFS/src/integer.h:
+
+/Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/FatFS/src/diskio.h:
+
+/Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_analog.h:
+
+/Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_coms.h:
+
 /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_leuart.h:
 
-/Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_usart.h:
+/Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/Device/SiliconLabs/EFM32WG/Include/efm32wg_uart.h:
+
+/Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_CMU_init.h:
+
+/Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_GPIO_init.h:
+
+/Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_TIMER_init.h:
+
+/Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_SDcard.h:
+
+/Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/Calendar/clock_tc.h:
+
+/Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_auxiliary.h:
+
+/Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_auxiliary.h:

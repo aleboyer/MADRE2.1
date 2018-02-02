@@ -50,7 +50,7 @@ void init_GPIO(void) {
 	GPIO_PinModeSet(gpioPortD, 4, gpioModePushPull, 0); 	// TX2 Output
 
 	GPIO_PinModeSet(gpioPortA, 2, gpioModePushPull, 1); 	// PA2 in output mode to send the MCLK  to ADC
-	GPIO_PinModeSet(gpioPortE, 10, gpioModePushPull, 1);   	// SYNC signal from TIM1_CC0 ported to PE10
+	GPIO_PinModeSet(gpioPortE, 10, gpioModePushPull, 0);   	// SYNC signal from TIM1_CC0 ported to PE10
 
 	GPIO_PinModeSet(gpioPortE, 11, gpioModePushPull, 0); 	// MicroSD Card Enable Active Low
 	GPIO_PinModeSet(gpioPortD, 2, gpioModePushPull, 0); 	// AUX232_/EN Auxiliary RS232

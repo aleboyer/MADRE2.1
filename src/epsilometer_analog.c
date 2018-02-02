@@ -314,10 +314,9 @@ void AD7124_StartConversion(SensorSpec *master)
     TIMER0->CMD =(TIMER0->CMD &~_TIMER_CMD_START_MASK)| TIMER_CMD_START;// we start the timer right away as soon as the board is powered
     TIMER1->CMD =(TIMER1->CMD &~_TIMER_CMD_START_MASK)| TIMER_CMD_START;//
 
-
 	GPIO_IntClear(madre_setup_ptr->pinInterupt);
-    AD7124_ChipSelect(master, LLO);
 	GPIO_IntEnable(madre_setup_ptr->pinInterupt);
+    AD7124_ChipSelect(master, LLO);
 }
 void AD7124_StopConversion()
 {
@@ -452,36 +451,39 @@ void GPIO_ODD_IRQHandler(void) {
 
 	GPIO_IntDisable(madre_setup_ptr->pinInterupt);
 	uint8_t test;
-	GPIO_PinModeSet(gpioPortD, 3, gpioModeInputPull, 1);
-	GPIO_PinModeSet(gpioPortD, 3, gpioModeInputPull, 0);
 
 	uint32_t sample=0;
-
-	count_analog=(pending_samples*byte_per_sample+sensorID*madre_setup_ptr->ADCword_length) % buffer_size;
 	uint8_t cmdBuffer;
-    cmdBuffer = AD7124_COMM_READ | AD7124_REG_DATA;
+	cmdBuffer = AD7124_COMM_READ | AD7124_REG_DATA;
 
-    // AD7124_GetRegisterValue return a uint32 result from the ADC register
-    USART_SpiTransfer(USART0, cmdBuffer);
-    for(int ii = 2; ii >=0 ; ii--) {
-    	    	test=USART_SpiTransfer(USART0, 0x0);
-        		block_chcksum^= test; // check on the *(data_buffer)
-    	        switch (madre_setup_ptr->ADCword_length){
-    	        	case 3:
-    	        		data_buffer[(count_analog+(2-ii)) % buffer_size]=test;
-    	        		break;
-    	        	case 6:
-    	        		sample=sample| test<<ii*8;
-    	        		break;
-   	        }
+    for (sensorID=0;sensorID<7;sensorID++){ // tric for the navy
+     	AD7124_ChipSelect(sensors[map_setup_ptr->sensorID[sensorID]], LLO);
+
+    	count_analog=(pending_samples*byte_per_sample+sensorID*madre_setup_ptr->ADCword_length) % buffer_size;
+
+    	// AD7124_GetRegisterValue return a uint32 result from the ADC register
+    	USART_SpiTransfer(USART0, cmdBuffer);
+			for(int ii = 2; ii >=0 ; ii--) {
+						test=USART_SpiTransfer(USART0, 0x0);
+						block_chcksum^= test; // check on the *(data_buffer)
+						switch (madre_setup_ptr->ADCword_length){
+							case 3:
+								data_buffer[(count_analog+(2-ii)) % buffer_size]=test;
+								break;
+							case 6:
+								sample=sample| test<<ii*8;
+								break;
+					}
+			}
+			if(madre_setup_ptr->ADCword_length==6){sprintf((char *) data_buffer+count_analog,"%6x",(int) sample);}
+
+			AD7124_ChipSelect(sensors[map_setup_ptr->sensorID[sensorID]], LHI);
+    //sensorID++;
     }
-    if(madre_setup_ptr->ADCword_length==6){sprintf((char *) data_buffer+count_analog,"%6x",(int) sample);}
-
-    AD7124_ChipSelect(sensors[map_setup_ptr->sensorID[sensorID]], LHI);
-    sensorID++;
-    if(sensorID==map_setup_ptr->number_sensor){
-    	pending_samples++; // Increment number of samples available
-    	sensorID=0;
+    sensorID=0;
+		//if(sensorID==map_setup_ptr->number_sensor){
+			pending_samples++; // Increment number of samples available
+    	//sensorID=0;
     	if((pending_samples % madre_setup_ptr->blocksize)==0){
     		sd_state=WriteHeader;
     		tx_state=TransmitHeader;
@@ -491,7 +493,7 @@ void GPIO_ODD_IRQHandler(void) {
     		//header_buffer=
     		USART_IntEnable(USART1, USART_IEN_TXBL);
     	}
-    } //end of EPSI sample
+    //} //end of EPSI sample
 
 
 	// enable the TX interrupt based on the buffer level

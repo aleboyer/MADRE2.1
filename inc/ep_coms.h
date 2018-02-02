@@ -15,4 +15,5 @@
 void UART_Setup(void);
 void uartPutData(void);
 uint32_t sendblock(uint32_t dataLen,char * Buffer, uint32_t bytes_sent);
+uint32_t sendblock_databuffer(uint32_t dataLen,char * Buffer, uint32_t bytes_sent);
 #endif /* EP_COMS_H_ */

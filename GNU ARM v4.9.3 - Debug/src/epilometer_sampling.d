@@ -64,10 +64,11 @@ src/epilometer_sampling.o: ../src/epilometer_sampling.c \
  /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emdrv/dmadrv/config/dmadrv_config.h \
  /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emdrv/dmadrv/inc/dmadrv.h \
  /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emdrv/common/inc/ecode.h \
+ /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_auxiliary.h \
+ /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_cmu.h \
+ /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_leuart.h \
  /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_analog.h \
  /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_coms.h \
- /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_leuart.h \
- /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_cmu.h \
  /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/Device/SiliconLabs/EFM32WG/Include/efm32wg_uart.h \
  /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/Calendar/clock_tc.h \
  /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_SDcard.h
@@ -202,13 +203,15 @@ src/epilometer_sampling.o: ../src/epilometer_sampling.c \
 
 /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emdrv/common/inc/ecode.h:
 
-/Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_analog.h:
+/Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_auxiliary.h:
 
-/Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_coms.h:
+/Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_cmu.h:
 
 /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_leuart.h:
 
-/Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_cmu.h:
+/Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_analog.h:
+
+/Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_coms.h:
 
 /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/Device/SiliconLabs/EFM32WG/Include/efm32wg_uart.h:
 

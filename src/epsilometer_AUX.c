@@ -71,18 +71,13 @@ void initAUX1(void){
 	aux1_sample=malloc(sizeof(uint8_t) *aux1_setup_ptr->Auxword_length);
 	// define the length of the Auxiliary 1 block
 	aux1sample_per_block= floor(madre_setup_ptr->sample_frequency/2/     \
-			 	 	 	  aux1_setup_ptr->aux_frequency)+1;
+			 	 	 	  aux1_setup_ptr->aux_frequency)-1;
 	aux1_word_length=aux1_setup_ptr->Auxword_length + 2*sizeof(uint32_t)+sizeof(uint8_t);
                    //length of aux1 sample + length of epsi stamp in hex + length ','
     aux1_buffer_length  = aux1sample_per_block*aux1_word_length;
 
 	aux1_buffer      = malloc(sizeof(uint8_t) * aux1_buffer_length);
-	aux1_end_block   = malloc(sizeof(uint8_t) * aux1_word_length);
-
-	for (int i=0;i<aux1_setup_ptr->Auxword_length;i++){
-		aux1_end_block[i] = 0x21;
-	}
-
+	aux1header="$AUX1";
 
 	// Set up low energy uart to trigger the DMA
 
@@ -111,6 +106,7 @@ void initAUX1(void){
 	LEUART_Enable(LEUART0, leuartEnable); //
 
 	// init DMA
+	init_aux_block();
 	initDMA();
 
 	LEUART_IntEnable(LEUART0, LEUART_IEN_SIGF);
@@ -120,6 +116,24 @@ void initAUX1(void){
 	NVIC_EnableIRQ(LEUART0_IRQn);
 
 
+}
+
+void init_aux_block(void){
+
+for (int i=0;i<aux1_buffer_length;i++){
+    if (i%aux1_word_length==8){
+    	aux1_buffer[i] = 44;
+    }
+    else{
+    	aux1_buffer[i] = 48;
+	}
+    if ((i%aux1_word_length)==(aux1_word_length-2)){
+    	aux1_buffer[i]=13;
+    }
+    if ((i%aux1_word_length)==(aux1_word_length-1)){
+    	aux1_buffer[i]  =10;
+    }
+	}
 }
 
 

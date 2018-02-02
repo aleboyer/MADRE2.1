@@ -20,5 +20,6 @@
 // declare functions
 void initAUX1(void);
 void initAUX2(void);
+void init_aux_block(void);
 
 #endif /* INC_EP_AUXILIARY_H_ */

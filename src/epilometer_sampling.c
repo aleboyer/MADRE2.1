@@ -31,12 +31,12 @@ void MADRE_Sampling(void) {
 		case WriteHeader:
 			writeSD_header(header_buffer,header_length);
 			sd_state=WriteMap;
-			if (madre_setup_ptr->AUX_flag>0){sd_state=TransmitAux1;}
+			if (madre_setup_ptr->AUX_flag>0){sd_state=WriteAux1;}
 			break;
 		case WriteAux1:
 		  	writeSD_aux(aux1_buffer,aux1_buffer_length);
 			sd_state=WriteMap;
-			if (madre_setup_ptr->AUX_flag>1){sd_state=TransmitAux2;}
+			if (madre_setup_ptr->AUX_flag>1){sd_state=WriteAux2;}
 			break;
 		case WriteAux2:
 		  	writeSD_aux(aux2_buffer,aux2_buffer_length);
@@ -46,6 +46,9 @@ void MADRE_Sampling(void) {
 		  	writeSD();
 			sd_block++;
 			sd_state=Wait;
+			if (tx_state==Stop){
+				init_aux_block();
+			}
 			f_sync(&fsrc);
 			break;
 	}
