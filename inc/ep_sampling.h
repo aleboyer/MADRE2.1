@@ -29,7 +29,7 @@
 
 
 void MADRE_Sampling(void);
-//enum madre_sates poll_RX(void);
+void poll_RX(void);
 
 
 

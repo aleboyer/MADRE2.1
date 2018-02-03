@@ -72,7 +72,7 @@ typedef struct AuxSetup {
 0x13,                            \
 2000000,                         \
 460800,                          \
-3,								 \
+6,								 \
 1483228800,                      \
 0}
 //default TX baud  460800

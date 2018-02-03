@@ -80,7 +80,13 @@ void USART1_TX_IRQHandler(void)
 		case TransmitHeader:
 			dataLen    = header_length-header_bytes_sent;
 			if (header_bytes_sent==0){//first time we enter the interrupt, build the header
-				sprintf(header_buffer,"\r\n$MADRE%8x,%8x,%8x,%8x,%8x,%8x\r\n",(int) epsi_stamp_block      \
+/*				sprintf(header_buffer,"\r\n$MADRE%8x,%8x,%8x,%8x,%8x,%8x\r\n",(int) epsi_stamp_block      \
+																	     ,(int) RTC->CNT                  \
+																	     ,(int) voltage                   \
+																         ,(int) chcksum_aux1_header       \
+																         ,(int) chcksum_aux2_header       \
+																         ,(int) chcksum_block_header);*/
+				sprintf(header_buffer,"\r\n$MADRE%8d,%8d,%8d,%8d,%8d,%8d\r\n",(int) epsi_stamp_block      \
 																	     ,(int) RTC->CNT                  \
 																	     ,(int) voltage                   \
 																         ,(int) chcksum_aux1_header       \
@@ -89,6 +95,7 @@ void USART1_TX_IRQHandler(void)
 			}
 			if(dataLen ==0){
 				tx_state=TransmitMap;
+				//tx_state=Stop;
 				header_bytes_sent=0;
 				if (madre_setup_ptr->AUX_flag>0){tx_state=TransmitAux1;}
 			}

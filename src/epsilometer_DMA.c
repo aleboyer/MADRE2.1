@@ -96,7 +96,6 @@ void initDMA(void){
 void DMA_IRQHandler(void)
 {
 	int DMAif=DMA_IntGet();
-	uint8_t test;
 	DMA_IntDisable(DMAif);
 	DMA_IntClear(0xffffffff);
 		// Start frame detection

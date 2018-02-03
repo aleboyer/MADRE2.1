@@ -27,8 +27,8 @@ void MADRE_menu(void){
 
     // define a sentence to send to the user
 	tx_state=SetUp;
-	char buf[100];
-	char buf1[100];
+	char buf[100]= {"\0"};
+	char buf1[100]= {"\0"};
 	uint8_t  rxData8  = 0;
 	//uint16_t  rxData16;
 	sprintf(buf,"ACTIONS: \n 1- CHANGE CONFIG \n 2- RESUME SAMPLING\n");
@@ -41,6 +41,8 @@ void MADRE_menu(void){
 	// menu selection
 	//TODO: this is bad, I need to stay here to clean the serial buffer in python as explained above
 	USART_RxDouble(USART1);
+	USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
+
 	// send the user action option through TX.
 	for(int i=0;i<strlen(buf);i++){
 		USART_Tx(USART1,buf[i]);
@@ -48,6 +50,8 @@ void MADRE_menu(void){
 	USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
 
 	rxData8 = USART_Rx(USART1);
+	USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
+
 	switch (rxData8) {
 	case 49:
 		MADRE_Change_Config();
@@ -68,9 +72,9 @@ void MADRE_menu(void){
  *****************************************************************************/
 void MADRE_Change_Config(void) {
 
-	char buf0[100];
-	char buf1[100];
-	char buf2[100];
+	char buf0[100] = {"\0"};
+	char buf1[100]= {"\0"};
+	char buf2[100]= {"\0"};
 	uint16_t rxData1 = 0;
 	uint16_t rxData2 = 0;
 	uint32_t param;
@@ -81,6 +85,8 @@ void MADRE_Change_Config(void) {
 		USART_Tx(USART1,buf0[i]);
 	}
 	rxData1 = USART_RxDouble(USART1);
+	USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
+
 	switch(rxData1){
 		case 1:
 			param=0;
@@ -88,6 +94,7 @@ void MADRE_Change_Config(void) {
 				USART_Tx(USART1,buf1[i]);
 			}
 			rxData1 = USART_RxDouble(USART1);
+			USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
 			param = (int32_t) rxData1;
 			map_setup_ptr->number_sensor=param;
 			sprintf(buf1,"new number of sensor %i \n",(int) param);
@@ -105,8 +112,10 @@ void MADRE_Change_Config(void) {
 
 	param=0;
 	rxData1 = USART_RxDouble(USART1);
+	USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
 	param = param | rxData1 <<16;
 	rxData2 = USART_RxDouble(USART1);
+	USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
 	param = param | rxData2;
 
 	madre_setup_ptr->Start_time= (time_t) param;
@@ -234,7 +243,6 @@ void init_MAP(void){
  *****************************************************************************/
 
 void standby4setup(uint8_t delay) {
-	USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
     while (RTC->CNT<delay*32768){
         if((USART1->STATUS & USART_STATUS_RXDATAV)){
             uint16_t rxData1 = 0;
@@ -288,9 +296,9 @@ void clear_madre(void){
 	memset(data_buffer, 0, sizeof(uint8_t)*buffer_size);
 	memset(header_buffer, 0,sizeof(char)*header_length);
 	memset(aux1_sample, 0,sizeof(uint8_t) *aux1_setup_ptr->Auxword_length);
-	data_buffer=NULL;
-	header_buffer=NULL;
-	aux1_sample=NULL;
+	if(data_buffer) free(data_buffer);
+	if(header_buffer) free(header_buffer);
+	if(aux1_sample) free(aux1_sample);
 }
 
 

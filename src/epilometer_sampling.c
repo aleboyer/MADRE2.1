@@ -70,7 +70,7 @@ void MADRE_Sampling(void) {
  * @Author A. Le Boyer
  *****************************************************************************/
 
-enum madre_states poll_RX(void){
+void poll_RX(void){
 
 	// quick check if the RX buffer empty
 	//uint16_t rxData = USART_RxDouble(USART1);
@@ -91,9 +91,6 @@ enum madre_states poll_RX(void){
 		    GPIO_PinModeSet(gpioPortA, 13, gpioModePushPull, 0);
 	    }
 	}
-
-	return madre_state;
-
 }
 
 
