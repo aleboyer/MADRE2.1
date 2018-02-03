@@ -115,6 +115,11 @@ void MADRE_Change_Config(void) {
 		USART_Tx(USART1,buf2[i]);
 	}
 
+	clear_madre();
+	standby4setup(1);
+	MADRE_Config();
+
+
 }
 
 
@@ -267,6 +272,7 @@ enum madre_states MADRE_resume_sampling(void){
 }
 
 
+
 uint8_t itohexa_helper(uint8_t x) {
 	uint8_t dest;
 	if (x<=9){
@@ -278,6 +284,14 @@ uint8_t itohexa_helper(uint8_t x) {
 	return dest;
 }
 
+void clear_madre(void){
+	memset(data_buffer, 0, sizeof(uint8_t)*buffer_size);
+	memset(header_buffer, 0,sizeof(char)*header_length);
+	memset(aux1_sample, 0,sizeof(uint8_t) *aux1_setup_ptr->Auxword_length);
+	data_buffer=NULL;
+	header_buffer=NULL;
+	aux1_sample=NULL;
+}
 
 
 

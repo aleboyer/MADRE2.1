@@ -44,6 +44,6 @@ void init_MAP(void);
 void standby4setup(uint8_t delay);
 enum madre_states MADRE_resume_sampling(void);
 uint8_t itohexa_helper(uint8_t x);
-
+void clear_madre(void);
 
 #endif /* INC_EP_MENU_H_ */
