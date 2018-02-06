@@ -161,6 +161,7 @@ void USART1_TX_IRQHandler(void)
  *
  * @Author A. Le Boyer
  *****************************************************************************/
+#define NUMBER_BYTES_SENT 2
 
 uint32_t sendblock(uint32_t dataLen,char * Buffer, uint32_t bytes_sent)
 {
@@ -173,7 +174,7 @@ uint32_t sendblock(uint32_t dataLen,char * Buffer, uint32_t bytes_sent)
 		 bytes_sent++;
 		break;
 	default:
-		for(int i=0;i<2;i++){
+		for(int i=0;i<NUMBER_BYTES_SENT;i++){
 			/* Transmit pending character */
 			USART_Tx(USART1, Buffer[bytes_sent]);
 			 bytes_sent++;

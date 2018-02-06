@@ -61,6 +61,7 @@ int main(void) {
 
 	MADRE_Config();
 	madre_state=MADRE_resume_sampling();
+
 	/****************************************************************
 	 * Primitive Sampling routine
 	 ****************************************************************/

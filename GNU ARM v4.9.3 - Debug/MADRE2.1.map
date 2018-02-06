@@ -387,7 +387,7 @@ Discarded input sections
  .text.DmaBasicCallback
                 0x0000000000000000       0x4c ./emlib/dmadrv.o
  .text.DmaPingPongCallback
-                0x0000000000000000       0x8c ./emlib/dmadrv.o
+                0x0000000000000000       0x7c ./emlib/dmadrv.o
  .text.StartTransfer
                 0x0000000000000000      0x250 ./emlib/dmadrv.o
  .text          0x0000000000000000        0x0 ./emlib/em_adc.o
@@ -622,20 +622,9 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./emlib/em_system.o
  .data          0x0000000000000000        0x0 ./emlib/em_system.o
  .bss           0x0000000000000000        0x0 ./emlib/em_system.o
- .text.SYSTEM_ChipRevisionGet
-                0x0000000000000000       0x74 ./emlib/em_system.o
- .text.SYSTEM_GetCalibrationValue
-                0x0000000000000000       0x4c ./emlib/em_system.o
- .debug_info    0x0000000000000000      0x272 ./emlib/em_system.o
- .debug_abbrev  0x0000000000000000      0x107 ./emlib/em_system.o
- .debug_loc     0x0000000000000000       0xb8 ./emlib/em_system.o
- .debug_aranges
-                0x0000000000000000       0x28 ./emlib/em_system.o
- .debug_ranges  0x0000000000000000       0x18 ./emlib/em_system.o
- .debug_line    0x0000000000000000      0x379 ./emlib/em_system.o
- .debug_str     0x0000000000000000      0x31b ./emlib/em_system.o
+ .debug_line    0x0000000000000000        0x0 ./emlib/em_system.o
+ .debug_str     0x0000000000000000      0x16e ./emlib/em_system.o
  .comment       0x0000000000000000       0x71 ./emlib/em_system.o
- .debug_frame   0x0000000000000000       0x60 ./emlib/em_system.o
  .ARM.attributes
                 0x0000000000000000       0x37 ./emlib/em_system.o
  .text          0x0000000000000000        0x0 ./emlib/em_timer.o
@@ -1258,7 +1247,7 @@ END GROUP
 LOAD /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/crtend.o
 LOAD /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/crtn.o
 
-.text           0x0000000000000000     0xe8ec
+.text           0x0000000000000000     0xe8f4
  *(.vectors)
  .vectors       0x0000000000000000       0xe0 ./CMSIS/EFM32WG/startup_efm32wg.o
                 0x0000000000000000                __Vectors
@@ -1904,325 +1893,324 @@ LOAD /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/g
                 0x0000000000009a14       0x68 ./src/epsilometer_menu.o
                 0x0000000000009a14                MADRE_Config
  .text.init_MADRE
-                0x0000000000009a7c      0x14c ./src/epsilometer_menu.o
+                0x0000000000009a7c      0x158 ./src/epsilometer_menu.o
                 0x0000000000009a7c                init_MADRE
  .text.init_MAP
-                0x0000000000009bc8       0x1c ./src/epsilometer_menu.o
-                0x0000000000009bc8                init_MAP
+                0x0000000000009bd4       0x1c ./src/epsilometer_menu.o
+                0x0000000000009bd4                init_MAP
  .text.standby4setup
-                0x0000000000009be4       0x74 ./src/epsilometer_menu.o
-                0x0000000000009be4                standby4setup
+                0x0000000000009bf0       0x74 ./src/epsilometer_menu.o
+                0x0000000000009bf0                standby4setup
  .text.MADRE_resume_sampling
-                0x0000000000009c58       0x3c ./src/epsilometer_menu.o
-                0x0000000000009c58                MADRE_resume_sampling
+                0x0000000000009c64       0x3c ./src/epsilometer_menu.o
+                0x0000000000009c64                MADRE_resume_sampling
  .text.itohexa_helper
-                0x0000000000009c94       0x2c ./src/epsilometer_menu.o
-                0x0000000000009c94                itohexa_helper
+                0x0000000000009ca0       0x2c ./src/epsilometer_menu.o
+                0x0000000000009ca0                itohexa_helper
  .text.clear_madre
-                0x0000000000009cc0       0x8c ./src/epsilometer_menu.o
-                0x0000000000009cc0                clear_madre
- *fill*         0x0000000000009d4c        0x4 
- .text.floor    0x0000000000009d50      0x110 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libm.a(lib_a-s_floor.o)
-                0x0000000000009d50                floor
- .text.round    0x0000000000009e60       0x9c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libm.a(lib_a-s_round.o)
-                0x0000000000009e60                round
- .text          0x0000000000009efc      0x370 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/libgcc.a(_arm_addsubdf3.o)
-                0x0000000000009efc                __aeabi_drsub
-                0x0000000000009f04                __subdf3
-                0x0000000000009f04                __aeabi_dsub
-                0x0000000000009f08                __aeabi_dadd
-                0x0000000000009f08                __adddf3
-                0x000000000000a180                __aeabi_ui2d
-                0x000000000000a180                __floatunsidf
-                0x000000000000a1a0                __floatsidf
-                0x000000000000a1a0                __aeabi_i2d
-                0x000000000000a1c4                __extendsfdf2
-                0x000000000000a1c4                __aeabi_f2d
-                0x000000000000a200                __aeabi_ul2d
-                0x000000000000a200                __floatundidf
-                0x000000000000a210                __aeabi_l2d
-                0x000000000000a210                __floatdidf
- .text          0x000000000000a26c      0x424 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/libgcc.a(_arm_muldivdf3.o)
-                0x000000000000a26c                __aeabi_dmul
-                0x000000000000a26c                __muldf3
-                0x000000000000a4c0                __aeabi_ddiv
-                0x000000000000a4c0                __divdf3
- .text          0x000000000000a690      0x110 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/libgcc.a(_arm_cmpdf2.o)
-                0x000000000000a690                __gtdf2
-                0x000000000000a690                __gedf2
-                0x000000000000a698                __ltdf2
-                0x000000000000a698                __ledf2
-                0x000000000000a6a0                __eqdf2
-                0x000000000000a6a0                __nedf2
-                0x000000000000a6a0                __cmpdf2
-                0x000000000000a71c                __aeabi_cdrcmple
-                0x000000000000a72c                __aeabi_cdcmple
-                0x000000000000a72c                __aeabi_cdcmpeq
-                0x000000000000a73c                __aeabi_dcmpeq
-                0x000000000000a750                __aeabi_dcmplt
-                0x000000000000a764                __aeabi_dcmple
-                0x000000000000a778                __aeabi_dcmpge
-                0x000000000000a78c                __aeabi_dcmpgt
- .text          0x000000000000a7a0       0x50 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/libgcc.a(_arm_fixdfsi.o)
-                0x000000000000a7a0                __fixdfsi
-                0x000000000000a7a0                __aeabi_d2iz
- .text          0x000000000000a7f0       0x40 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/libgcc.a(_arm_fixunsdfsi.o)
-                0x000000000000a7f0                __fixunsdfsi
-                0x000000000000a7f0                __aeabi_d2uiz
- .text.abs      0x000000000000a830        0x8 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-abs.o)
-                0x000000000000a830                abs
- .text.ctime_r  0x000000000000a838       0x16 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-ctime_r.o)
-                0x000000000000a838                ctime_r
- *fill*         0x000000000000a84e        0x2 
- .text.exit     0x000000000000a850       0x28 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-exit.o)
-                0x000000000000a850                exit
+                0x0000000000009ccc       0x8c ./src/epsilometer_menu.o
+                0x0000000000009ccc                clear_madre
+ .text.floor    0x0000000000009d58      0x110 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libm.a(lib_a-s_floor.o)
+                0x0000000000009d58                floor
+ .text.round    0x0000000000009e68       0x9c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libm.a(lib_a-s_round.o)
+                0x0000000000009e68                round
+ .text          0x0000000000009f04      0x370 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/libgcc.a(_arm_addsubdf3.o)
+                0x0000000000009f04                __aeabi_drsub
+                0x0000000000009f0c                __subdf3
+                0x0000000000009f0c                __aeabi_dsub
+                0x0000000000009f10                __aeabi_dadd
+                0x0000000000009f10                __adddf3
+                0x000000000000a188                __aeabi_ui2d
+                0x000000000000a188                __floatunsidf
+                0x000000000000a1a8                __floatsidf
+                0x000000000000a1a8                __aeabi_i2d
+                0x000000000000a1cc                __extendsfdf2
+                0x000000000000a1cc                __aeabi_f2d
+                0x000000000000a208                __aeabi_ul2d
+                0x000000000000a208                __floatundidf
+                0x000000000000a218                __aeabi_l2d
+                0x000000000000a218                __floatdidf
+ .text          0x000000000000a274      0x424 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/libgcc.a(_arm_muldivdf3.o)
+                0x000000000000a274                __aeabi_dmul
+                0x000000000000a274                __muldf3
+                0x000000000000a4c8                __aeabi_ddiv
+                0x000000000000a4c8                __divdf3
+ .text          0x000000000000a698      0x110 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/libgcc.a(_arm_cmpdf2.o)
+                0x000000000000a698                __gtdf2
+                0x000000000000a698                __gedf2
+                0x000000000000a6a0                __ltdf2
+                0x000000000000a6a0                __ledf2
+                0x000000000000a6a8                __eqdf2
+                0x000000000000a6a8                __nedf2
+                0x000000000000a6a8                __cmpdf2
+                0x000000000000a724                __aeabi_cdrcmple
+                0x000000000000a734                __aeabi_cdcmple
+                0x000000000000a734                __aeabi_cdcmpeq
+                0x000000000000a744                __aeabi_dcmpeq
+                0x000000000000a758                __aeabi_dcmplt
+                0x000000000000a76c                __aeabi_dcmple
+                0x000000000000a780                __aeabi_dcmpge
+                0x000000000000a794                __aeabi_dcmpgt
+ .text          0x000000000000a7a8       0x50 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/libgcc.a(_arm_fixdfsi.o)
+                0x000000000000a7a8                __fixdfsi
+                0x000000000000a7a8                __aeabi_d2iz
+ .text          0x000000000000a7f8       0x40 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/libgcc.a(_arm_fixunsdfsi.o)
+                0x000000000000a7f8                __fixunsdfsi
+                0x000000000000a7f8                __aeabi_d2uiz
+ .text.abs      0x000000000000a838        0x8 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-abs.o)
+                0x000000000000a838                abs
+ .text.ctime_r  0x000000000000a840       0x16 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-ctime_r.o)
+                0x000000000000a840                ctime_r
+ *fill*         0x000000000000a856        0x2 
+ .text.exit     0x000000000000a858       0x28 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-exit.o)
+                0x000000000000a858                exit
  .text.gmtime_r
-                0x000000000000a878      0x12c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-gmtime_r.o)
-                0x000000000000a878                gmtime_r
+                0x000000000000a880      0x12c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-gmtime_r.o)
+                0x000000000000a880                gmtime_r
  .text.__libc_init_array
-                0x000000000000a9a4       0x4c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-init.o)
-                0x000000000000a9a4                __libc_init_array
+                0x000000000000a9ac       0x4c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-init.o)
+                0x000000000000a9ac                __libc_init_array
  .text.localtime_r
-                0x000000000000a9f0      0x1cc /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-lcltime_r.o)
-                0x000000000000a9f0                localtime_r
- .text.malloc   0x000000000000abbc       0x10 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-malloc.o)
-                0x000000000000abbc                malloc
- .text.free     0x000000000000abcc       0x10 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-malloc.o)
-                0x000000000000abcc                free
- .text.memset   0x000000000000abdc       0x10 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-memset.o)
-                0x000000000000abdc                memset
+                0x000000000000a9f8      0x1cc /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-lcltime_r.o)
+                0x000000000000a9f8                localtime_r
+ .text.malloc   0x000000000000abc4       0x10 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-malloc.o)
+                0x000000000000abc4                malloc
+ .text.free     0x000000000000abd4       0x10 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-malloc.o)
+                0x000000000000abd4                free
+ .text.memset   0x000000000000abe4       0x10 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-memset.o)
+                0x000000000000abe4                memset
  .text.validate_structure
-                0x000000000000abec      0x1ac /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-mktime.o)
- .text.mktime   0x000000000000ad98      0x2f8 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-mktime.o)
-                0x000000000000ad98                mktime
- .text._free_r  0x000000000000b090       0x88 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-freer.o)
-                0x000000000000b090                _free_r
+                0x000000000000abf4      0x1ac /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-mktime.o)
+ .text.mktime   0x000000000000ada0      0x2f8 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-mktime.o)
+                0x000000000000ada0                mktime
+ .text._free_r  0x000000000000b098       0x88 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-freer.o)
+                0x000000000000b098                _free_r
  .text._malloc_r
-                0x000000000000b118       0xac /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-mallocr.o)
-                0x000000000000b118                _malloc_r
- .text.printf   0x000000000000b1c4       0x30 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-printf.o)
-                0x000000000000b1c4                printf
-                0x000000000000b1c4                iprintf
- .text._sbrk_r  0x000000000000b1f4       0x20 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-sbrkr.o)
-                0x000000000000b1f4                _sbrk_r
- .text.sprintf  0x000000000000b214       0x48 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-sprintf.o)
-                0x000000000000b214                sprintf
-                0x000000000000b214                siprintf
+                0x000000000000b120       0xac /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-mallocr.o)
+                0x000000000000b120                _malloc_r
+ .text.printf   0x000000000000b1cc       0x30 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-printf.o)
+                0x000000000000b1cc                printf
+                0x000000000000b1cc                iprintf
+ .text._sbrk_r  0x000000000000b1fc       0x20 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-sbrkr.o)
+                0x000000000000b1fc                _sbrk_r
+ .text.sprintf  0x000000000000b21c       0x48 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-sprintf.o)
+                0x000000000000b21c                sprintf
+                0x000000000000b21c                siprintf
  .text.iso_year_adjust
-                0x000000000000b25c       0xc0 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-strftime.o)
+                0x000000000000b264       0xc0 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-strftime.o)
  .text.strftime
-                0x000000000000b31c      0x89c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-strftime.o)
-                0x000000000000b31c                strftime
- .text.strlen   0x000000000000bbb8       0x10 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-strlen.o)
-                0x000000000000bbb8                strlen
- .text.strncpy  0x000000000000bbc8       0x24 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-strncpy.o)
-                0x000000000000bbc8                strncpy
+                0x000000000000b324      0x89c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-strftime.o)
+                0x000000000000b324                strftime
+ .text.strlen   0x000000000000bbc0       0x10 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-strlen.o)
+                0x000000000000bbc0                strlen
+ .text.strncpy  0x000000000000bbd0       0x24 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-strncpy.o)
+                0x000000000000bbd0                strncpy
  .text._strtoul_r
-                0x000000000000bbec       0xf8 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-strtoul.o)
-                0x000000000000bbec                _strtoul_r
- .text.strtoul  0x000000000000bce4       0x1c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-strtoul.o)
-                0x000000000000bce4                strtoul
+                0x000000000000bbf4       0xf8 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-strtoul.o)
+                0x000000000000bbf4                _strtoul_r
+ .text.strtoul  0x000000000000bcec       0x1c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-strtoul.o)
+                0x000000000000bcec                strtoul
  .text.__get_current_time_locale
-                0x000000000000bd00       0x20 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-timelocal.o)
-                0x000000000000bd00                __get_current_time_locale
+                0x000000000000bd08       0x20 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-timelocal.o)
+                0x000000000000bd08                __get_current_time_locale
  .text.__tzcalc_limits
-                0x000000000000bd20      0x14c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-tzcalc_limits.o)
-                0x000000000000bd20                __tzcalc_limits
+                0x000000000000bd28      0x14c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-tzcalc_limits.o)
+                0x000000000000bd28                __tzcalc_limits
  .text.__tz_lock
-                0x000000000000be6c        0x2 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-tzlock.o)
-                0x000000000000be6c                __tz_lock
+                0x000000000000be74        0x2 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-tzlock.o)
+                0x000000000000be74                __tz_lock
  .text.__tz_unlock
-                0x000000000000be6e        0x2 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-tzlock.o)
-                0x000000000000be6e                __tz_unlock
+                0x000000000000be76        0x2 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-tzlock.o)
+                0x000000000000be76                __tz_unlock
  .text._tzset_unlocked
-                0x000000000000be70        0xc /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-tzset.o)
-                0x000000000000be70                _tzset_unlocked
+                0x000000000000be78        0xc /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-tzset.o)
+                0x000000000000be78                _tzset_unlocked
  .text._tzset_unlocked_r
-                0x000000000000be7c      0x304 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-tzset_r.o)
-                0x000000000000be7c                _tzset_unlocked_r
+                0x000000000000be84      0x304 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-tzset_r.o)
+                0x000000000000be84                _tzset_unlocked_r
  .text.asctime_r
-                0x000000000000c180       0x4c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-asctime_r.o)
-                0x000000000000c180                asctime_r
- .text.div      0x000000000000c1cc       0x28 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-div.o)
-                0x000000000000c1cc                div
+                0x000000000000c188       0x4c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-asctime_r.o)
+                0x000000000000c188                asctime_r
+ .text.div      0x000000000000c1d4       0x28 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-div.o)
+                0x000000000000c1d4                div
  .text._cleanup_r
-                0x000000000000c1f4        0xc /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-findfp.o)
-                0x000000000000c1f4                _cleanup_r
+                0x000000000000c1fc        0xc /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-findfp.o)
+                0x000000000000c1fc                _cleanup_r
  .text.std.isra.0
-                0x000000000000c200       0x48 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-findfp.o)
+                0x000000000000c208       0x48 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-findfp.o)
  .text.__sfmoreglue
-                0x000000000000c248       0x2c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-findfp.o)
-                0x000000000000c248                __sfmoreglue
- .text.__sinit  0x000000000000c274       0x60 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-findfp.o)
-                0x000000000000c274                __sinit
- .text.__sfp    0x000000000000c2d4       0x74 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-findfp.o)
-                0x000000000000c2d4                __sfp
+                0x000000000000c250       0x2c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-findfp.o)
+                0x000000000000c250                __sfmoreglue
+ .text.__sinit  0x000000000000c27c       0x60 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-findfp.o)
+                0x000000000000c27c                __sinit
+ .text.__sfp    0x000000000000c2dc       0x74 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-findfp.o)
+                0x000000000000c2dc                __sfp
  .text._fwalk_reent
-                0x000000000000c348       0x3c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-fwalk.o)
-                0x000000000000c348                _fwalk_reent
+                0x000000000000c350       0x3c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-fwalk.o)
+                0x000000000000c350                _fwalk_reent
  .text._findenv_r
-                0x000000000000c384       0x78 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-getenv_r.o)
-                0x000000000000c384                _findenv_r
+                0x000000000000c38c       0x78 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-getenv_r.o)
+                0x000000000000c38c                _findenv_r
  .text._getenv_r
-                0x000000000000c3fc        0xe /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-getenv_r.o)
-                0x000000000000c3fc                _getenv_r
- *fill*         0x000000000000c40a        0x2 
+                0x000000000000c404        0xe /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-getenv_r.o)
+                0x000000000000c404                _getenv_r
+ *fill*         0x000000000000c412        0x2 
  .text.__gettzinfo
-                0x000000000000c40c        0x8 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-gettzinfo.o)
-                0x000000000000c40c                __gettzinfo
- .text.labs     0x000000000000c414        0x8 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-labs.o)
-                0x000000000000c414                labs
+                0x000000000000c414        0x8 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-gettzinfo.o)
+                0x000000000000c414                __gettzinfo
+ .text.labs     0x000000000000c41c        0x8 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-labs.o)
+                0x000000000000c41c                labs
  .text.__ssputs_r
-                0x000000000000c41c       0xb2 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-svfprintf.o)
-                0x000000000000c41c                __ssputs_r
- *fill*         0x000000000000c4ce        0x2 
+                0x000000000000c424       0xb2 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-svfprintf.o)
+                0x000000000000c424                __ssputs_r
+ *fill*         0x000000000000c4d6        0x2 
  .text._svfprintf_r
-                0x000000000000c4d0      0x1e4 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-svfprintf.o)
-                0x000000000000c4d0                _svfprintf_r
-                0x000000000000c4d0                _svfiprintf_r
+                0x000000000000c4d8      0x1e4 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-svfprintf.o)
+                0x000000000000c4d8                _svfprintf_r
+                0x000000000000c4d8                _svfiprintf_r
  .text.__sfputc_r
-                0x000000000000c6b4       0x2c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-vfprintf.o)
+                0x000000000000c6bc       0x2c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-vfprintf.o)
  .text.__sfputs_r
-                0x000000000000c6e0       0x24 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-vfprintf.o)
-                0x000000000000c6e0                __sfputs_r
+                0x000000000000c6e8       0x24 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-vfprintf.o)
+                0x000000000000c6e8                __sfputs_r
  .text._vfprintf_r
-                0x000000000000c704      0x210 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-vfprintf.o)
-                0x000000000000c704                _vfiprintf_r
-                0x000000000000c704                _vfprintf_r
+                0x000000000000c70c      0x210 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-vfprintf.o)
+                0x000000000000c70c                _vfiprintf_r
+                0x000000000000c70c                _vfprintf_r
  .text._printf_common
-                0x000000000000c914       0xea /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-vfprintf_i.o)
-                0x000000000000c914                _printf_common
- *fill*         0x000000000000c9fe        0x2 
+                0x000000000000c91c       0xea /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-vfprintf_i.o)
+                0x000000000000c91c                _printf_common
+ *fill*         0x000000000000ca06        0x2 
  .text._printf_i
-                0x000000000000ca00      0x240 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-vfprintf_i.o)
-                0x000000000000ca00                _printf_i
+                0x000000000000ca08      0x240 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-vfprintf_i.o)
+                0x000000000000ca08                _printf_i
  .text.snprintf
-                0x000000000000cc40       0x64 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-snprintf.o)
-                0x000000000000cc40                snprintf
-                0x000000000000cc40                sniprintf
- .text.sscanf   0x000000000000cca4       0x54 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-sscanf.o)
-                0x000000000000cca4                sscanf
-                0x000000000000cca4                siscanf
- .text.__sread  0x000000000000ccf8       0x22 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-stdio.o)
-                0x000000000000ccf8                __sread
+                0x000000000000cc48       0x64 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-snprintf.o)
+                0x000000000000cc48                snprintf
+                0x000000000000cc48                sniprintf
+ .text.sscanf   0x000000000000ccac       0x54 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-sscanf.o)
+                0x000000000000ccac                sscanf
+                0x000000000000ccac                siscanf
+ .text.__sread  0x000000000000cd00       0x22 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-stdio.o)
+                0x000000000000cd00                __sread
  .text.__seofread
-                0x000000000000cd1a        0x4 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-stdio.o)
-                0x000000000000cd1a                __seofread
+                0x000000000000cd22        0x4 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-stdio.o)
+                0x000000000000cd22                __seofread
  .text.__swrite
-                0x000000000000cd1e       0x38 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-stdio.o)
-                0x000000000000cd1e                __swrite
- .text.__sseek  0x000000000000cd56       0x24 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-stdio.o)
-                0x000000000000cd56                __sseek
+                0x000000000000cd26       0x38 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-stdio.o)
+                0x000000000000cd26                __swrite
+ .text.__sseek  0x000000000000cd5e       0x24 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-stdio.o)
+                0x000000000000cd5e                __sseek
  .text.__sclose
-                0x000000000000cd7a        0x8 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-stdio.o)
-                0x000000000000cd7a                __sclose
- .text          0x000000000000cd82       0x14 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-strcmp.o)
-                0x000000000000cd82                strcmp
- .text.strcpy   0x000000000000cd96       0x10 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-strcpy.o)
-                0x000000000000cd96                strcpy
- .text.strncmp  0x000000000000cda6       0x34 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-strncmp.o)
-                0x000000000000cda6                strncmp
- *fill*         0x000000000000cdda        0x2 
+                0x000000000000cd82        0x8 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-stdio.o)
+                0x000000000000cd82                __sclose
+ .text          0x000000000000cd8a       0x14 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-strcmp.o)
+                0x000000000000cd8a                strcmp
+ .text.strcpy   0x000000000000cd9e       0x10 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-strcpy.o)
+                0x000000000000cd9e                strcpy
+ .text.strncmp  0x000000000000cdae       0x34 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-strncmp.o)
+                0x000000000000cdae                strncmp
+ *fill*         0x000000000000cde2        0x2 
  .text.__swbuf_r
-                0x000000000000cddc       0xa8 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-wbuf.o)
-                0x000000000000cddc                __swbuf_r
+                0x000000000000cde4       0xa8 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-wbuf.o)
+                0x000000000000cde4                __swbuf_r
  .text._write_r
-                0x000000000000ce84       0x24 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-writer.o)
-                0x000000000000ce84                _write_r
+                0x000000000000ce8c       0x24 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-writer.o)
+                0x000000000000ce8c                _write_r
  .text.__swsetup_r
-                0x000000000000cea8       0xd8 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-wsetup.o)
-                0x000000000000cea8                __swsetup_r
+                0x000000000000ceb0       0xd8 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-wsetup.o)
+                0x000000000000ceb0                __swsetup_r
  .text._close_r
-                0x000000000000cf80       0x20 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-closer.o)
-                0x000000000000cf80                _close_r
+                0x000000000000cf88       0x20 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-closer.o)
+                0x000000000000cf88                _close_r
  .text.__env_lock
-                0x000000000000cfa0        0x2 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-envlock.o)
-                0x000000000000cfa0                __env_lock
+                0x000000000000cfa8        0x2 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-envlock.o)
+                0x000000000000cfa8                __env_lock
  .text.__env_unlock
-                0x000000000000cfa2        0x2 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-envlock.o)
-                0x000000000000cfa2                __env_unlock
+                0x000000000000cfaa        0x2 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-envlock.o)
+                0x000000000000cfaa                __env_unlock
  .text.__sflush_r
-                0x000000000000cfa4      0x108 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-fflush.o)
-                0x000000000000cfa4                __sflush_r
+                0x000000000000cfac      0x108 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-fflush.o)
+                0x000000000000cfac                __sflush_r
  .text._fflush_r
-                0x000000000000d0ac       0x54 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-fflush.o)
-                0x000000000000d0ac                _fflush_r
+                0x000000000000d0b4       0x54 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-fflush.o)
+                0x000000000000d0b4                _fflush_r
  .text._fstat_r
-                0x000000000000d100       0x24 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-fstatr.o)
-                0x000000000000d100                _fstat_r
+                0x000000000000d108       0x24 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-fstatr.o)
+                0x000000000000d108                _fstat_r
  .text._lseek_r
-                0x000000000000d124       0x24 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-lseekr.o)
-                0x000000000000d124                _lseek_r
+                0x000000000000d12c       0x24 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-lseekr.o)
+                0x000000000000d12c                _lseek_r
  .text.__smakebuf_r
-                0x000000000000d148       0x9c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-makebuf.o)
-                0x000000000000d148                __smakebuf_r
- .text.memchr   0x000000000000d1e4       0x1e /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-memchr.o)
-                0x000000000000d1e4                memchr
- .text.memcpy   0x000000000000d202       0x16 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-memcpy.o)
-                0x000000000000d202                memcpy
- .text.memmove  0x000000000000d218       0x36 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-memmove.o)
-                0x000000000000d218                memmove
+                0x000000000000d150       0x9c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-makebuf.o)
+                0x000000000000d150                __smakebuf_r
+ .text.memchr   0x000000000000d1ec       0x1e /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-memchr.o)
+                0x000000000000d1ec                memchr
+ .text.memcpy   0x000000000000d20a       0x16 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-memcpy.o)
+                0x000000000000d20a                memcpy
+ .text.memmove  0x000000000000d220       0x36 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-memmove.o)
+                0x000000000000d220                memmove
  .text._realloc_r
-                0x000000000000d24e       0x4c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-reallocr.o)
-                0x000000000000d24e                _realloc_r
+                0x000000000000d256       0x4c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-reallocr.o)
+                0x000000000000d256                _realloc_r
  .text._sungetc_r
-                0x000000000000d29a       0x7a /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-svfscanf.o)
-                0x000000000000d29a                _sungetc_r
+                0x000000000000d2a2       0x7a /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-svfscanf.o)
+                0x000000000000d2a2                _sungetc_r
  .text.__ssrefill_r
-                0x000000000000d314       0x3a /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-svfscanf.o)
-                0x000000000000d314                __ssrefill_r
- *fill*         0x000000000000d34e        0x2 
+                0x000000000000d31c       0x3a /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-svfscanf.o)
+                0x000000000000d31c                __ssrefill_r
+ *fill*         0x000000000000d356        0x2 
  .text.__ssvfscanf_r
-                0x000000000000d350      0x29c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-svfscanf.o)
-                0x000000000000d350                __ssvfscanf_r
-                0x000000000000d350                __ssvfiscanf_r
+                0x000000000000d358      0x29c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-svfscanf.o)
+                0x000000000000d358                __ssvfscanf_r
+                0x000000000000d358                __ssvfiscanf_r
  .text._scanf_chars
-                0x000000000000d5ec       0xc0 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-vfscanf_i.o)
-                0x000000000000d5ec                _scanf_chars
+                0x000000000000d5f4       0xc0 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-vfscanf_i.o)
+                0x000000000000d5f4                _scanf_chars
  .text._scanf_i
-                0x000000000000d6ac      0x1e4 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-vfscanf_i.o)
-                0x000000000000d6ac                _scanf_i
- .text._read_r  0x000000000000d890       0x24 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-readr.o)
-                0x000000000000d890                _read_r
- .text.__sccl   0x000000000000d8b4       0x64 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-sccl.o)
-                0x000000000000d8b4                __sccl
+                0x000000000000d6b4      0x1e4 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-vfscanf_i.o)
+                0x000000000000d6b4                _scanf_i
+ .text._read_r  0x000000000000d898       0x24 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-readr.o)
+                0x000000000000d898                _read_r
+ .text.__sccl   0x000000000000d8bc       0x64 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-sccl.o)
+                0x000000000000d8bc                __sccl
  .text._strtol_r
-                0x000000000000d918      0x10c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-strtol.o)
-                0x000000000000d918                _strtol_r
+                0x000000000000d920      0x10c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-strtol.o)
+                0x000000000000d920                _strtol_r
  .text.__submore
-                0x000000000000da24       0x76 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-ungetc.o)
-                0x000000000000da24                __submore
- *fill*         0x000000000000da9a        0x2 
+                0x000000000000da2c       0x76 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-ungetc.o)
+                0x000000000000da2c                __submore
+ *fill*         0x000000000000daa2        0x2 
  .text._isatty_r
-                0x000000000000da9c       0x20 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-isattyr.o)
-                0x000000000000da9c                _isatty_r
+                0x000000000000daa4       0x20 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-isattyr.o)
+                0x000000000000daa4                _isatty_r
  .text._malloc_usable_size_r
-                0x000000000000dabc       0x14 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-msizer.o)
-                0x000000000000dabc                _malloc_usable_size_r
- .text._close   0x000000000000dad0       0x10 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libnosys.a(close.o)
-                0x000000000000dad0                _close
- .text._fstat   0x000000000000dae0       0x10 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libnosys.a(fstat.o)
-                0x000000000000dae0                _fstat
- .text._isatty  0x000000000000daf0       0x10 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libnosys.a(isatty.o)
-                0x000000000000daf0                _isatty
- .text._lseek   0x000000000000db00       0x10 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libnosys.a(lseek.o)
-                0x000000000000db00                _lseek
- .text._read    0x000000000000db10       0x10 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libnosys.a(read.o)
-                0x000000000000db10                _read
- .text._sbrk    0x000000000000db20       0x1c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libnosys.a(sbrk.o)
-                0x000000000000db20                _sbrk
- .text._write   0x000000000000db3c       0x10 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libnosys.a(write.o)
-                0x000000000000db3c                _write
- .text._exit    0x000000000000db4c        0x4 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libnosys.a(_exit.o)
-                0x000000000000db4c                _exit
+                0x000000000000dac4       0x14 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-msizer.o)
+                0x000000000000dac4                _malloc_usable_size_r
+ .text._close   0x000000000000dad8       0x10 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libnosys.a(close.o)
+                0x000000000000dad8                _close
+ .text._fstat   0x000000000000dae8       0x10 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libnosys.a(fstat.o)
+                0x000000000000dae8                _fstat
+ .text._isatty  0x000000000000daf8       0x10 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libnosys.a(isatty.o)
+                0x000000000000daf8                _isatty
+ .text._lseek   0x000000000000db08       0x10 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libnosys.a(lseek.o)
+                0x000000000000db08                _lseek
+ .text._read    0x000000000000db18       0x10 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libnosys.a(read.o)
+                0x000000000000db18                _read
+ .text._sbrk    0x000000000000db28       0x1c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libnosys.a(sbrk.o)
+                0x000000000000db28                _sbrk
+ .text._write   0x000000000000db44       0x10 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libnosys.a(write.o)
+                0x000000000000db44                _write
+ .text._exit    0x000000000000db54        0x4 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libnosys.a(_exit.o)
+                0x000000000000db54                _exit
  *(.init)
- .init          0x000000000000db50        0x4 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/crti.o
-                0x000000000000db50                _init
- .init          0x000000000000db54        0x8 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/crtn.o
+ .init          0x000000000000db58        0x4 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/crti.o
+                0x000000000000db58                _init
+ .init          0x000000000000db5c        0x8 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/crtn.o
  *(.fini)
- .fini          0x000000000000db5c        0x4 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/crti.o
-                0x000000000000db5c                _fini
- .fini          0x000000000000db60        0x8 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/crtn.o
+ .fini          0x000000000000db64        0x4 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/crti.o
+                0x000000000000db64                _fini
+ .fini          0x000000000000db68        0x8 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/crtn.o
  *crtbegin.o(.ctors)
  *crtbegin?.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o *crtend?.o) .ctors)
@@ -2235,124 +2223,124 @@ LOAD /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/g
  *(.dtors)
  *(.rodata*)
  .rodata.crystalCompensationTable
-                0x000000000000db68       0x8e ./Calendar/crystal_parameters.o
-                0x000000000000db68                crystalCompensationTable
- *fill*         0x000000000000dbf6        0x2 
- .rodata        0x000000000000dbf8       0x2c ./Calendar/main_calendar_tc.o
- .rodata.ExCvt  0x000000000000dc24       0x80 ./FatFS/src/ff.o
+                0x000000000000db70       0x8e ./Calendar/crystal_parameters.o
+                0x000000000000db70                crystalCompensationTable
+ *fill*         0x000000000000dbfe        0x2 
+ .rodata        0x000000000000dc00       0x2c ./Calendar/main_calendar_tc.o
+ .rodata.ExCvt  0x000000000000dc2c       0x80 ./FatFS/src/ff.o
  .rodata.LfnOfs
-                0x000000000000dca4        0xd ./FatFS/src/ff.o
- *fill*         0x000000000000dcb1        0x3 
- .rodata        0x000000000000dcb4       0x20 ./FatFS/src/ff.o
- .rodata.Tbl    0x000000000000dcd4      0x100 ./FatFS/src/option/unicode.o
+                0x000000000000dcac        0xd ./FatFS/src/ff.o
+ *fill*         0x000000000000dcb9        0x3 
+ .rodata        0x000000000000dcbc       0x20 ./FatFS/src/ff.o
+ .rodata.Tbl    0x000000000000dcdc      0x100 ./FatFS/src/option/unicode.o
  .rodata.cvt1.3852
-                0x000000000000ddd4      0x1f2 ./FatFS/src/option/unicode.o
- *fill*         0x000000000000dfc6        0x2 
+                0x000000000000dddc      0x1f2 ./FatFS/src/option/unicode.o
+ *fill*         0x000000000000dfce        0x2 
  .rodata.cvt2.3853
-                0x000000000000dfc8       0xbc ./FatFS/src/option/unicode.o
- .rodata        0x000000000000e084       0x18 ./emlib/microsd.o
- .rodata        0x000000000000e09c        0x6 ./src/epsilometer_AUX.o
- *fill*         0x000000000000e0a2        0x2 
- .rodata        0x000000000000e0a4       0x2e ./src/epsilometer_DMA.o
- *fill*         0x000000000000e0d2        0x2 
- .rodata        0x000000000000e0d4       0x7a ./src/epsilometer_SDcard.o
- *fill*         0x000000000000e14e        0x2 
- .rodata        0x000000000000e150       0x30 ./src/epsilometer_analog.o
- .rodata        0x000000000000e180       0x22 ./src/epsilometer_coms.o
- *fill*         0x000000000000e1a2        0x2 
- .rodata        0x000000000000e1a4      0x17e ./src/epsilometer_menu.o
+                0x000000000000dfd0       0xbc ./FatFS/src/option/unicode.o
+ .rodata        0x000000000000e08c       0x18 ./emlib/microsd.o
+ .rodata        0x000000000000e0a4        0x6 ./src/epsilometer_AUX.o
+ *fill*         0x000000000000e0aa        0x2 
+ .rodata        0x000000000000e0ac       0x2e ./src/epsilometer_DMA.o
+ *fill*         0x000000000000e0da        0x2 
+ .rodata        0x000000000000e0dc       0x7a ./src/epsilometer_SDcard.o
+ *fill*         0x000000000000e156        0x2 
+ .rodata        0x000000000000e158       0x30 ./src/epsilometer_analog.o
+ .rodata        0x000000000000e188       0x22 ./src/epsilometer_coms.o
+ *fill*         0x000000000000e1aa        0x2 
+ .rodata        0x000000000000e1ac      0x17e ./src/epsilometer_menu.o
  .rodata.str1.1
-                0x000000000000e322        0x2 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-impure.o)
+                0x000000000000e32a        0x2 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-impure.o)
  .rodata._global_impure_ptr
-                0x000000000000e324        0x4 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-impure.o)
-                0x000000000000e324                _global_impure_ptr
+                0x000000000000e32c        0x4 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-impure.o)
+                0x000000000000e32c                _global_impure_ptr
  .rodata._DAYS_BEFORE_MONTH
-                0x000000000000e328       0x30 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-mktime.o)
+                0x000000000000e330       0x30 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-mktime.o)
  .rodata.DAYS_IN_MONTH
-                0x000000000000e358       0x30 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-mktime.o)
+                0x000000000000e360       0x30 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-mktime.o)
  .rodata.__month_lengths
-                0x000000000000e388       0x60 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-month_lengths.o)
-                0x000000000000e388                __month_lengths
+                0x000000000000e390       0x60 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-month_lengths.o)
+                0x000000000000e390                __month_lengths
  .rodata.str1.1
-                0x000000000000e3e8       0x54 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-strftime.o)
+                0x000000000000e3f0       0x54 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-strftime.o)
                                          0x66 (size before relaxing)
  .rodata.str1.1
-                0x000000000000e43c      0x133 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-timelocal.o)
+                0x000000000000e444      0x133 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-timelocal.o)
                                         0x134 (size before relaxing)
- *fill*         0x000000000000e56f        0x1 
+ *fill*         0x000000000000e577        0x1 
  .rodata._C_time_locale
-                0x000000000000e570       0xfc /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-timelocal.o)
+                0x000000000000e578       0xfc /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-timelocal.o)
  .rodata.str1.1
-                0x000000000000e66c       0x3c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-tzset_r.o)
+                0x000000000000e674       0x3c /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-tzset_r.o)
                                          0x4e (size before relaxing)
  .rodata.str1.1
                 0x0000000000000000        0x4 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-tzvars.o)
  .rodata.day_name.4676
-                0x000000000000e6a8       0x15 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-asctime_r.o)
+                0x000000000000e6b0       0x15 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-asctime_r.o)
  .rodata.mon_name.4677
-                0x000000000000e6bd       0x24 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-asctime_r.o)
+                0x000000000000e6c5       0x24 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-asctime_r.o)
  .rodata.str1.1
-                0x000000000000e6e1       0x20 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-asctime_r.o)
+                0x000000000000e6e9       0x20 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-asctime_r.o)
  .rodata._ctype_
-                0x000000000000e701      0x101 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-ctype_.o)
-                0x000000000000e701                _ctype_
- *fill*         0x000000000000e802        0x2 
+                0x000000000000e709      0x101 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-ctype_.o)
+                0x000000000000e709                _ctype_
+ *fill*         0x000000000000e80a        0x2 
  .rodata.__sf_fake_stdin
-                0x000000000000e804       0x20 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-findfp.o)
-                0x000000000000e804                __sf_fake_stdin
+                0x000000000000e80c       0x20 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-findfp.o)
+                0x000000000000e80c                __sf_fake_stdin
  .rodata.__sf_fake_stdout
-                0x000000000000e824       0x20 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-findfp.o)
-                0x000000000000e824                __sf_fake_stdout
+                0x000000000000e82c       0x20 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-findfp.o)
+                0x000000000000e82c                __sf_fake_stdout
  .rodata.__sf_fake_stderr
-                0x000000000000e844       0x20 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-findfp.o)
-                0x000000000000e844                __sf_fake_stderr
+                0x000000000000e84c       0x20 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-findfp.o)
+                0x000000000000e84c                __sf_fake_stderr
  .rodata.str1.1
-                0x000000000000e864       0x11 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-svfprintf.o)
+                0x000000000000e86c       0x11 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-svfprintf.o)
  .rodata.str1.1
                 0x0000000000000000       0x11 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-vfprintf.o)
  .rodata.str1.1
-                0x000000000000e875       0x22 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-vfprintf_i.o)
+                0x000000000000e87d       0x22 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-vfprintf_i.o)
  .rodata.str1.1
                 0x0000000000000000        0x4 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-svfscanf.o)
- *fill*         0x000000000000e897        0x1 
- .rodata        0x000000000000e898        0xc /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-vfscanf_i.o)
+ *fill*         0x000000000000e89f        0x1 
+ .rodata        0x000000000000e8a0        0xc /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-vfscanf_i.o)
  .rodata.str1.1
-                0x000000000000e8a4       0x1b /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-vfscanf_i.o)
+                0x000000000000e8ac       0x1b /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-nano-vfscanf_i.o)
  *(.eh_frame*)
- *fill*         0x000000000000e8bf        0x1 
- .eh_frame      0x000000000000e8c0        0x0 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/crtbegin.o
- .eh_frame      0x000000000000e8c0       0x28 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-strcmp.o)
- .eh_frame      0x000000000000e8e8        0x4 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/crtend.o
+ *fill*         0x000000000000e8c7        0x1 
+ .eh_frame      0x000000000000e8c8        0x0 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/crtbegin.o
+ .eh_frame      0x000000000000e8c8       0x28 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/libc_nano.a(lib_a-strcmp.o)
+ .eh_frame      0x000000000000e8f0        0x4 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/crtend.o
 
-.glue_7         0x000000000000e8ec        0x0
+.glue_7         0x000000000000e8f4        0x0
  .glue_7        0x0000000000000000        0x0 linker stubs
 
-.glue_7t        0x000000000000e8ec        0x0
+.glue_7t        0x000000000000e8f4        0x0
  .glue_7t       0x0000000000000000        0x0 linker stubs
 
-.vfp11_veneer   0x000000000000e8ec        0x0
+.vfp11_veneer   0x000000000000e8f4        0x0
  .vfp11_veneer  0x0000000000000000        0x0 linker stubs
 
-.v4_bx          0x000000000000e8ec        0x0
+.v4_bx          0x000000000000e8f4        0x0
  .v4_bx         0x0000000000000000        0x0 linker stubs
 
-.iplt           0x000000000000e8ec        0x0
+.iplt           0x000000000000e8f4        0x0
  .iplt          0x0000000000000000        0x0 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/crtbegin.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x000000000000e8ec                __exidx_start = .
+                0x000000000000e8f4                __exidx_start = .
 
-.ARM.exidx      0x000000000000e8ec        0x8
+.ARM.exidx      0x000000000000e8f4        0x8
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
- .ARM.exidx     0x000000000000e8ec        0x8 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/crt0.o
-                0x000000000000e8f4                __exidx_end = .
-                0x000000000000e8f4                __etext = .
+ .ARM.exidx     0x000000000000e8f4        0x8 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/softfp/crt0.o
+                0x000000000000e8fc                __exidx_end = .
+                0x000000000000e8fc                __etext = .
 
-.rel.dyn        0x000000000000e8f4        0x0
+.rel.dyn        0x000000000000e8fc        0x0
  .rel.iplt      0x0000000000000000        0x0 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/crtbegin.o
 
-.data           0x0000000020000000      0x318 load address 0x000000000000e8f4
+.data           0x0000000020000000      0x318 load address 0x000000000000e8fc
                 0x0000000020000000                __data_start__ = .
  *(vtable)
  *(.data*)
@@ -2371,9 +2359,9 @@ LOAD /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/g
  .data.leuart0Init
                 0x0000000020000010       0x10 ./src/epsilometer_AUX.o
                 0x0000000020000010                leuart0Init
- .data.cur_min.7800
+ .data.cur_min.7802
                 0x0000000020000020        0x4 ./src/epsilometer_SDcard.o
- .data.cur_sec.7801
+ .data.cur_sec.7803
                 0x0000000020000024        0x4 ./src/epsilometer_SDcard.o
  .data.initusart
                 0x0000000020000028       0x18 ./src/epsilometer_analog.o
@@ -2451,7 +2439,7 @@ LOAD /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/g
                 0x0000000020000318                . = ALIGN (0x4)
                 0x0000000020000318                __data_end__ = .
 
-.igot.plt       0x0000000020000318        0x0 load address 0x000000000000ec0c
+.igot.plt       0x0000000020000318        0x0 load address 0x000000000000ec14
  .igot.plt      0x0000000000000000        0x0 /Applications/Simplicity Studio.app/Contents/Eclipse/developer/toolchains/gnu_arm/4.9_2015q3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/softfp/crtbegin.o
 
 .bss            0x0000000020000400     0x1070 load address 0x000000000000ed00
@@ -2895,28 +2883,28 @@ OUTPUT(MADRE2.1.axf elf32-littlearm)
  .debug_line    0x00000000000013cd     0x15ef ./FatFS/src/ff.o
  .debug_line    0x00000000000029bc       0xde ./FatFS/src/option/unicode.o
  .debug_line    0x0000000000002a9a      0x2d3 ./emlib/dmactrl.o
- .debug_line    0x0000000000002d6d      0x7ba ./emlib/dmadrv.o
- .debug_line    0x0000000000003527      0x470 ./emlib/em_adc.o
- .debug_line    0x0000000000003997      0xa62 ./emlib/em_cmu.o
- .debug_line    0x00000000000043f9      0x6ac ./emlib/em_core.o
- .debug_line    0x0000000000004aa5      0x5ef ./emlib/em_dma.o
- .debug_line    0x0000000000005094      0x52b ./emlib/em_gpio.o
- .debug_line    0x00000000000055bf      0x227 ./emlib/em_int.o
- .debug_line    0x00000000000057e6      0x4e1 ./emlib/em_leuart.o
- .debug_line    0x0000000000005cc7      0x40b ./emlib/em_rtc.o
- .debug_line    0x00000000000060d2      0x667 ./emlib/em_usart.o
- .debug_line    0x0000000000006739      0x59e ./emlib/microsd.o
- .debug_line    0x0000000000006cd7      0x4b7 ./src/epilometer_sampling.o
- .debug_line    0x000000000000718e      0x530 ./src/epsilometer_AUX.o
- .debug_line    0x00000000000076be      0x36d ./src/epsilometer_CMU_init.o
- .debug_line    0x0000000000007a2b      0x504 ./src/epsilometer_DMA.o
- .debug_line    0x0000000000007f2f      0x34d ./src/epsilometer_GPIO_init.o
- .debug_line    0x000000000000827c      0x459 ./src/epsilometer_SDcard.o
- .debug_line    0x00000000000086d5      0x2a9 ./src/epsilometer_TIMER_init.o
- .debug_line    0x000000000000897e      0x701 ./src/epsilometer_analog.o
- .debug_line    0x000000000000907f      0x530 ./src/epsilometer_coms.o
- .debug_line    0x00000000000095af      0x370 ./src/epsilometer_main.o
- .debug_line    0x000000000000991f      0x55e ./src/epsilometer_menu.o
+ .debug_line    0x0000000000002d6d      0x7b9 ./emlib/dmadrv.o
+ .debug_line    0x0000000000003526      0x470 ./emlib/em_adc.o
+ .debug_line    0x0000000000003996      0xa62 ./emlib/em_cmu.o
+ .debug_line    0x00000000000043f8      0x6ac ./emlib/em_core.o
+ .debug_line    0x0000000000004aa4      0x5ef ./emlib/em_dma.o
+ .debug_line    0x0000000000005093      0x52b ./emlib/em_gpio.o
+ .debug_line    0x00000000000055be      0x227 ./emlib/em_int.o
+ .debug_line    0x00000000000057e5      0x4e1 ./emlib/em_leuart.o
+ .debug_line    0x0000000000005cc6      0x40b ./emlib/em_rtc.o
+ .debug_line    0x00000000000060d1      0x667 ./emlib/em_usart.o
+ .debug_line    0x0000000000006738      0x59e ./emlib/microsd.o
+ .debug_line    0x0000000000006cd6      0x4b7 ./src/epilometer_sampling.o
+ .debug_line    0x000000000000718d      0x530 ./src/epsilometer_AUX.o
+ .debug_line    0x00000000000076bd      0x36d ./src/epsilometer_CMU_init.o
+ .debug_line    0x0000000000007a2a      0x504 ./src/epsilometer_DMA.o
+ .debug_line    0x0000000000007f2e      0x34d ./src/epsilometer_GPIO_init.o
+ .debug_line    0x000000000000827b      0x459 ./src/epsilometer_SDcard.o
+ .debug_line    0x00000000000086d4      0x2a9 ./src/epsilometer_TIMER_init.o
+ .debug_line    0x000000000000897d      0x701 ./src/epsilometer_analog.o
+ .debug_line    0x000000000000907e      0x530 ./src/epsilometer_coms.o
+ .debug_line    0x00000000000095ae      0x370 ./src/epsilometer_main.o
+ .debug_line    0x000000000000991e      0x55f ./src/epsilometer_menu.o
 
 .debug_info     0x0000000000000000    0x18e50
  .debug_info    0x0000000000000000      0x110 ./CMSIS/EFM32WG/startup_efm32wg.o

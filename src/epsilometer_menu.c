@@ -209,6 +209,7 @@ void init_MADRE(void){
 	chcksum_aux1_header = 0;
 	aux2_chcksum        = 0;
 	voltage             = 0;
+	header_bytes_sent   = 0;
 
 	// uint32 array where data are stored and from where data are sent to the serial port
     data_buffer       = malloc(sizeof(uint8_t)*buffer_size);
