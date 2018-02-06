@@ -25,29 +25,31 @@
 /* define epsilometer parameters info to be put into the header data   */
 /*************************************************************************/
 
+#define NUMBER_SENSORS 7
 
 typedef struct MadreSetup {
 	uint32_t 	core_clock;             // frequency of the cristal
-	uint32_t	maximum_samples;        // max number of sample in the dataBuffer. A sample is all the channels data + timestamp if timeStampflag=1
+	uint32_t	maximum_samples;        // max number of sample in the dataBuffer. A sample is all the channels data + timestamp if timeStampflag=1 (default 320)
 	uint32_t    pinInterupt;            // GPIO used to trigger the sample interrupt.
-	uint32_t	blocksize;              // nb of EPSI sample for in one block. We stream and SD write whole blocks
+	uint32_t	blocksize;              // nb of EPSI sample for in one block. We stream and SD write whole blocks (default 160)
 	uint32_t	sample_frequency;       // sample frequency in Hz used in epsilometer_analog.c define_ADC_configuration
 	uint32_t    master_clock_frequency; // frequency in Hz of the clock used by the ADC
 	uint32_t    timer1Sync;             // so far number of cycle of the master clock to trigger TIMER1 which will sync all the ADC togther
-	uint32_t	spi_baudrate;           // baudrate of the spi bus: ADC to MCU communication
-	uint32_t	usart_baudrate;         // baudrate ot the RS232 TX/RX
-	uint32_t	ADCword_length;         // ADC word length
+	uint32_t	spi_baudrate;           // baudrate of the spi bus: ADC to MCU communication (1MHz)
+	uint32_t	usart_baudrate;         // baudrate ot the RS232 TX/RX (default 460800)
+	uint32_t	ADCword_length;         // ADC word length (binary is 3 bits and hexa is 6 bits)
 	time_t 	    Start_time;             // Start time in Unix time default is 1 January 2017 00:00:00
 	uint32_t    AUX_flag;               // Auxiliary flag
 } MadreSetup, *MadreSetupPtr;
 
 typedef struct MapSetup {
-	uint32_t 	number_sensor;          // number of sensor used. It will always go from 1 to numSensor in the list define in the main
-	uint8_t 	sensorID[7];            // number of sensor used. It will always go from 1 to numSensor in the list define in the main
+	uint32_t 	number_sensor;               // number of sensor used. It will always go from 1 to numSensor in the list define in the main
+	uint8_t 	sensorID[NUMBER_SENSORS];    //
 } MapSetup, *MapSetupPtr;
 
+// Aux 1 is by default Sea Bird 49
 typedef struct AuxSetup {
-	uint32_t	usart_baudrate;         // baudrate ot the RS232 TX/RX
+	uint32_t	usart_baudrate;         // baudrate ot the RS232 TX/RX default(SBE baud rate 38400)
 	uint32_t  	Auxword_length;         // Aux word length
 	uint32_t  	aux_frequency;          // Aux frequency in hertz
 	uint8_t  	endchar;                // default \n
