@@ -180,6 +180,7 @@ volatile uint32_t count_analog;
 volatile uint32_t coreclock_cycle;
 volatile uint32_t timer1_phase_shift;
 
+
 //Auxiliary Sea bird variable
 uint8_t *   aux1header;
 extern MapSetupPtr   map_setup_ptr;

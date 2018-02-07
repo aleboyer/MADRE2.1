@@ -80,12 +80,6 @@ void USART1_TX_IRQHandler(void)
 		case TransmitHeader:
 			dataLen    = header_length-header_bytes_sent;
 			if (header_bytes_sent==0){//first time we enter the interrupt, build the header
-/*				sprintf(header_buffer,"\r\n$MADRE%8x,%8x,%8x,%8x,%8x,%8x\r\n",(int) epsi_stamp_block      \
-																	     ,(int) RTC->CNT                  \
-																	     ,(int) voltage                   \
-																         ,(int) chcksum_aux1_header       \
-																         ,(int) chcksum_aux2_header       \
-																         ,(int) chcksum_block_header);*/
 				sprintf(header_buffer,"\r\n$MADRE%8d,%8d,%8d,%8d,%8d,%8d\r\n",(int) epsi_stamp_block      \
 																	     ,(int) RTC->CNT                  \
 																	     ,(int) voltage                   \
@@ -176,6 +170,7 @@ uint32_t sendblock(uint32_t dataLen,char * Buffer, uint32_t bytes_sent)
 	default:
 		for(int i=0;i<NUMBER_BYTES_SENT;i++){
 			/* Transmit pending character */
+			USART_Tx(USART1, 'A');
 			USART_Tx(USART1, Buffer[bytes_sent]);
 			 bytes_sent++;
 		} //end of for

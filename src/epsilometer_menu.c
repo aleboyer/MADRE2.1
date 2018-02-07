@@ -210,12 +210,14 @@ void init_MADRE(void){
 	aux2_chcksum        = 0;
 	voltage             = 0;
 	header_bytes_sent   = 0;
+	map_bytes_sent      = 0;
 
 	// uint32 array where data are stored and from where data are sent to the serial port
     data_buffer       = malloc(sizeof(uint8_t)*buffer_size);
     header_length     = 63;
+    header_buffer     = NULL;
     header_buffer     = malloc(sizeof(char)*header_length);
-	sprintf(header_buffer,"\r\n$MADRE00000000,00000000,00000000,00000000,00000000,00000000\r\n");
+    sprintf(header_buffer,"\r\n$MADRE00000000,00000000,00000000,00000000,00000000,00000000\r\n");
     //                     /r/n$MADREepsisample,timestamp,voltage,aux1checksum,aux2checksum,blockchecksum/r/n
 
 }
@@ -300,6 +302,8 @@ void clear_madre(void){
 	if(data_buffer) free(data_buffer);
 	if(header_buffer) free(header_buffer);
 	if(aux1_sample) free(aux1_sample);
+	USART_Reset(USART1);
+	USART_Reset(USART0);
 }
 
 
