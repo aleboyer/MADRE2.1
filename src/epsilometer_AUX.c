@@ -50,8 +50,6 @@ void initAUX1(void){
 	//old madre
 	//GPIO_PinModeSet(gpioPortD, 3, gpioModePushPull,0); // MAX3221 EN MADRE REv1 I had to wire MAX3221 pin 1 to GPIO D3 only for old madre
 	// end old madre
-	GPIO_PinModeSet(gpioPortD,5,gpioModeInputPull,1);   // RX on D5 pull up
-	GPIO_PinModeSet(gpioPortD,4,gpioModePushPull,1);   // TX on D4 push-pull output
 
     /* eneable clocks  */
 	//TODO check if CORELE is necessary when activate EM4 for back up mode

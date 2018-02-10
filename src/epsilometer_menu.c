@@ -73,13 +73,15 @@ void MADRE_menu(void){
 void MADRE_Change_Config(void) {
 
 	char buf0[100] = {"\0"};
-	char buf1[100]= {"\0"};
+	char buf11[100]= {"\0"};
+	char buf12[100]= {"\0"};
 	char buf2[100]= {"\0"};
 	uint16_t rxData1 = 0;
 	uint16_t rxData2 = 0;
 	uint32_t param;
-	sprintf(buf0,"1:Sensors \n 2: Whatever? \n");
-	sprintf(buf1,"Number of sensor (default:%i,current:%i): \n",8,(int) map_setup_ptr->number_sensor);
+	sprintf(buf0,"01:Sensors \n 02: SBE \n 03: Whatever? \n");
+	sprintf(buf11,"Number of sensor (default:%i,current:%i): \n",8,(int) map_setup_ptr->number_sensor);
+	sprintf(buf12,"Aux1 Flag status (0:no SBE,1: SBE,current:%i): \n",(int) madre_setup_ptr->AUX_flag);
 	sprintf(buf2,"Setting up the new Start Date");
 	for(int i=0;i<strlen(buf0);i++){
 		USART_Tx(USART1,buf0[i]);
@@ -88,20 +90,36 @@ void MADRE_Change_Config(void) {
 	USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
 
 	switch(rxData1){
-		case 1:
+		case 49:
 			param=0;
-			for(int i=0;i<strlen(buf1);i++){
-				USART_Tx(USART1,buf1[i]);
+			for(int i=0;i<strlen(buf11);i++){
+				USART_Tx(USART1,buf11[i]);
 			}
 			rxData1 = USART_RxDouble(USART1);
 			USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
 			param = (int32_t) rxData1;
 			map_setup_ptr->number_sensor=param;
-			sprintf(buf1,"new number of sensor %i \n",(int) param);
-			for(int i=0;i<strlen(buf1);i++){
-				USART_Tx(USART1,buf1[i]);
+			sprintf(buf11,"new number of sensor %i \n",(int) param);
+			for(int i=0;i<strlen(buf11);i++){
+				USART_Tx(USART1,buf11[i]);
 			}
 			break;
+		case 12848: // 12848 in hex equal '20' -> it is the inverse of '02' from the laptop
+			param=0;
+			for(int i=0;i<strlen(buf12);i++){
+				USART_Tx(USART1,buf12[i]);
+			}
+			rxData1 = USART_RxDouble(USART1);
+			USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
+			param = (int32_t) rxData1;
+			madre_setup_ptr->AUX_flag=param;
+			sprintf(buf12,"AUX_flag status %i \n",(int) param);
+			for(int i=0;i<strlen(buf12);i++){
+				USART_Tx(USART1,buf12[i]);
+			}
+			break;
+
+
 		default:
 			break;
 	}
@@ -154,8 +172,6 @@ void MADRE_Change_Config(void) {
 void MADRE_Config(void) {
 	/* Use 20 MHZ HFRCO as core clock frequency*/
     /* use of an interrupt on CMU to trigger the Oscillator when ready */
-    init_CMU();
-    init_GPIO();            // define GPIO pin mode for ADC and the 485, PA2 to send MCLOCK (for ADCs), and PE7 to send SYNC
 	main_calendar_setup();  // set up date and start RTC. TODO: initialize the backRTC and start the LFXO
     init_MADRE();           // define the MADRE variables declare in common.h
 	init_SPI();             // Initialize the SPI interface for the Analog front end
@@ -302,7 +318,6 @@ void clear_madre(void){
 	if(data_buffer) free(data_buffer);
 	if(header_buffer) free(header_buffer);
 	if(aux1_sample) free(aux1_sample);
-	USART_Reset(USART1);
 	USART_Reset(USART0);
 }
 

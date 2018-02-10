@@ -30,8 +30,6 @@
 void UART_Setup() {
 	/*UART1 shit*/
 	CMU_ClockEnable(cmuClock_USART1, true); // Enable clock for USART1 module
-	GPIO_PinModeSet(gpioPortD, 7, gpioModePushPull, 1); // TX
-	GPIO_PinModeSet(gpioPortD, 6, gpioModeInput, 0); // RX
 
 	USART_InitAsync_TypeDef usartInitUSART1 = {
 		.enable = usartDisable, 					// Initially disabled
@@ -44,6 +42,7 @@ void UART_Setup() {
 	};
 
 	/*Initialize UART registers*/
+	USART_Reset(USART1);
 	USART_InitAsync(USART1, &usartInitUSART1);
 
 	USART1 -> ROUTE = USART_ROUTE_RXPEN | USART_ROUTE_TXPEN
@@ -170,7 +169,6 @@ uint32_t sendblock(uint32_t dataLen,char * Buffer, uint32_t bytes_sent)
 	default:
 		for(int i=0;i<NUMBER_BYTES_SENT;i++){
 			/* Transmit pending character */
-			USART_Tx(USART1, 'A');
 			USART_Tx(USART1, Buffer[bytes_sent]);
 			 bytes_sent++;
 		} //end of for

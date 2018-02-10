@@ -58,6 +58,8 @@ int main(void) {
 
     /* Initialize chip - handle erratas */
     CHIP_Init();
+    init_CMU();
+    init_GPIO();            // define GPIO pin mode for ADC and the 485, PA2 to send MCLOCK (for ADCs), and PE7 to send SYNC
 
 	MADRE_Config();
 	madre_state=MADRE_resume_sampling();
