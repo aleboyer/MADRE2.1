@@ -39,6 +39,7 @@ void init_GPIO(void) {
 	GPIO_PinModeSet(gpioPortA, 3, gpioModeInput, 0); 		// ADP5302 PS_VINOK Hi
 	GPIO_PinModeSet(gpioPortC, 4, gpioModeInput, 1); 		// Reed Switch
 	GPIO_PinModeSet(gpioPortB, 11, gpioModePushPull, 1); 	// 40MHz oscillator Enable
+	//GPIO_PinModeSet(gpioPortB, 8, gpioModePushPull, 1); 	// 32678Hz oscillator Enable
 
 	GPIO_PinModeSet(gpioPortF, 4, gpioModePushPull, 0); 	// Enable 485 Receiver
 	GPIO_PinModeSet(gpioPortF, 5, gpioModePushPull, 1); 	// Enable 485 Transmitter
