@@ -79,8 +79,9 @@ void USART1_TX_IRQHandler(void)
 		case TransmitHeader:
 			dataLen    = header_length-header_bytes_sent;
 			if (header_bytes_sent==0){//first time we enter the interrupt, build the header
-				sprintf(header_buffer,"\r\n$MADRE%8d,%8d,%8d,%8d,%8d,%8d\r\n",(int) epsi_stamp_block      \
-																	     ,(int) RTC->CNT                  \
+				//RTC->CNT*32768
+				sprintf(header_buffer,"\r\n$MADRE%10d,%10d,%10d,%10d,%10d,%10d\r\n",(int) epsi_stamp_block      \
+																	     ,(int) time(NULL)                \
 																	     ,(int) voltage                   \
 																         ,(int) chcksum_aux1_header       \
 																         ,(int) chcksum_aux2_header       \

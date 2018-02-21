@@ -230,10 +230,10 @@ void init_MADRE(void){
 
 	// uint32 array where data are stored and from where data are sent to the serial port
     data_buffer       = malloc(sizeof(uint8_t)*buffer_size);
-    header_length     = 63;
+    header_length     = 75;
     header_buffer     = NULL;
     header_buffer     = malloc(sizeof(char)*header_length);
-    sprintf(header_buffer,"\r\n$MADRE00000000,00000000,00000000,00000000,00000000,00000000\r\n");
+    sprintf(header_buffer,"\r\n$MADRE0000000000,0000000000,0000000000,0000000000,0000000000,0000000000\r\n");
     //                     /r/n$MADREepsisample,timestamp,voltage,aux1checksum,aux2checksum,blockchecksum/r/n
 
 }
@@ -262,19 +262,7 @@ void init_MAP(void){
  *****************************************************************************/
 
 void standby4setup(uint8_t delay) {
-    while (RTC->CNT<delay*32768){
-        if((USART1->STATUS & USART_STATUS_RXDATAV)){
-            uint16_t rxData1 = 0;
-        	uint16_t rxData2 = 0;
-        	uint32_t param;
-        	param=0;
-        	rxData1 = USART_RxDouble(USART1);
-        	param = param | rxData1 <<16;
-        	rxData2 = USART_RxDouble(USART1);
-        	param = param | rxData2;
-        	madre_setup_ptr->Start_time= (time_t) param;
-        }
-    }
+    while (RTC->CNT<delay*32768){}
 }
 
 
