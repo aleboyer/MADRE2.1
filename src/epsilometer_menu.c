@@ -227,13 +227,15 @@ void init_MADRE(void){
 	voltage             = 0;
 	header_bytes_sent   = 0;
 	map_bytes_sent      = 0;
+	err_write           = 0;
+	err_sync            = 0;
 
 	// uint32 array where data are stored and from where data are sent to the serial port
     data_buffer       = malloc(sizeof(uint8_t)*buffer_size);
-    header_length     = 75;
+    header_length     = 63;
     header_buffer     = NULL;
     header_buffer     = malloc(sizeof(char)*header_length);
-    sprintf(header_buffer,"\r\n$MADRE0000000000,0000000000,0000000000,0000000000,0000000000,0000000000\r\n");
+    sprintf(header_buffer,"\r\n$MADRE00000000,00000000,00000000,00000000,00000000,00000000\r\n");
     //                     /r/n$MADREepsisample,timestamp,voltage,aux1checksum,aux2checksum,blockchecksum/r/n
 
 }

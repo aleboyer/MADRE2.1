@@ -490,7 +490,12 @@ void GPIO_ODD_IRQHandler(void) {
     		chcksum_block_header=block_chcksum;
     		block_chcksum=0;
     		epsi_stamp_block=pending_samples;
-    		//header_buffer=
+			sprintf(header_buffer,"\r\n$MADRE%8x,%8x,%8x,%8x,%8x,%8x\r\n",(int) epsi_stamp_block      \
+														     ,(int) time(NULL)                \
+														     ,(int) err_sync                   \
+													         ,(int) chcksum_aux1_header       \
+													         ,(int) chcksum_aux2_header       \
+													         ,(int) chcksum_block_header);
     		USART_IntEnable(USART1, USART_IEN_TXBL);
     	}
     //} //end of EPSI sample

@@ -26,9 +26,10 @@ volatile bool doTemperatureCompensation = true;         // Flags that signal whe
  *****************************************************************************/
 
 void MADRE_Sampling(void) {
-
+	//RTC->CNT*32768
 	switch(sd_state){
 		case WriteHeader:
+			err_write=0;
 			writeSD_header(header_buffer,header_length);
 			sd_state=WriteMap;
 			if (madre_setup_ptr->AUX_flag>0){sd_state=WriteAux1;}
@@ -49,7 +50,8 @@ void MADRE_Sampling(void) {
 			if (tx_state==Stop){
 				init_aux_block();
 			}
-			f_sync(&fsrc);
+			err_sync=f_sync(&fsrc);
+			//err_write=0;
 			break;
 	}
 

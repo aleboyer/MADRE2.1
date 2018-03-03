@@ -168,6 +168,8 @@ volatile uint32_t block_chcksum;        // checksum for the Epsi sample updated 
 volatile uint32_t chcksum_block_header; // final checksum for the header to send re-initialize after every block
 volatile uint32_t epsi_stamp_block;     // epsi sample count for the Header
 volatile uint32_t voltage;              // epsi sample count for the Header
+uint err_write;            // error when writing on the sd
+uint err_sync;             // error when sync the sd
 
 
 

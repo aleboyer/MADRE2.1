@@ -101,12 +101,12 @@ void initSD(void){
     f_write(&fsrc, header2bin,strlen(header2bin), &SDwritten);
     SDwritten = 0;
     f_write(&fsrc, cr,1, &SDwritten);
-    res=f_close(&fsrc);
+    f_close(&fsrc);
 
     sd_state=Wait;
 
 	// open SD file
-	res = f_open(&fsrc, filename, FA_OPEN_APPEND | FA_WRITE);
+	res = f_open(&fsrc, filename, FA_OPEN_ALWAYS | FA_WRITE);
 
 }
 
@@ -125,15 +125,18 @@ void writeSD(){
 	int32_t count=(sd_bytes_sent+bytes_per_block)%buffer_size;
 	SDwritten = 0;
     f_write(&fsrc, "$EPSI",5, &SDwritten);
+    err_write=err_write+SDwritten;
     SDwritten = 0;
     if (count<bytes_per_block){ //in case sd_byte_sent is close to the end of the buffer. and we want to avoid memory leak
     	f_write(&fsrc, data_buffer+(sd_bytes_sent% buffer_size),bytes_per_block-count, &SDwritten);
-    	SDwritten = 0;
+        err_write=err_write+SDwritten;
+   	    SDwritten = 0;
     	f_write(&fsrc, data_buffer,count, &SDwritten);
     }
     else{
     	f_write(&fsrc, data_buffer+(sd_bytes_sent % buffer_size),bytes_per_block, &SDwritten);
     }
+    err_write=err_write+SDwritten;
 	SDwritten = 0;
     sd_bytes_sent+=bytes_per_block;
 }
@@ -151,8 +154,10 @@ void writeSD(){
 void writeSD_aux(uint8_t * Buffer, uint32_t Bufferlength){
 	SDwritten = 0;
     f_write(&fsrc, "$AUX1",5, &SDwritten);
+    err_write=err_write+SDwritten;
 	SDwritten = 0;
     f_write(&fsrc, Buffer,Bufferlength, &SDwritten);
+    err_write=err_write+SDwritten;
 	SDwritten = 0;
 	//
 }
@@ -170,6 +175,7 @@ void writeSD_aux(uint8_t * Buffer, uint32_t Bufferlength){
 void writeSD_header(char * Buffer, uint32_t Bufferlength){
 	SDwritten = 0;
     f_write(&fsrc, Buffer,Bufferlength, &SDwritten);
+    err_write=err_write+SDwritten;
 	SDwritten = 0;
 	//
 }
