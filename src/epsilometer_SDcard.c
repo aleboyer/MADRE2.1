@@ -61,7 +61,7 @@ void initSD(void){
 	clockSetStartCalendar(&tsplt_start);
 
 	strncpy (buf, FILENAME, 256);
-	strftime(buf, sizeof buf, "%Y%m%d_%H%M%S.dat", &tsplt_start);
+	strftime(buf, sizeof buf, "%Y%m%d_%H%M%S_A.dat", &tsplt_start);
 
 	static int cur_min = -1, cur_sec = -1;
 	struct tm tsplt;
@@ -81,7 +81,16 @@ void initSD(void){
     {
     	if (res == FR_OK) f_close (&fsrc);
     	// Open  the file for write
-		res = f_open(&fsrc, filename, FA_OPEN_ALWAYS | FA_WRITE );
+		res = f_open(&fsrc, filename, FA_CREATE_NEW | FA_WRITE );
+		while (res == FR_EXIST){
+			strftime(buf, sizeof buf, "%Y%m%d_%H%M%S_A.dat", &tsplt_start);
+		    for (idx = 0; idx < strlen (buf); ++idx){
+		    	filename[idx] = ff_convert (buf[idx], 1);
+		    }
+		    filename[idx] = '\0';
+			res = f_open(&fsrc, filename, FA_CREATE_NEW | FA_WRITE );
+
+		}
 		cur_min = tsplt.tm_min;
 
 		if (tsplt.tm_sec != cur_sec && res == FR_OK)
@@ -106,7 +115,7 @@ void initSD(void){
     sd_state=Wait;
 
 	// open SD file
-	res = f_open(&fsrc, filename, FA_OPEN_ALWAYS | FA_WRITE);
+	res = f_open(&fsrc, filename, FA_OPEN_APPEND | FA_WRITE);
 
 }
 
