@@ -81,7 +81,7 @@ typedef struct AuxSetup {
 
 #define MAP_SETUP_DEFAULT         \
 {8,                               \
-{0,1,2,3,4,5,6,7}                   \
+{0,1,2,3,5,6,7}                   \
 }
 
 #define SBE49_SETUP_DEFAULT       \

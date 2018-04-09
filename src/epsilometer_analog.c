@@ -457,7 +457,7 @@ void GPIO_ODD_IRQHandler(void) {
 	uint8_t cmdBuffer;
 	cmdBuffer = AD7124_COMM_READ | AD7124_REG_DATA;
 
-    for (sensorID=0;sensorID<7;sensorID++){ // tric for the navy
+    for (sensorID=0;sensorID<map_setup_ptr->number_sensor;sensorID++){ // tric for the navy
      	AD7124_ChipSelect(sensors[map_setup_ptr->sensorID[sensorID]], LLO);
 
     	count_analog=(pending_samples*byte_per_sample+sensorID*madre_setup_ptr->ADCword_length) % buffer_size;
