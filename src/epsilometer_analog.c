@@ -164,12 +164,22 @@ void define_ADC_configuration(void){
 	//COMMON_SETUP.FILTER_0 = 0x06001E; // 0x1E for 640hz on sinc4 filter
 	COMMON_SETUP.FILTER_0 = 0x06003C; // 0x3C for 320hz on sinc4 filter
 
-	AD7124 TEMP_SETUP = COMMON_SETUP;
-	Set_Value_16Bit_Register(&TEMP_SETUP.CHANNEL_0, AD7124_CH_ENABLE, AD7124_CH_EN_NUM_BITS, AD7124_CH_EN_START_POSITION);
-	Set_Value_16Bit_Register(&TEMP_SETUP.CHANNEL_0, AD7124_CH_AINP_AIN0, AD7124_CH_AINP_NUM_BITS, AD7124_CH_AINP_START_POSITION);
+	AD7124 TEMP1_SETUP = COMMON_SETUP;
+	Set_Value_16Bit_Register(&TEMP1_SETUP.CHANNEL_0, AD7124_CH_ENABLE, AD7124_CH_EN_NUM_BITS, AD7124_CH_EN_START_POSITION);
+	Set_Value_16Bit_Register(&TEMP1_SETUP.CHANNEL_0, AD7124_CH_AINP_AIN0, AD7124_CH_AINP_NUM_BITS, AD7124_CH_AINP_START_POSITION);
 	//Set_Value_16Bit_Register(&TEMP_SETUP.CHANNEL_0, AD7124_CH_AINM_AIN1, AD7124_CH_AINM_NUM_BITS, AD7124_CH_AINM_START_POSITION);
-	Set_Value_16Bit_Register(&TEMP_SETUP.CONFIG_0, AD7124_CONFIG_BIPOLAR_DISABLE, AD7124_CONFIG_BIPOLAR_NUM_BITS, AD7124_CONFIG_BIPOLAR_START_POSITION);
-	Set_Value_16Bit_Register(&TEMP_SETUP.CHANNEL_0, AD7124_CH_AINM_AVSS, AD7124_CH_AINM_NUM_BITS, AD7124_CH_AINM_START_POSITION);
+	Set_Value_16Bit_Register(&TEMP1_SETUP.CONFIG_0, AD7124_CONFIG_BIPOLAR_DISABLE, AD7124_CONFIG_BIPOLAR_NUM_BITS, AD7124_CONFIG_BIPOLAR_START_POSITION);
+	Set_Value_16Bit_Register(&TEMP1_SETUP.CHANNEL_0, AD7124_CH_AINM_AVSS, AD7124_CH_AINM_NUM_BITS, AD7124_CH_AINM_START_POSITION);
+
+	AD7124 TEMP2_SETUP = COMMON_SETUP;
+	Set_Value_16Bit_Register(&TEMP2_SETUP.CHANNEL_0, AD7124_CH_ENABLE, AD7124_CH_EN_NUM_BITS, AD7124_CH_EN_START_POSITION);
+	Set_Value_16Bit_Register(&TEMP2_SETUP.CHANNEL_0, AD7124_CH_AINP_AIN0, AD7124_CH_AINP_NUM_BITS, AD7124_CH_AINP_START_POSITION);
+	//Set_Value_16Bit_Register(&TEMP_SETUP.CHANNEL_0, AD7124_CH_AINM_AIN1, AD7124_CH_AINM_NUM_BITS, AD7124_CH_AINM_START_POSITION);
+	Set_Value_16Bit_Register(&TEMP2_SETUP.CONFIG_0, AD7124_CONFIG_BIPOLAR_DISABLE, AD7124_CONFIG_BIPOLAR_NUM_BITS, AD7124_CONFIG_BIPOLAR_START_POSITION);
+	Set_Value_16Bit_Register(&TEMP2_SETUP.CHANNEL_0, AD7124_CH_AINM_AVSS, AD7124_CH_AINM_NUM_BITS, AD7124_CH_AINM_START_POSITION);
+	Set_Value_16Bit_Register(&TEMP2_SETUP.CONFIG_0, AD7124_CONFIG_PGA_GAIN_1, AD7124_CONFIG_PGA_NUM_BITS, AD7124_CONFIG_PGA_START_POSITION);
+
+
 
 	AD7124 SHR_SETUP = COMMON_SETUP;
 	Set_Value_16Bit_Register(&SHR_SETUP.CHANNEL_0, AD7124_CH_ENABLE, AD7124_CH_EN_NUM_BITS, AD7124_CH_EN_START_POSITION);
@@ -199,8 +209,8 @@ void define_ADC_configuration(void){
 
 	uint32_t delay = 0xFFFF;
 	while (delay--); // Delay after power on to ensure registers are ready to write
-	AD7124_ConfigureDevice(sensors[0], TEMP_SETUP);
-	AD7124_ConfigureDevice(sensors[1], TEMP_SETUP);
+	AD7124_ConfigureDevice(sensors[0], TEMP1_SETUP);
+	AD7124_ConfigureDevice(sensors[1], TEMP2_SETUP);
 	AD7124_ConfigureDevice(sensors[2], SHR_SETUP);
 	AD7124_ConfigureDevice(sensors[3], SHR_SETUP);
 	AD7124_ConfigureDevice(sensors[4], COND_SETUP);
@@ -455,8 +465,8 @@ void GPIO_ODD_IRQHandler(void) {
 	uint32_t sample=0;
 	uint8_t cmdBuffer;
 	cmdBuffer = AD7124_COMM_READ | AD7124_REG_DATA;
-
-    for (sensorID=0;sensorID<7;sensorID++){ // tric for the navy
+	uint32_t test1=pending_samples % 450;
+    for (sensorID=0;sensorID<map_setup_ptr->number_sensor;sensorID++){ // tric for the navy
      	AD7124_ChipSelect(sensors[map_setup_ptr->sensorID[sensorID]], LLO);
 
     	count_analog=(pending_samples*byte_per_sample+sensorID*madre_setup_ptr->ADCword_length) % buffer_size;
@@ -464,6 +474,11 @@ void GPIO_ODD_IRQHandler(void) {
     	// AD7124_GetRegisterValue return a uint32 result from the ADC register
     	USART_SpiTransfer(USART0, cmdBuffer);
 			for(int ii = 2; ii >=0 ; ii--) {
+	    		if (sensorID==4){
+	    			data_buffer[count_analog+ii % buffer_size]= test1>>(2-ii)*8;
+	    		}
+	    		else{
+
 						test=USART_SpiTransfer(USART0, 0x0);
 						block_chcksum^= test; // check on the *(data_buffer)
 						switch (madre_setup_ptr->ADCword_length){
@@ -473,6 +488,7 @@ void GPIO_ODD_IRQHandler(void) {
 							case 6:
 								sample=sample| test<<ii*8;
 								break;
+						}
 					}
 			}
 			if(madre_setup_ptr->ADCword_length==6){sprintf((char *) data_buffer+count_analog,"%6x",(int) sample);}
@@ -490,7 +506,12 @@ void GPIO_ODD_IRQHandler(void) {
     		chcksum_block_header=block_chcksum;
     		block_chcksum=0;
     		epsi_stamp_block=pending_samples;
-    		//header_buffer=
+			sprintf(header_buffer,"\r\n$MADRE%8x,%8x,%8x,%8x,%8x,%8x\r\n",(int) epsi_stamp_block      \
+														     ,(int) time(NULL)                \
+														     ,(int) err_sync                   \
+													         ,(int) chcksum_aux1_header       \
+													         ,(int) chcksum_aux2_header       \
+													         ,(int) chcksum_block_header);
     		USART_IntEnable(USART1, USART_IEN_TXBL);
     	}
     //} //end of EPSI sample
