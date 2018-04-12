@@ -76,12 +76,12 @@ typedef struct AuxSetup {
 460800,                          \
 3,								 \
 1483228800,                      \
-1}
+0}
 //default TX baud  460800
 
 #define MAP_SETUP_DEFAULT         \
 {8,                               \
-{0,1,2,3,5,6,7}                   \
+{0,1,2,3,4,5,6,7}                   \
 }
 
 #define SBE49_SETUP_DEFAULT       \
