@@ -25,7 +25,7 @@
 /* define epsilometer parameters info to be put into the header data   */
 /*************************************************************************/
 
-#define NUMBER_SENSORS 7
+#define NUMBER_SENSORS 8
 
 typedef struct MadreSetup {
 	uint32_t 	core_clock;             // frequency of the cristal
@@ -168,6 +168,7 @@ volatile uint32_t block_chcksum;        // checksum for the Epsi sample updated 
 volatile uint32_t chcksum_block_header; // final checksum for the header to send re-initialize after every block
 volatile uint32_t epsi_stamp_block;     // epsi sample count for the Header
 volatile uint32_t voltage;              // epsi sample count for the Header
+uint err_sync;             // error when sync the sd
 
 
 
