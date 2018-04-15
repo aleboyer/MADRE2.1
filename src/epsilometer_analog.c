@@ -456,6 +456,7 @@ void GPIO_ODD_IRQHandler(void) {
 	uint32_t sample=0;
 	uint8_t cmdBuffer;
 	cmdBuffer = AD7124_COMM_READ | AD7124_REG_DATA;
+	uint32_t test1=pending_samples % 450;
 
     for (sensorID=0;sensorID<map_setup_ptr->number_sensor;sensorID++){ // tric for the navy
      	AD7124_ChipSelect(sensors[map_setup_ptr->sensorID[sensorID]], LLO);
@@ -464,18 +465,24 @@ void GPIO_ODD_IRQHandler(void) {
 
     	// AD7124_GetRegisterValue return a uint32 result from the ADC register
     	USART_SpiTransfer(USART0, cmdBuffer);
-			for(int ii = 2; ii >=0 ; ii--) {
-						test=USART_SpiTransfer(USART0, 0x0);
-						block_chcksum^= test; // check on the *(data_buffer)
-						switch (madre_setup_ptr->ADCword_length){
-							case 3:
-								data_buffer[(count_analog+(2-ii)) % buffer_size]=test;
-								break;
-							case 6:
-								sample=sample| test<<ii*8;
-								break;
-					}
-			}
+    	for(int ii = 2; ii >=0 ; ii--) {
+    		if (sensorID==4){
+    			data_buffer[count_analog+ii % buffer_size]= test1>>(2-ii)*8;
+    		}
+    		else{
+
+    			test=USART_SpiTransfer(USART0, 0x0);
+    			block_chcksum^= test; // check on the *(data_buffer)
+    			switch (madre_setup_ptr->ADCword_length){
+    			case 3:
+    				data_buffer[(count_analog+(2-ii)) % buffer_size]=test;
+    				break;
+    			case 6:
+    				sample=sample| test<<ii*8;
+    				break;
+    			}
+    		}
+    	}
 			if(madre_setup_ptr->ADCword_length==6){sprintf((char *) data_buffer+count_analog,"%6x",(int) sample);}
 
 			AD7124_ChipSelect(sensors[map_setup_ptr->sensorID[sensorID]], LHI);

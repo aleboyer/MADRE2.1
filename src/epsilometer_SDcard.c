@@ -45,6 +45,8 @@ void initSD(void){
 	TCHAR * drive    = _T("0:");
 	char buf[1024];
 
+	nb_file=1; // initialize the number of file user to change the filename if file already exist
+
 	res_mount=f_mount(&Fatfs,drive ,1);
 	SDwritten = 0;
 
@@ -60,8 +62,8 @@ void initSD(void){
 	gmtime_r(&madre_setup_ptr->Start_time,&tsplt_start);
 	clockSetStartCalendar(&tsplt_start);
 
-	strncpy (buf, FILENAME, 256);
-	strftime(buf, sizeof buf, "%Y%m%d_%H%M%S_A.dat", &tsplt_start);
+	strftime(buf, sizeof buf, "%Y%m%d_%H%M%S", &tsplt_start);
+	sprintf(buf,"%s_%s.dat",filename_default,buf);
 
 	static int cur_min = -1, cur_sec = -1;
 	struct tm tsplt;
@@ -83,7 +85,9 @@ void initSD(void){
     	// Open  the file for write
 		res = f_open(&fsrc, filename, FA_CREATE_NEW | FA_WRITE );
 		while (res == FR_EXIST){
-			strftime(buf, sizeof buf, "%Y%m%d_%H%M%S_A.dat", &tsplt_start);
+			nb_file++;
+			strftime(buf, sizeof buf, "%Y%m%d_%H%M%S", &tsplt_start);
+			sprintf(buf,"%s_%s_%i.dat",filename_default,buf,nb_file);
 		    for (idx = 0; idx < strlen (buf); ++idx){
 		    	filename[idx] = ff_convert (buf[idx], 1);
 		    }

@@ -81,7 +81,7 @@ typedef struct AuxSetup {
 
 #define MAP_SETUP_DEFAULT         \
 {8,                               \
-{0,1,2,3,5,6,7}                   \
+{0,1,2,3,4,5,6,7}                 \
 }
 
 #define SBE49_SETUP_DEFAULT       \
@@ -98,9 +98,8 @@ typedef struct AuxSetup {
 /*************************************************************************/
 
 // define the name of the file we open on the SD card
-#define FILENAME "ep_test.bin"
-#define FILENAME1 "ep_test"
-#define FILENAME_SUFFIXE ".bin"
+char filename_default="ep_test";
+//#define FILENAME ""
 TCHAR filename[256];
 FIL fsrc;					// File objects
 
@@ -168,8 +167,9 @@ volatile uint32_t block_chcksum;        // checksum for the Epsi sample updated 
 volatile uint32_t chcksum_block_header; // final checksum for the header to send re-initialize after every block
 volatile uint32_t epsi_stamp_block;     // epsi sample count for the Header
 volatile uint32_t voltage;              // epsi sample count for the Header
-uint err_write;            // error when writing on the sd
-uint err_sync;             // error when sync the sd
+uint err_write;              // error when writing on the sd
+uint err_sync;               // error when sync the sd
+uint8_t nb_file;             // number of file on the sd card
 
 
 
