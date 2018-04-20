@@ -43,7 +43,7 @@ void init_GPIO(void) {
 
 	GPIO_PinModeSet(gpioPortF, 4, gpioModePushPull, 0); 	// Enable 485 Receiver
 	GPIO_PinModeSet(gpioPortF, 5, gpioModePushPull, 1); 	// Enable 485 Transmitter
-	GPIO_PinModeSet(gpioPortF, 3, gpioModePushPull, 1); 	// Enable 485 Driver
+	//GPIO_PinModeSet(gpioPortF, 3, gpioModePushPull, 1); 	// Enable 485 Driver
 
 	GPIO_PinModeSet(gpioPortD, 7, gpioModePushPull, 1);     // TX USART1
 	GPIO_PinModeSet(gpioPortD, 6, gpioModeInput, 0);        // RX USART1

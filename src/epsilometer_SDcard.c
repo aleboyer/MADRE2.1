@@ -44,6 +44,7 @@ void initSD(void){
 	//TCHAR * filename = _T("ep_test.bin"); //TCHAR is only use for the filename and the drive name;
 	TCHAR * drive    = _T("0:");
 	char buf[1024];
+	char buf1[1024];
 
 	nb_file=1; // initialize the number of file user to change the filename if file already exist
 
@@ -54,6 +55,7 @@ void initSD(void){
 	char * textheader = "stuff out the header\nEpsilometer-Wavechaser-MPL"; // char * allow to initialize string
 	char * header2bin = "Start Data:"; // char * allow to initialize string
 	char * cr="\n";
+	char filename_default[10]="ep_test";
 
 
 	// local time
@@ -62,8 +64,8 @@ void initSD(void){
 	gmtime_r(&madre_setup_ptr->Start_time,&tsplt_start);
 	clockSetStartCalendar(&tsplt_start);
 
-	strftime(buf, sizeof buf, "%Y%m%d_%H%M%S", &tsplt_start);
-	sprintf(buf,"%s_%s.dat",filename_default,buf);
+	strftime(buf1, sizeof buf1, "%Y%m%d_%H%M%S", &tsplt_start);
+	sprintf(buf,"%s_%s_%i.dat",filename_default,buf1,nb_file);
 
 	static int cur_min = -1, cur_sec = -1;
 	struct tm tsplt;
@@ -86,8 +88,8 @@ void initSD(void){
 		res = f_open(&fsrc, filename, FA_CREATE_NEW | FA_WRITE );
 		while (res == FR_EXIST){
 			nb_file++;
-			strftime(buf, sizeof buf, "%Y%m%d_%H%M%S", &tsplt_start);
-			sprintf(buf,"%s_%s_%i.dat",filename_default,buf,nb_file);
+			strftime(buf1, sizeof buf1, "%Y%m%d_%H%M%S", &tsplt_start);
+			sprintf(buf,"%s_%s_%i.dat",filename_default,buf1,nb_file);
 		    for (idx = 0; idx < strlen (buf); ++idx){
 		    	filename[idx] = ff_convert (buf[idx], 1);
 		    }

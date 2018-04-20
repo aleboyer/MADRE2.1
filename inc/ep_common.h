@@ -25,7 +25,7 @@
 /* define epsilometer parameters info to be put into the header data   */
 /*************************************************************************/
 
-#define NUMBER_SENSORS 7
+#define NUMBER_SENSORS 8
 
 typedef struct MadreSetup {
 	uint32_t 	core_clock;             // frequency of the cristal
@@ -76,16 +76,12 @@ typedef struct AuxSetup {
 460800,                          \
 3,								 \
 1483228800,                      \
-0}
+1}
 //default TX baud  460800
 
 #define MAP_SETUP_DEFAULT         \
 {8,                               \
-<<<<<<< HEAD
 {0,1,2,3,4,5,6,7}                 \
-=======
-{0,1,2,3,4,5,6,7}                   \
->>>>>>> 30887a66e7bd33847770c0c8ee6834f75620e7e6
 }
 
 #define SBE49_SETUP_DEFAULT       \
@@ -102,7 +98,6 @@ typedef struct AuxSetup {
 /*************************************************************************/
 
 // define the name of the file we open on the SD card
-char filename_default="ep_test";
 //#define FILENAME ""
 TCHAR filename[256];
 FIL fsrc;					// File objects
