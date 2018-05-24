@@ -54,6 +54,12 @@ void MADRE_Sampling(void) {
 			//err_write=0;
 			break;
 	}
+	if (err_sync!=0){
+		MICROSD_Deselect();
+		while(err_sync!=0){
+			initSD();
+		}
+	}
 
 	if (doTemperatureCompensation)	// Perform temperature compensation
   	{
