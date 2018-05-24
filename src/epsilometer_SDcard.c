@@ -97,22 +97,20 @@ void initSD(void){
 	}
 	cur_min = tsplt.tm_min;
 
-	if (tsplt.tm_sec != cur_sec && res == FR_OK)
-	{
-	  ctime_r(&t, buf);
-	  f_write (&fsrc, buf, strlen(buf), &SDwritten);
-	  SDwritten = 0;
-	  f_write(&fsrc, textheader, strlen(textheader), &SDwritten);
-	  SDwritten = 0;
-	  f_write(&fsrc, cr,1, &SDwritten);
+  ctime_r(&t, buf);
+  f_write (&fsrc, buf, strlen(buf), &SDwritten);
+  SDwritten = 0;
+  f_write(&fsrc, textheader, strlen(textheader), &SDwritten);
+  SDwritten = 0;
+  f_write(&fsrc, cr,1, &SDwritten);
 
-	  cur_sec = tsplt.tm_sec;
-	}
+  cur_sec = tsplt.tm_sec;
     SDwritten = 0;
     // write the header on the SD
     f_write(&fsrc, header2bin,strlen(header2bin), &SDwritten);
     SDwritten = 0;
     f_write(&fsrc, cr,1, &SDwritten);
+	err_sync=f_sync(&fsrc);
     f_close(&fsrc);
 
     sd_state=Wait;

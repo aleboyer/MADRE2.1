@@ -55,7 +55,7 @@ void MADRE_Sampling(void) {
 			break;
 	}
 	if (err_sync!=0){
-		MICROSD_Deselect();
+		MICROSD_Deinit();
 		while(err_sync!=0){
 			initSD();
 		}
