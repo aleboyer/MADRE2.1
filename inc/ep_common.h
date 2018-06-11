@@ -169,7 +169,7 @@ volatile uint32_t voltage;              // epsi sample count for the Header
 uint err_write;              // error when writing on the sd
 uint err_sync;               // error when sync the sd
 uint8_t nb_file;             // number of file on the sd card
-
+uint8_t flag_SDfile;
 
 
 // Epsi sample variable

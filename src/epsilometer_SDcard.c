@@ -114,7 +114,7 @@ void initSD(void){
     f_close(&fsrc);
 
     sd_state=Wait;
-
+	flag_SDfile=1;
 	// open SD file
 	res = f_open(&fsrc, filename, FA_OPEN_APPEND | FA_WRITE);
 

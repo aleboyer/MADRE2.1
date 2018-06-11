@@ -8,6 +8,7 @@
 
 #include "ep_sampling.h"
 #include "efm32wg_uart.h"
+#include "em_rtc.h"
 
 // for rtc purpose
 volatile bool doTemperatureCompensation = true;         // Flags that signal when to do temperature compensation
@@ -59,6 +60,13 @@ void MADRE_Sampling(void) {
 		while(err_sync!=0){
 			initSD();
 		}
+	}
+	if ((sd_block%7200==0) & (flag_SDfile==0)){
+		MICROSD_Deinit();
+		initSD();
+	}
+	if ((sd_block%7200>0) & (flag_SDfile==1)){
+		flag_SDfile=0;
 	}
 
 	if (doTemperatureCompensation)	// Perform temperature compensation
