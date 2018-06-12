@@ -184,7 +184,7 @@ void MADRE_Config(void) {
     standby4setup(0);       // delay so the user can change the date after power up the board. TODO: get rid of it when menu mode is working
 
 	// initialize SD: mount the driver, open file, write a header
-	initSD();
+	//initSD();
 
 	// initialize the auxiliary peripheral port
 	switch (madre_setup_ptr->AUX_flag){

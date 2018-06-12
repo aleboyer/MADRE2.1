@@ -170,7 +170,7 @@ uint err_write;              // error when writing on the sd
 uint err_sync;               // error when sync the sd
 uint8_t nb_file;             // number of file on the sd card
 uint8_t flag_SDfile;
-
+uint32_t alti_count;
 
 // Epsi sample variable
 volatile uint32_t pending_samples;    // counter for samples gathered from the ADC

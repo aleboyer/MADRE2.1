@@ -18,6 +18,7 @@
 /*local library */
 #include "ep_common.h"
 #include "ep_sampling.h"
+#include "ep_altimeter.h"
 #include "ep_menu.h"
 
 /******************************************************************************/
@@ -55,7 +56,7 @@ SensorSpec_ptr sensors[8]={&fp07_1, &fp07_2, &shr_1, &shr_2, &con_1, &ax, &ay, &
  *   start sampling by triggering an interrupt with MADRE_resume_sampling
  *****************************************************************************/
 int main(void) {
-
+	alti_count=0;
     /* Initialize chip - handle erratas */
     CHIP_Init();
     init_CMU();
@@ -72,6 +73,7 @@ int main(void) {
 		switch (madre_state){
 			case Sampling:
 				MADRE_Sampling();
+				send_ping(); // for altimeter dev
 				poll_RX();
 				break;
 			case Menu:

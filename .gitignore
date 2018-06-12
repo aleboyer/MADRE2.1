@@ -1,1 +1,17 @@
 /GNU ARM v4.9.3 - Debug/
+
+*.o
+
+*.mk
+
+*.axf
+
+*.bin
+
+*.hex
+
+*.map
+
+*.s37
+
+GNU ARM v4.9.3 - Debug/makefile
