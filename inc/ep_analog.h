@@ -57,6 +57,7 @@
 #include "em_usart.h"
 #include "em_cmu.h"
 #include "efm32wg_uart.h"
+#include "ep_altimeter.h"
 
 
 

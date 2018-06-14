@@ -64,7 +64,9 @@ void init_GPIO(void) {
 	GPIO_PinModeSet(gpioPortE, 11, gpioModePushPull, 0); 	// MicroSD Card Enable Active Low
 	GPIO_PinModeSet(gpioPortD, 2, gpioModePushPull, 0); 	// AUX232_/EN Auxiliary RS232
 	GPIO_PinModeSet(gpioPortF, 5, gpioModePushPull, 0); 	// STRN PROG EN, RS422 Power
-	GPIO_PinModeSet(gpioPortE, 14, gpioModeInput, 0); 		// PE14 Fault logic input
+	//GPIO_PinModeSet(gpioPortE, 14, gpioModeInput, 0); 		// NISKINE 8 channel PE14 Fault logic input. why is that?
+	GPIO_PinModeSet(gpioPortE, 14, gpioModeInputPull, 1); 		// for alti meter
+
 
 
 // end new GPIO

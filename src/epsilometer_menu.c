@@ -180,6 +180,7 @@ void MADRE_Config(void) {
     UART_Setup();           // initialize the 422 communication. this is the USER-MADRE communication port
 
 	init_TIMER(coreclock_cycle,timer1_phase_shift); //set up timer MCLOCK and SYNC. MCLOCK (TIMER0) is send to the ADC
+	Init_alti_TIMER();
 
     standby4setup(0);       // delay so the user can change the date after power up the board. TODO: get rid of it when menu mode is working
 
@@ -229,6 +230,7 @@ void init_MADRE(void){
 	map_bytes_sent      = 0;
 	err_write           = 0;
 	err_sync            = 0;
+	alti_count          = 0;
 
 	// uint32 array where data are stored and from where data are sent to the serial port
     data_buffer       = malloc(sizeof(uint8_t)*buffer_size);

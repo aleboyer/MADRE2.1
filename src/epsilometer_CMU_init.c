@@ -60,8 +60,9 @@ void init_CMU(void){
 	/* Use 14 MHZ HFRCO as core clock frequency*/
 	CMU_ClockSelectSet(cmuClock_HF, cmuSelect_HFRCO);
 	CMU_ClockEnable(cmuClock_GPIO, true);
-	CMU_ClockEnable(cmuClock_TIMER0, true);
-	CMU_ClockEnable(cmuClock_TIMER1, true);
+	CMU_ClockEnable(cmuClock_TIMER0, true); // main clock for the ADC
+	CMU_ClockEnable(cmuClock_TIMER1, true); // timer to sync the main clock
+    CMU_ClockEnable(cmuClock_TIMER3, true); // timer for the altimeter
 
 
     // Enable the External Oscillator , true for enabling the O and false to not wait

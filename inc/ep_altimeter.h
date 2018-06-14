@@ -12,6 +12,6 @@
 #include "em_gpio.h"
 
 void send_ping(void);
-
+void Init_alti_TIMER(void);
 
 #endif /* INC_EP_ALTIMETER_H_ */

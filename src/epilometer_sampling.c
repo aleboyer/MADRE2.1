@@ -55,19 +55,19 @@ void MADRE_Sampling(void) {
 			//err_write=0;
 			break;
 	}
-	if (err_sync!=0){
-		MICROSD_Deinit();
-		while(err_sync!=0){
-			initSD();
-		}
-	}
-	if ((sd_block%7200==0) & (flag_SDfile==0)){
-		MICROSD_Deinit();
-		initSD();
-	}
-	if ((sd_block%7200>0) & (flag_SDfile==1)){
-		flag_SDfile=0;
-	}
+//	if (err_sync!=0){
+//		MICROSD_Deinit();
+//		while(err_sync!=0){
+//			initSD();
+//		}
+//	}
+//	if ((sd_block%7200==0) & (flag_SDfile==0)){
+//		MICROSD_Deinit();
+//		initSD();
+//	}
+//	if ((sd_block%7200>0) & (flag_SDfile==1)){
+//		flag_SDfile=0;
+//	}
 
 	if (doTemperatureCompensation)	// Perform temperature compensation
   	{

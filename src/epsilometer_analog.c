@@ -460,6 +460,9 @@ void GPIO_ODD_IRQHandler(void) {
 
 	GPIO_IntDisable(madre_setup_ptr->pinInterupt);
 	uint8_t test;
+	if (pending_samples % 80==0){
+		send_ping(); // for altimeter dev
+	}
 
 	uint32_t sample=0;
 	uint8_t cmdBuffer;
@@ -501,7 +504,7 @@ void GPIO_ODD_IRQHandler(void) {
 			pending_samples++; // Increment number of samples available
     	//sensorID=0;
     	if((pending_samples % madre_setup_ptr->blocksize)==0){
-    		sd_state=WriteHeader;
+    		//sd_state=WriteHeader;
     		tx_state=TransmitHeader;
     		chcksum_block_header=block_chcksum;
     		block_chcksum=0;
