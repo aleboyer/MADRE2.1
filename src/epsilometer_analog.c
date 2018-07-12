@@ -460,9 +460,10 @@ void GPIO_ODD_IRQHandler(void) {
 
 	GPIO_IntDisable(madre_setup_ptr->pinInterupt);
 	uint8_t test;
-	if (pending_samples % 80==0){
+	if ((pending_samples % 80 == 0)){ //80 PENDING SAMPLES  is about 250 ms
 		send_ping(); // for altimeter dev
-	}
+ 	   // GPIO_PinModeSet(gpioPortB, 7, gpioModePushPull, 1); 	//
+}
 
 	uint32_t sample=0;
 	uint8_t cmdBuffer;
@@ -500,6 +501,9 @@ void GPIO_ODD_IRQHandler(void) {
     //sensorID++;
     }
     sensorID=0;
+	if ((pending_samples % 80 == 0)){ //80 PENDING SAMPLES  is about 250 ms
+       // GPIO_PinModeSet(gpioPortB, 7, gpioModePushPull, 0); 	//
+	}
 		//if(sensorID==map_setup_ptr->number_sensor){
 			pending_samples++; // Increment number of samples available
     	//sensorID=0;
@@ -513,7 +517,7 @@ void GPIO_ODD_IRQHandler(void) {
 														     ,(int) time(NULL)                \
 														     ,(int) err_sync                   \
 													         ,(int) chcksum_aux1_header       \
-													         ,(int) chcksum_aux2_header       \
+													         ,(int) echotime       \
 													         ,(int) chcksum_block_header);
     		USART_IntEnable(USART1, USART_IEN_TXBL);
     	}

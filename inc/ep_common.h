@@ -73,7 +73,7 @@ typedef struct AuxSetup {
 625000,                          \
 0x13,                            \
 2000000,                         \
-115200,                          \
+460800,                          \
 3,								 \
 1483228800,                      \
 1}
@@ -212,5 +212,7 @@ volatile uint32_t aux2_chcksum;      //
 volatile uint32_t chcksum_aux2_header;  // final checksum to send re-initialize after every block
 
 
+// Altimeter
+volatile uint32_t echotime;
 
 #endif /* EP_COMMON_H_ */

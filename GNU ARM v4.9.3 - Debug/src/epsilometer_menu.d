@@ -72,6 +72,8 @@ src/epsilometer_menu.o: ../src/epsilometer_menu.c \
  /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_coms.h \
  /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_leuart.h \
  /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/Device/SiliconLabs/EFM32WG/Include/efm32wg_uart.h \
+ /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_altimeter.h \
+ /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_timer.h \
  /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_CMU_init.h \
  /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_GPIO_init.h \
  /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_TIMER_init.h \
@@ -224,6 +226,10 @@ src/epsilometer_menu.o: ../src/epsilometer_menu.c \
 /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_leuart.h:
 
 /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/Device/SiliconLabs/EFM32WG/Include/efm32wg_uart.h:
+
+/Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_altimeter.h:
+
+/Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_timer.h:
 
 /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_CMU_init.h:
 

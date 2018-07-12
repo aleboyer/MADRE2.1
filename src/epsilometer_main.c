@@ -19,6 +19,7 @@
 #include "ep_common.h"
 #include "ep_sampling.h"
 #include "ep_menu.h"
+#include "em_msc.h"
 
 /******************************************************************************/
 /*************************** List of Possible Channels / Sensor *******************************/
@@ -29,8 +30,8 @@ MapSetup map_setup       =  MAP_SETUP_DEFAULT;  // default  parameter
 AuxSetup aux1_setup      =  SBE49_SETUP_DEFAULT;   // default user parameter
 
 MadreSetupPtr madre_setup_ptr =  &madre_setup;        // default madre user parameter
-MapSetupPtr map_setup_ptr   =  &map_setup;          // default  parameter
-AuxSetupPtr aux1_setup_ptr  = &aux1_setup;        // default user parameter
+MapSetupPtr map_setup_ptr     =  &map_setup;          // default  parameter
+AuxSetupPtr aux1_setup_ptr    =  &aux1_setup;        // default user parameter
 
 
 
@@ -60,8 +61,16 @@ int main(void) {
     init_CMU();
     init_GPIO();            // define GPIO pin mode for ADC and the 485, PA2 to send MCLOCK (for ADCs), and PE7 to send SYNC
 
+//    // erase User data from the memory map
+//    uint32_t *addr = (uint32_t *)0x0FE00000;
+//    MSC_Init();
+//    MSC_ErasePage(addr);
+//    MSC_Deinit();
+
 	MADRE_Config();
 	madre_state=MADRE_resume_sampling();
+	//GpioInt_fakealti();
+   	//GPIO_IntEnable(0x4000);
 
 	/****************************************************************
 	 * Primitive Sampling routine

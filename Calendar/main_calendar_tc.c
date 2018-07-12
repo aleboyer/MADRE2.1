@@ -127,6 +127,7 @@ void rtcSetup (void)
   
   /* Enable RTC interrupts */
   NVIC_ClearPendingIRQ(RTC_IRQn);
+  NVIC_SetPriority(RTC_IRQn, 2);
   NVIC_EnableIRQ(RTC_IRQn);
 
   /* Enable RTC */
@@ -156,4 +157,13 @@ void RTC_IRQHandler (void)
     clockOverflow( );
     RTC_IntClear(RTC_IFC_OF);
   }
+
+  /* Interrupt source: 2.5 ms timer for altimeter ping */
+  /*   Increase overflow counter */
+  if ( RTC_IntGet() & RTC_IF_COMP1 )
+  {
+	    RTC_IntClear(RTC_IFC_COMP1);
+	    /* Set GPOI down and reset timer */
+		GPIO_PinModeSet(gpioPortE, 15, gpioModePushPull, 0); 	//
+}
 }

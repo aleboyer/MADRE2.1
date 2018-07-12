@@ -71,16 +71,19 @@ src/epsilometer_main.o: ../src/epsilometer_main.c \
  /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_analog.h \
  /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_coms.h \
  /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/Device/SiliconLabs/EFM32WG/Include/efm32wg_uart.h \
+ /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_altimeter.h \
+ /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_timer.h \
  /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/Calendar/clock_tc.h \
  /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_SDcard.h \
- /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_altimeter.h \
  /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_menu.h \
  /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_chip.h \
  /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_system.h \
  /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_gpio.h \
  /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_CMU_init.h \
  /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_GPIO_init.h \
- /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_TIMER_init.h
+ /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_TIMER_init.h \
+ /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_msc.h \
+ /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_ramfunc.h
 
 /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_common.h:
 
@@ -226,11 +229,13 @@ src/epsilometer_main.o: ../src/epsilometer_main.c \
 
 /Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/Device/SiliconLabs/EFM32WG/Include/efm32wg_uart.h:
 
+/Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_altimeter.h:
+
+/Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_timer.h:
+
 /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/Calendar/clock_tc.h:
 
 /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_SDcard.h:
-
-/Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_altimeter.h:
 
 /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_menu.h:
 
@@ -245,3 +250,7 @@ src/epsilometer_main.o: ../src/epsilometer_main.c \
 /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_GPIO_init.h:
 
 /Users/aleboyer/SimplicityStudio/v4_workspace/MADRE2.1/inc/ep_TIMER_init.h:
+
+/Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_msc.h:
+
+/Applications/Simplicity\ Studio.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v2.0//platform/emlib/inc/em_ramfunc.h:
