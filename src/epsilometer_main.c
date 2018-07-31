@@ -69,8 +69,6 @@ int main(void) {
 
 	MADRE_Config();
 	madre_state=MADRE_resume_sampling();
-	//GpioInt_fakealti();
-   	//GPIO_IntEnable(0x4000);
 
 	/****************************************************************
 	 * Primitive Sampling routine

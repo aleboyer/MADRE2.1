@@ -8,6 +8,7 @@
 #include "ep_altimeter.h"
 #include "em_timer.h"
 #include "em_rtc.h"
+#include "stdint.h"
 
 #define RTC_COUNTS_BETWEEN_ALTI     82
 //#define RTC_COUNTS_BETWEEN_ALTI     120
@@ -15,21 +16,26 @@
 // define the different state of the altimeter timer
 enum alti_states {
   firstping,
-  echo
+  echo,
+  wait
 };
 enum alti_states alti_state;
-int count = 0, blanktime,localcount,start_ping=0;
+volatile uint32_t count = 0;
+uint32_t blanktime,localcount,start_ping=0;
+
 int nb_nearecho=0;
 //int start_alti=0, blank_alti=0, time_echo=0;
 void send_ping(){
 	/* Enable overflow and CC0 interrupt */
 	alti_state=firstping;
     count = 0;
-	TIMER_IntClear(TIMER3, TIMER_IF_OF | TIMER_IF_CC0);
-	TIMER_IntEnable(TIMER3, TIMER_IF_OF | TIMER_IF_CC0);
-    GPIO_PinModeSet(gpioPortB, 7, gpioModePushPull, 1); 	//
-	GPIO_PinModeSet(gpioPortB, 7, gpioModePushPull, 0); 	//
-	GPIO_PinModeSet(gpioPortE, 15, gpioModePushPull, 1); 	//
+    echotime=0;
+	TIMER_IntClear(TIMER3, TIMER_IF_CC0);
+	TIMER_IntEnable(TIMER3,TIMER_IF_CC0);
+	GPIO_PinModeSet(gpioPortB, 7, gpioModePushPull, 1);
+	GPIO_PinModeSet(gpioPortB, 7, gpioModePushPull, 0);
+
+	GPIO_PinModeSet(gpioPortE, 15, gpioModePushPull, 1);
     RTC_CompareSet(1,RTC->CNT + RTC_COUNTS_BETWEEN_ALTI);
 	RTC_IntEnable(RTC->IEN | RTC_IEN_COMP1);
 }
@@ -42,45 +48,47 @@ void send_ping(){
    to be written for this example */
 #define TOP 0xFFFF
 /* 39062 Hz -> 40Mhz (clock frequency) / 1024 (prescaler) */
-#define TIMER_FREQ 39062
 
 
 void TIMER3_IRQHandler(void)
 {
-  uint16_t intFlags = TIMER_IntGet(TIMER3);
-  TIMER_IntClear(TIMER3, TIMER_IF_OF |  TIMER_IF_CC0);
   /* Overflow interrupt occured */
-  if(intFlags & TIMER_IF_OF)
+  if(TIMER3->IF & TIMER_IF_OF)
   {
+	TIMER_IntClear(TIMER3, TIMER_IF_OF);
     /* Increment the counter with TOP = 0xFFFF */
     count += TOP;
   }
-  if(intFlags & TIMER_IF_CC0)
+  if(TIMER3->IF & TIMER_IF_CC0)
   {
+	  TIMER_IntDisable(TIMER3, TIMER_IF_CC0);
+	  TIMER_IntClear(TIMER3, TIMER_IF_CC0);
+	  localcount=count + TIMER3->CC[0].CCV;
 	  switch (alti_state){
 		  case firstping:
-			  start_ping=TIMER3->CC[0].CCV;
+			  start_ping= localcount;
 			  alti_state=echo;
+			  TIMER_IntEnable(TIMER3, TIMER_IF_CC0);
 			  break;
 		  case echo:
 			  nb_nearecho++;
-			  //localcount = TIMER_CaptureGet(TIMER3, 0);
-			  localcount = TIMER3->CC[0].CCV;
-			  blanktime = count + localcount-start_ping;
-			  /* Multiply by 10000 to avoid floats */
-			  blanktime = (blanktime * 10000) / TIMER_FREQ;
-			  if (blanktime>800){ // 80 ms
-				  localcount = TIMER3->CC[0].CCV;
-				  echotime = count + localcount-start_ping;
+			  blanktime = localcount-start_ping;
+			  if (blanktime>25 * 40000){ // 34 ms
+				  echotime = blanktime;
 				  //echotime = (echotime * 10000) / TIMER_FREQ;
-				  GPIO_PinModeSet(gpioPortB, 7, gpioModePushPull, 1); 	//
-				  GPIO_PinModeSet(gpioPortB, 7, gpioModePushPull, 0); 	//
-				  TIMER_IntDisable(TIMER3, TIMER_IF_OF | TIMER_IF_CC0);
+				  GPIO_PinModeSet(gpioPortB, 7, gpioModePushPull, 1);
+				  GPIO_PinModeSet(gpioPortB, 7, gpioModePushPull, 0);
+				  alti_state=wait;
 				  nb_nearecho=0;
+			  }
+			  else{
+				  TIMER_IntEnable(TIMER3, TIMER_IF_CC0);
 			  }
 			  break;
 	}
   }
+  TIMER_IntClear(TIMER3, TIMER_IF_OF |  TIMER_IF_CC0);
+
 }
 
 void Init_alti_TIMER(void){
@@ -88,8 +96,8 @@ void Init_alti_TIMER(void){
 	/* Select CC channel parameters */
 	TIMER_InitCC_TypeDef timerCCInit =
 	{
-	  .eventCtrl  = timerEventRising,
-	  .edge       = timerEdgeRising,
+	  .eventCtrl  = timerEventFalling,
+	  .edge       = timerEdgeFalling,
 	  .prsSel     = timerPRSSELCh0,
 	  .cufoa      = timerOutputActionNone,
 	  .cofoa      = timerOutputActionNone,
@@ -112,7 +120,7 @@ void Init_alti_TIMER(void){
 	  .prescale   = timerPrescale1,
 	  .clkSel     = timerClkSelHFPerClk,
 	  .fallAction = timerInputActionNone,
-	  .riseAction = timerInputActionStart,
+	  .riseAction = timerInputActionNone,
 	  .mode       = timerModeUp,
 	  .dmaClrAct  = false,
 	  .quadModeX4 = false,
@@ -126,6 +134,7 @@ void Init_alti_TIMER(void){
 	NVIC_SetPriority(TIMER3_IRQn, 2);
 
 	/* Configure timer */
+	TIMER_IntEnable(TIMER3, TIMER_IF_OF);
 	TIMER_Init(TIMER3, &timerInit);
 }
 
