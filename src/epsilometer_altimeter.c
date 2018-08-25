@@ -10,7 +10,8 @@
 #include "em_rtc.h"
 #include "stdint.h"
 
-#define RTC_COUNTS_BETWEEN_ALTI     82
+//#define RTC_COUNTS_BETWEEN_ALTI     10
+#define RTC_COUNTS_BETWEEN_ALTI     82     // 2.5 ms
 //#define RTC_COUNTS_BETWEEN_ALTI     120
 
 // define the different state of the altimeter timer
@@ -20,16 +21,15 @@ enum alti_states {
   wait
 };
 enum alti_states alti_state;
-volatile uint32_t count = 0;
 uint32_t blanktime,localcount,start_ping=0;
-
 int nb_nearecho=0;
+
 //int start_alti=0, blank_alti=0, time_echo=0;
 void send_ping(){
 	/* Enable overflow and CC0 interrupt */
 	alti_state=firstping;
-    count = 0;
     echotime=0;
+    alti_count=0;
 	TIMER_IntClear(TIMER3, TIMER_IF_CC0);
 	TIMER_IntEnable(TIMER3,TIMER_IF_CC0);
 	GPIO_PinModeSet(gpioPortB, 7, gpioModePushPull, 1);
@@ -57,13 +57,13 @@ void TIMER3_IRQHandler(void)
   {
 	TIMER_IntClear(TIMER3, TIMER_IF_OF);
     /* Increment the counter with TOP = 0xFFFF */
-    count += TOP;
+    alti_count += TOP;
   }
   if(TIMER3->IF & TIMER_IF_CC0)
   {
 	  TIMER_IntDisable(TIMER3, TIMER_IF_CC0);
 	  TIMER_IntClear(TIMER3, TIMER_IF_CC0);
-	  localcount=count + TIMER3->CC[0].CCV;
+	  localcount=alti_count + TIMER3->CC[0].CCV;
 	  switch (alti_state){
 		  case firstping:
 			  start_ping= localcount;
@@ -73,9 +73,8 @@ void TIMER3_IRQHandler(void)
 		  case echo:
 			  nb_nearecho++;
 			  blanktime = localcount-start_ping;
-			  if (blanktime>25 * 40000){ // 34 ms
+			  if (blanktime>200000){ // 5* 4 0000 ms
 				  echotime = blanktime;
-				  //echotime = (echotime * 10000) / TIMER_FREQ;
 				  GPIO_PinModeSet(gpioPortB, 7, gpioModePushPull, 1);
 				  GPIO_PinModeSet(gpioPortB, 7, gpioModePushPull, 0);
 				  alti_state=wait;

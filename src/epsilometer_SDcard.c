@@ -65,7 +65,7 @@ void initSD(void){
 	clockSetStartCalendar(&tsplt_start);
 
 	strftime(buf1, sizeof buf1, "%Y%m%d_%H%M%S", &tsplt_start);
-	sprintf(buf,"%s_%s_%i.dat",filename_default,buf1,nb_file);
+	sprintf(buf,"%s_%s_%i.bin",filename_default,buf1,nb_file);
 
 	static int cur_min = -1, cur_sec = -1;
 	struct tm tsplt;
@@ -87,7 +87,7 @@ void initSD(void){
 	while (res == FR_EXIST){
 		nb_file++;
 		strftime(buf1, sizeof buf1, "%Y%m%d_%H%M%S", &tsplt_start);
-		sprintf(buf,"%s_%s_%i.dat",filename_default,buf1,nb_file);
+		sprintf(buf,"%s_%s_%i.bin",filename_default,buf1,nb_file);
 		for (idx = 0; idx < strlen (buf); ++idx){
 			filename[idx] = ff_convert (buf[idx], 1);
 		}

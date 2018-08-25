@@ -73,15 +73,15 @@ typedef struct AuxSetup {
 625000,                          \
 0x13,                            \
 2000000,                         \
-460800,                          \
+115200,                          \
 3,								 \
 1483228800,                      \
 1}
 //default TX baud  460800
 
 #define MAP_SETUP_DEFAULT         \
-{8,                               \
-{0,1,2,3,4,5,6,7}                 \
+{7,                               \
+{0,1,2,3,5,6,7}                 \
 }
 
 #define SBE49_SETUP_DEFAULT       \
@@ -170,7 +170,7 @@ uint8_t err_write;              // error when writing on the sd
 uint8_t err_sync;               // error when sync the sd
 uint8_t nb_file;             // number of file on the sd card
 uint8_t flag_SDfile;
-uint32_t alti_count;
+volatile uint32_t alti_count;
 
 // Epsi sample variable
 volatile uint32_t pending_samples;    // counter for samples gathered from the ADC

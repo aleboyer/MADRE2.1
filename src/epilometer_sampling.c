@@ -55,19 +55,19 @@ void MADRE_Sampling(void) {
 			//err_write=0;
 			break;
 	}
-//	if (err_sync!=0){
-//		MICROSD_Deinit();
-//		while(err_sync!=0){
-//			initSD();
-//		}
-//	}
-//	if ((sd_block%7200==0) & (flag_SDfile==0)){
-//		MICROSD_Deinit();
-//		initSD();
-//	}
-//	if ((sd_block%7200>0) & (flag_SDfile==1)){
-//		flag_SDfile=0;
-//	}
+	if (err_sync!=0){
+		MICROSD_Deinit();
+		while(err_sync!=0){
+			initSD();
+		}
+	}
+	if ((sd_block%7200==0) & (flag_SDfile==0)){
+		MICROSD_Deinit();
+		initSD();
+	}
+	if ((sd_block%7200>0) & (flag_SDfile==1)){
+		flag_SDfile=0;
+	}
 
 	if (doTemperatureCompensation)	// Perform temperature compensation
   	{
@@ -100,6 +100,9 @@ void poll_RX(void){
 			USART_IntDisable(USART1, USART_IEN_TXBL);
 			DMA_IntDisable(DMA_IEN_CH0DONE);
 			AD7124_StopConversion();
+			f_sync(&fsrc);
+			f_close(&fsrc);
+
 
 		    GPIO_PinModeSet(gpioPortA, 13, gpioModePushPull, 1); //
 		    madre_state=Menu;
