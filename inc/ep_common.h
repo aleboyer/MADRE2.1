@@ -44,7 +44,8 @@ typedef struct MadreSetup {
 
 typedef struct MapSetup {
 	uint32_t 	number_sensor;               // number of sensor used. It will always go from 1 to numSensor in the list define in the main
-	uint8_t 	sensorID[NUMBER_SENSORS];    //
+	uint8_t 	sensorID[NUMBER_SENSORS];    ////in main =	SensorSpec_ptr sensors[8]={&fp07_1, &fp07_2, &shr_1, &shr_2, &con_1, &ax, &ay, &az};
+
 } MapSetup, *MapSetupPtr;
 
 // Aux 1 is by default Sea Bird 49
