@@ -36,14 +36,24 @@
 #include "ep_SDcard.h"
 #include "ep_auxiliary.h"
 
+
+
 void MADRE_menu(void);
 void MADRE_Config(void);
-void MADRE_Change_Config(void);
+void MADRE_Change_baudrate(void);
+void MADRE_Change_AUX1(void);
+void MADRE_set_up_time(void);
+void MADRE_reset(void);
 void init_MADRE(void);
+void MADRE_tx_buf(char * buf);
+void MADRE_get_Config(void);
 void init_MAP(void);
 void standby4setup(uint8_t delay);
 enum madre_states MADRE_resume_sampling(void);
 uint8_t itohexa_helper(uint8_t x);
+<<<<<<< HEAD
 
+=======
+>>>>>>> NISKINE_8Channels
 
 #endif /* INC_EP_MENU_H_ */

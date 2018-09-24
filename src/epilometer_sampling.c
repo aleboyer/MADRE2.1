@@ -8,6 +8,7 @@
 
 #include "ep_sampling.h"
 #include "efm32wg_uart.h"
+#include "em_rtc.h"
 
 // for rtc purpose
 volatile bool doTemperatureCompensation = true;         // Flags that signal when to do temperature compensation
@@ -26,9 +27,10 @@ volatile bool doTemperatureCompensation = true;         // Flags that signal whe
  *****************************************************************************/
 
 void MADRE_Sampling(void) {
-
+	//RTC->CNT*32768
 	switch(sd_state){
 		case WriteHeader:
+			err_write=0;
 			writeSD_header(header_buffer,header_length);
 			sd_state=WriteMap;
 			if (madre_setup_ptr->AUX_flag>0){sd_state=WriteAux1;}
@@ -49,8 +51,22 @@ void MADRE_Sampling(void) {
 			if (tx_state==Stop){
 				init_aux_block();
 			}
-			f_sync(&fsrc);
+			err_sync=f_sync(&fsrc);
+			//err_write=0;
 			break;
+	}
+	if (err_sync!=0){
+		MICROSD_Deinit();
+		while(err_sync!=0){
+			initSD();
+		}
+	}
+	if ((sd_block%7200==0) & (flag_SDfile==0)){
+		MICROSD_Deinit();
+		initSD();
+	}
+	if ((sd_block%7200>0) & (flag_SDfile==1)){
+		flag_SDfile=0;
 	}
 
 	if (doTemperatureCompensation)	// Perform temperature compensation
@@ -70,28 +86,36 @@ void MADRE_Sampling(void) {
  * @Author A. Le Boyer
  *****************************************************************************/
 
+<<<<<<< HEAD
 /*enum madre_states poll_RX(void){
+=======
+void poll_RX(void){
+>>>>>>> NISKINE_8Channels
 
 	// quick check if the RX buffer empty
 	//uint16_t rxData = USART_RxDouble(USART1);
 	uint16_t rxData = 0;
-	if((USART1->STATUS & USART_STATUS_RXDATAV)){
+	if((USART1->STATUS & USART_STATUS_RXFULL)){
 		rxData = USART_RxDouble(USART1);
 		USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
 
-		if (rxData==0x1e1e){
+		if (rxData==0x7171){
 			LEUART_IntDisable(LEUART0, LEUART_IEN_SIGF);
 			USART_IntDisable(USART1, USART_IEN_TXBL);
 			DMA_IntDisable(DMA_IEN_CH0DONE);
 			AD7124_StopConversion();
-
-		    GPIO_PinModeSet(gpioPortA, 13, gpioModePushPull, 1); //
 		    madre_state=Menu;
 		    tx_state=SetUp;sd_state=Wait;
-		    GPIO_PinModeSet(gpioPortA, 13, gpioModePushPull, 0);
 	    }
 	}
+<<<<<<< HEAD
 
 	return madre_state;
 
 }*/
+=======
+}
+
+
+
+>>>>>>> NISKINE_8Channels

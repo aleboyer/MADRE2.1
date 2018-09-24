@@ -44,6 +44,9 @@ void initSD(void){
 	//TCHAR * filename = _T("ep_test.bin"); //TCHAR is only use for the filename and the drive name;
 	TCHAR * drive    = _T("0:");
 	char buf[1024];
+	char buf1[1024];
+
+	nb_file=1; // initialize the number of file user to change the filename if file already exist
 
 	res_mount=f_mount(&Fatfs,drive ,1);
 	SDwritten = 0;
@@ -52,16 +55,18 @@ void initSD(void){
 	char * textheader = "stuff out the header\nEpsilometer-Wavechaser-MPL"; // char * allow to initialize string
 	char * header2bin = "Start Data:"; // char * allow to initialize string
 	char * cr="\n";
+	char filename_default[10]="ep_test";
 
 
 	// local time
 	//TODO check out local time and sync the board time with user time
 	struct tm tsplt_start;
-	gmtime_r(&madre_setup_ptr->Start_time,&tsplt_start);
+	strptime(madre_setup_ptr->Start_time, "%Y-%m-%d %H:%M:%S", &tsplt_start);
+	//gmtime_r(&,&tsplt_start);
 	clockSetStartCalendar(&tsplt_start);
 
-	strncpy (buf, FILENAME, 256);
-	strftime(buf, sizeof buf, "%Y%m%d_%H%M%S.dat", &tsplt_start);
+	strftime(buf1, sizeof buf1, "%Y%m%d_%H%M%S", &tsplt_start);
+	sprintf(buf,"%s_%s_%i.dat",filename_default,buf1,nb_file);
 
 	static int cur_min = -1, cur_sec = -1;
 	struct tm tsplt;
@@ -77,34 +82,40 @@ void initSD(void){
     ;
 
 
-    if (tsplt.tm_min != cur_min) // check if time is different
-    {
-    	if (res == FR_OK) f_close (&fsrc);
-    	// Open  the file for write
-		res = f_open(&fsrc, filename, FA_OPEN_ALWAYS | FA_WRITE );
-		cur_min = tsplt.tm_min;
+	if (res == FR_OK) f_close (&fsrc);
+	// Open  the file for write
+	res = f_open(&fsrc, filename, FA_CREATE_NEW | FA_WRITE );
+	while (res == FR_EXIST){
+		nb_file++;
+		strftime(buf1, sizeof buf1, "%Y%m%d_%H%M%S", &tsplt_start);
+		sprintf(buf,"%s_%s_%i.dat",filename_default,buf1,nb_file);
+		for (idx = 0; idx < strlen (buf); ++idx){
+			filename[idx] = ff_convert (buf[idx], 1);
+		}
+		filename[idx] = '\0';
+		res = f_open(&fsrc, filename, FA_CREATE_NEW | FA_WRITE );
 
-		if (tsplt.tm_sec != cur_sec && res == FR_OK)
-        {
-          ctime_r(&t, buf);
-          f_write (&fsrc, buf, strlen(buf), &SDwritten);
-          SDwritten = 0;
-      	  f_write(&fsrc, textheader, strlen(textheader), &SDwritten);
-      	  SDwritten = 0;
-      	  f_write(&fsrc, cr,1, &SDwritten);
+	}
+	cur_min = tsplt.tm_min;
 
-          cur_sec = tsplt.tm_sec;
-        }
-    }
+  ctime_r(&t, buf);
+  f_write (&fsrc, buf, strlen(buf), &SDwritten);
+  SDwritten = 0;
+  f_write(&fsrc, textheader, strlen(textheader), &SDwritten);
+  SDwritten = 0;
+  f_write(&fsrc, cr,1, &SDwritten);
+
+  cur_sec = tsplt.tm_sec;
     SDwritten = 0;
     // write the header on the SD
     f_write(&fsrc, header2bin,strlen(header2bin), &SDwritten);
     SDwritten = 0;
     f_write(&fsrc, cr,1, &SDwritten);
-    res=f_close(&fsrc);
+	err_sync=f_sync(&fsrc);
+    f_close(&fsrc);
 
     sd_state=Wait;
-
+	flag_SDfile=1;
 	// open SD file
 	res = f_open(&fsrc, filename, FA_OPEN_APPEND | FA_WRITE);
 
@@ -127,12 +138,12 @@ void writeSD(){
     f_write(&fsrc, "$EPSI",5, &SDwritten);
     SDwritten = 0;
     if (count<bytes_per_block){ //in case sd_byte_sent is close to the end of the buffer. and we want to avoid memory leak
-    	f_write(&fsrc, data_buffer+(sd_bytes_sent% buffer_size),bytes_per_block-count, &SDwritten);
-    	SDwritten = 0;
-    	f_write(&fsrc, data_buffer,count, &SDwritten);
+    	err_write=f_write(&fsrc, data_buffer+(sd_bytes_sent% buffer_size),bytes_per_block-count, &SDwritten);
+   	    SDwritten = 0;
+   	    err_write=f_write(&fsrc, data_buffer,count, &SDwritten);
     }
     else{
-    	f_write(&fsrc, data_buffer+(sd_bytes_sent % buffer_size),bytes_per_block, &SDwritten);
+    	err_write=f_write(&fsrc, data_buffer+(sd_bytes_sent % buffer_size),bytes_per_block, &SDwritten);
     }
 	SDwritten = 0;
     sd_bytes_sent+=bytes_per_block;

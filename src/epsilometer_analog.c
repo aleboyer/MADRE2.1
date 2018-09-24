@@ -161,14 +161,23 @@ void define_ADC_configuration(void){
 	Set_Value_16Bit_Register(&COMMON_SETUP.ADC_CONTROL, AD7124_CTRL_CLKSEL_EXT, AD7124_CTRL_CLKSEL_NUM_BITS, AD7124_CTRL_CLKSEL_START_POSITION);
 
 	//TODO change to a Common parameter
-	//COMMON_SETUP.FILTER_0 = 0x06001E; // 0x1E for 640hz on sinc4 filter
-	COMMON_SETUP.FILTER_0 = 0x06003C; // 0x3C for 320hz on sinc4 filter
+	if (madre_setup_ptr->sample_frequency==325){
+		COMMON_SETUP.FILTER_0 = 0x06003C; // 0x3C for 320hz on sinc4 filter
+	}
+	if (madre_setup_ptr->sample_frequency==640){
+		COMMON_SETUP.FILTER_0 = 0x06001E; // 0x1E for 640hz on sinc4 filter
+	}
 
 	AD7124 TEMP_SETUP = COMMON_SETUP;
 	Set_Value_16Bit_Register(&TEMP_SETUP.CHANNEL_0, AD7124_CH_ENABLE, AD7124_CH_EN_NUM_BITS, AD7124_CH_EN_START_POSITION);
 	Set_Value_16Bit_Register(&TEMP_SETUP.CHANNEL_0, AD7124_CH_AINP_AIN0, AD7124_CH_AINP_NUM_BITS, AD7124_CH_AINP_START_POSITION);
 	//Set_Value_16Bit_Register(&TEMP_SETUP.CHANNEL_0, AD7124_CH_AINM_AIN1, AD7124_CH_AINM_NUM_BITS, AD7124_CH_AINM_START_POSITION);
-	Set_Value_16Bit_Register(&TEMP_SETUP.CONFIG_0, AD7124_CONFIG_BIPOLAR_DISABLE, AD7124_CONFIG_BIPOLAR_NUM_BITS, AD7124_CONFIG_BIPOLAR_START_POSITION);
+	if (map_setup_ptr->ADCtempconfig==1){
+		Set_Value_16Bit_Register(&TEMP_SETUP.CONFIG_0, AD7124_CONFIG_BIPOLAR_DISABLE, AD7124_CONFIG_BIPOLAR_NUM_BITS, AD7124_CONFIG_BIPOLAR_START_POSITION);
+	}
+	if (map_setup_ptr->ADCtempconfig==2){
+		Set_Value_16Bit_Register(&TEMP_SETUP.CONFIG_0, AD7124_CONFIG_BIPOLAR_ENABLE, AD7124_CONFIG_BIPOLAR_NUM_BITS, AD7124_CONFIG_BIPOLAR_START_POSITION);
+	}
 	Set_Value_16Bit_Register(&TEMP_SETUP.CHANNEL_0, AD7124_CH_AINM_AVSS, AD7124_CH_AINM_NUM_BITS, AD7124_CH_AINM_START_POSITION);
 
 	AD7124 SHR_SETUP = COMMON_SETUP;
@@ -176,7 +185,12 @@ void define_ADC_configuration(void){
 	Set_Value_16Bit_Register(&SHR_SETUP.CHANNEL_0, AD7124_CH_AINP_AIN0, AD7124_CH_AINP_NUM_BITS, AD7124_CH_AINP_START_POSITION);
 	Set_Value_16Bit_Register(&SHR_SETUP.CHANNEL_0, AD7124_CH_AINM_AVSS, AD7124_CH_AINM_NUM_BITS, AD7124_CH_AINM_START_POSITION);
 	//Set_Value_16Bit_Register(&SHR_SETUP.CHANNEL_0, AD7124_CH_AINM_AIN1, AD7124_CH_AINM_NUM_BITS, AD7124_CH_AINM_START_POSITION);
-	Set_Value_16Bit_Register(&SHR_SETUP.CONFIG_0, AD7124_CONFIG_BIPOLAR_DISABLE, AD7124_CONFIG_BIPOLAR_NUM_BITS, AD7124_CONFIG_BIPOLAR_START_POSITION);
+	if (map_setup_ptr->ADCshearconfig==1){
+		Set_Value_16Bit_Register(&SHR_SETUP.CONFIG_0, AD7124_CONFIG_BIPOLAR_DISABLE, AD7124_CONFIG_BIPOLAR_NUM_BITS, AD7124_CONFIG_BIPOLAR_START_POSITION);
+	}
+	if (map_setup_ptr->ADCshearconfig==2){
+		Set_Value_16Bit_Register(&SHR_SETUP.CONFIG_0, AD7124_CONFIG_BIPOLAR_ENABLE, AD7124_CONFIG_BIPOLAR_NUM_BITS, AD7124_CONFIG_BIPOLAR_START_POSITION);
+	}
 //	Set_Value_16Bit_Register(&SHR_SETUP.CONFIG_0, AD7124_CONFIG_PGA_GAIN_2, AD7124_CONFIG_PGA_NUM_BITS, AD7124_CONFIG_PGA_START_POSITION);
 
 	AD7124 ACCL_SETUP = COMMON_SETUP;
@@ -186,12 +200,16 @@ void define_ADC_configuration(void){
 	Set_Value_16Bit_Register(&ACCL_SETUP.CONFIG_0, AD7124_CONFIG_BIPOLAR_DISABLE, AD7124_CONFIG_BIPOLAR_NUM_BITS, AD7124_CONFIG_BIPOLAR_START_POSITION);
 	Set_Value_16Bit_Register(&ACCL_SETUP.CONFIG_0, AD7124_CONFIG_REF_SEL1, AD7124_CONFIG_REF_SEL_NUM_BITS, AD7124_CONFIG_REF_SEL_START_POSITION);
 
-
-
 	AD7124 COND_SETUP = COMMON_SETUP;
 	Set_Value_16Bit_Register(&COND_SETUP.CHANNEL_0, AD7124_CH_ENABLE, AD7124_CH_EN_NUM_BITS, AD7124_CH_EN_START_POSITION);
 	Set_Value_16Bit_Register(&COND_SETUP.CHANNEL_0, AD7124_CH_AINP_AIN0, AD7124_CH_AINP_NUM_BITS, AD7124_CH_AINP_START_POSITION);
 	Set_Value_16Bit_Register(&COND_SETUP.CHANNEL_0, AD7124_CH_AINM_AIN1, AD7124_CH_AINM_NUM_BITS, AD7124_CH_AINM_START_POSITION);
+	if (map_setup_ptr->ADCshearconfig==1){
+		Set_Value_16Bit_Register(&COND_SETUP.CONFIG_0, AD7124_CONFIG_BIPOLAR_DISABLE, AD7124_CONFIG_BIPOLAR_NUM_BITS, AD7124_CONFIG_BIPOLAR_START_POSITION);
+	}
+	if (map_setup_ptr->ADCshearconfig==2){
+		Set_Value_16Bit_Register(&COND_SETUP.CONFIG_0, AD7124_CONFIG_BIPOLAR_ENABLE, AD7124_CONFIG_BIPOLAR_NUM_BITS, AD7124_CONFIG_BIPOLAR_START_POSITION);
+	}
 
 	AD7124 OFF_SETUP = AD7124_RESET_DEFAULT;
 	Set_Value_16Bit_Register(&OFF_SETUP.ADC_CONTROL, AD7124_CTRL_MODE_POWER_DOWN, AD7124_CTRL_POWER_MODE_NUM_BITS, AD7124_CTRL_POWER_MODE_START_POSITION);
@@ -401,7 +419,7 @@ void init_SPI() {
 	  GPIO_PinModeSet(gpioPortE, 7,	gpioModePushPull, 0);  /* MOSI */
 	  GPIO_PinModeSet(gpioPortE, 6,	gpioModeInput, 0); /* MISO */
 	  GPIO_PinModeSet(gpioPortE, 5,	gpioModePushPull, 1);  /* CLK */
-
+	  USART_Reset(USART0);
 	  /* Initialize USART in SPI master mode. */
 	  initusart.baudrate = madre_setup_ptr->spi_baudrate;			// baudRate defined in common.h
 	  initusart.msbf     = true; 			// Analog devices is big enDian
@@ -455,27 +473,34 @@ void GPIO_ODD_IRQHandler(void) {
 	uint32_t sample=0;
 	uint8_t cmdBuffer;
 	cmdBuffer = AD7124_COMM_READ | AD7124_REG_DATA;
+	uint32_t test1=pending_samples % 450;
 
-    for (sensorID=0;sensorID<7;sensorID++){ // tric for the navy
+    for (sensorID=0;sensorID<map_setup_ptr->number_sensor;sensorID++){ // tric for the navy
      	AD7124_ChipSelect(sensors[map_setup_ptr->sensorID[sensorID]], LLO);
 
-    	count_analog=(pending_samples*byte_per_sample+sensorID*madre_setup_ptr->ADCword_length) % buffer_size;
+    	count_analog=(pending_samples*byte_per_sample+sensorID*map_setup_ptr->ADCword_length) % buffer_size;
 
     	// AD7124_GetRegisterValue return a uint32 result from the ADC register
     	USART_SpiTransfer(USART0, cmdBuffer);
-			for(int ii = 2; ii >=0 ; ii--) {
-						test=USART_SpiTransfer(USART0, 0x0);
-						block_chcksum^= test; // check on the *(data_buffer)
-						switch (madre_setup_ptr->ADCword_length){
-							case 3:
-								data_buffer[(count_analog+(2-ii)) % buffer_size]=test;
-								break;
-							case 6:
-								sample=sample| test<<ii*8;
-								break;
-					}
-			}
-			if(madre_setup_ptr->ADCword_length==6){sprintf((char *) data_buffer+count_analog,"%6x",(int) sample);}
+    	for(int ii = 2; ii >=0 ; ii--) {
+    		if (sensorID==4){
+    			data_buffer[count_analog+ii % buffer_size]= test1>>(2-ii)*8;
+    		}
+    		else{
+
+    			test=USART_SpiTransfer(USART0, 0x0);
+    			block_chcksum^= test; // check on the *(data_buffer)
+    			switch (map_setup_ptr->ADCword_length){
+    			case 3:
+    				data_buffer[(count_analog+(2-ii)) % buffer_size]=test;
+    				break;
+    			case 6:
+    				sample=sample| test<<ii*8;
+    				break;
+    			}
+    		}
+    	}
+			if(map_setup_ptr->ADCword_length==6){sprintf((char *) data_buffer+count_analog,"%6x",(int) sample);}
 
 			AD7124_ChipSelect(sensors[map_setup_ptr->sensorID[sensorID]], LHI);
     //sensorID++;
@@ -490,7 +515,12 @@ void GPIO_ODD_IRQHandler(void) {
     		chcksum_block_header=block_chcksum;
     		block_chcksum=0;
     		epsi_stamp_block=pending_samples;
-    		//header_buffer=
+			sprintf(header_buffer,"\r\n$MADRE%8x,%8x,%8x,%8x,%8x,%8x\r\n",(int) epsi_stamp_block      \
+														     ,(int) time(NULL)                \
+														     ,(int) err_write                   \
+													         ,(int) chcksum_aux1_header       \
+													         ,(int) chcksum_aux2_header       \
+													         ,(int) chcksum_block_header);
     		USART_IntEnable(USART1, USART_IEN_TXBL);
     	}
     //} //end of EPSI sample

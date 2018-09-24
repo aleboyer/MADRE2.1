@@ -25,7 +25,11 @@
 /* define epsilometer parameters info to be put into the header data   */
 /*************************************************************************/
 
+<<<<<<< HEAD
 #define NUMBER_SENSORS 7
+=======
+#define NUMBER_SENSORS 8
+>>>>>>> NISKINE_8Channels
 
 typedef struct MadreSetup {
 	uint32_t 	core_clock;             // frequency of the cristal
@@ -37,14 +41,31 @@ typedef struct MadreSetup {
 	uint32_t    timer1Sync;             // so far number of cycle of the master clock to trigger TIMER1 which will sync all the ADC togther
 	uint32_t	spi_baudrate;           // baudrate of the spi bus: ADC to MCU communication (1MHz)
 	uint32_t	usart_baudrate;         // baudrate ot the RS232 TX/RX (default 460800)
+<<<<<<< HEAD
 	uint32_t	ADCword_length;         // ADC word length (binary is 3 bits and hexa is 6 bits)
 	time_t 	    Start_time;             // Start time in Unix time default is 1 January 2017 00:00:00
+=======
+	char  	    Start_time[20];         // Start time in Unix time default is 1 January 2017 00:00:00
+>>>>>>> NISKINE_8Channels
 	uint32_t    AUX_flag;               // Auxiliary flag
 } MadreSetup, *MadreSetupPtr;
 
 typedef struct MapSetup {
 	uint32_t 	number_sensor;               // number of sensor used. It will always go from 1 to numSensor in the list define in the main
 	uint8_t 	sensorID[NUMBER_SENSORS];    //
+<<<<<<< HEAD
+=======
+	uint32_t	ADCword_length;         // ADC word length (binary is 3 bits and hexa is 6 bits)
+	uint32_t	ADCtempconfig;          // ADC temp can be configured in Unipolar (1) or bipolar (2)
+	uint32_t	ADCshearconfig;         // ADC shear can be configured in Unipolar (1) or bipolar (2)
+	uint32_t	ADCcondconfig;          // ADC cond can be configured in Unipolar (1) or bipolar (2)
+	uint32_t	ADCaccelconfig;         // ADC accel can be configured in Unipolar (1) or bipolar (2)
+	uint32_t	t1_ID[2];               // temperature probe 1 {Serial number, Calibration number}
+	uint32_t	t2_ID[2];               // temperature probe 2 {Serial number, Calibration number}
+	uint32_t	s1_ID[2];               // shear probe 1 {Serial number, Calibration number}
+	uint32_t	s2_ID[2];               // shear probe 2 {Serial number, Calibration number}
+	uint32_t	cond_ID[2];             // conductivity  probe 1 Serial number, Calibration number}
+>>>>>>> NISKINE_8Channels
 } MapSetup, *MapSetupPtr;
 
 // Aux 1 is by default Sea Bird 49
@@ -69,19 +90,28 @@ typedef struct AuxSetup {
 320,                             \
 0x200,                           \
 160,                             \
-320,                             \
+325,                             \
 625000,                          \
 0x13,                            \
 2000000,                         \
-460800,                          \
-3,								 \
-1483228800,                      \
-0}
+115200,                          \
+"2001-11-12 18:31:01",           \
+1}
 //default TX baud  460800
 
-#define MAP_SETUP_DEFAULT         \
-{7,                               \
-{0,1,2,3,5,6,7}                   \
+#define MAP_SETUP_DEFAULT        \
+{8,                              \
+{0,1,2,3,4,5,6,7},                \
+3,								 \
+1,								 \
+1,							 	 \
+1,							 	 \
+1,							 	 \
+{100,40},                        \
+{100,40},                        \
+{100,70},                        \
+{100,70},                        \
+{100,70}                         \
 }
 
 #define SBE49_SETUP_DEFAULT       \
@@ -98,9 +128,7 @@ typedef struct AuxSetup {
 /*************************************************************************/
 
 // define the name of the file we open on the SD card
-#define FILENAME "ep_test.bin"
-#define FILENAME1 "ep_test"
-#define FILENAME_SUFFIXE ".bin"
+//#define FILENAME ""
 TCHAR filename[256];
 FIL fsrc;					// File objects
 
@@ -168,7 +196,10 @@ volatile uint32_t block_chcksum;        // checksum for the Epsi sample updated 
 volatile uint32_t chcksum_block_header; // final checksum for the header to send re-initialize after every block
 volatile uint32_t epsi_stamp_block;     // epsi sample count for the Header
 volatile uint32_t voltage;              // epsi sample count for the Header
-
+uint8_t err_write;              // error when writing on the sd
+uint8_t err_sync;               // error when sync the sd
+uint8_t nb_file;             // number of file on the sd card
+uint8_t flag_SDfile;
 
 
 // Epsi sample variable

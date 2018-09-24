@@ -30,8 +30,6 @@
 void UART_Setup() {
 	/*UART1 shit*/
 	CMU_ClockEnable(cmuClock_USART1, true); // Enable clock for USART1 module
-	GPIO_PinModeSet(gpioPortD, 7, gpioModePushPull, 1); // TX
-	GPIO_PinModeSet(gpioPortD, 6, gpioModeInput, 0); // RX
 
 	USART_InitAsync_TypeDef usartInitUSART1 = {
 		.enable = usartDisable, 					// Initially disabled
@@ -44,6 +42,7 @@ void UART_Setup() {
 	};
 
 	/*Initialize UART registers*/
+	USART_Reset(USART1);
 	USART_InitAsync(USART1, &usartInitUSART1);
 
 	USART1 -> ROUTE = USART_ROUTE_RXPEN | USART_ROUTE_TXPEN
@@ -79,16 +78,9 @@ void USART1_TX_IRQHandler(void)
 	switch (tx_state){
 		case TransmitHeader:
 			dataLen    = header_length-header_bytes_sent;
-			if (header_bytes_sent==0){//first time we enter the interrupt, build the header
-				sprintf(header_buffer,"\r\n$MADRE%8x,%8x,%8x,%8x,%8x,%8x\r\n",(int) epsi_stamp_block      \
-																	     ,(int) RTC->CNT                  \
-																	     ,(int) voltage                   \
-																         ,(int) chcksum_aux1_header       \
-																         ,(int) chcksum_aux2_header       \
-																         ,(int) chcksum_block_header);
-			}
 			if(dataLen ==0){
 				tx_state=TransmitMap;
+				//tx_state=Stop;
 				header_bytes_sent=0;
 				if (madre_setup_ptr->AUX_flag>0){tx_state=TransmitAux1;}
 			}
@@ -154,6 +146,7 @@ void USART1_TX_IRQHandler(void)
  *
  * @Author A. Le Boyer
  *****************************************************************************/
+#define NUMBER_BYTES_SENT 2
 
 uint32_t sendblock(uint32_t dataLen,char * Buffer, uint32_t bytes_sent)
 {
@@ -166,7 +159,7 @@ uint32_t sendblock(uint32_t dataLen,char * Buffer, uint32_t bytes_sent)
 		 bytes_sent++;
 		break;
 	default:
-		for(int i=0;i<2;i++){
+		for(int i=0;i<NUMBER_BYTES_SENT;i++){
 			/* Transmit pending character */
 			USART_Tx(USART1, Buffer[bytes_sent]);
 			 bytes_sent++;
