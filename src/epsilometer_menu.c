@@ -7,7 +7,15 @@
 
 
 
+#define _XOPEN_SOURCE 700
 #include "ep_menu.h"
+
+char buf[100]= {"\0"};
+char buf1[100]= {"\0"};
+
+uint8_t rxData8 = 0;
+uint16_t rxData16 = 0;
+int menu_out=1;
 
 
 /******************************************************************************
@@ -27,127 +35,282 @@ void MADRE_menu(void){
 
     // define a sentence to send to the user
 	tx_state=SetUp;
-	char buf[100]= {"\0"};
-	char buf1[100]= {"\0"};
-	uint8_t  rxData8  = 0;
-	//uint16_t  rxData16;
-	sprintf(buf,"ACTIONS: \n 1- CHANGE CONFIG \n 2- RESUME SAMPLING\n");
+	menu_out=1;
+	sprintf(buf,"\n ACTIONS \n BR: Change baud rate \n RA: Toggle AUX1 \n");
+	MADRE_tx_buf(buf);
+	sprintf(buf," SC: Set calendar \n GC: Get Configuration \n RS: RESUME SAMPLING\n");
+	MADRE_tx_buf(buf);
 	sprintf(buf1,"TRY AGAIN\n");
 
-	// USART_RxDouble have while loop which will hold on until a bytes is going to come.
-	// giving us the time to clean serial buffer in python. This is not very elegant
-	// but I already spend almost a whole day to figure out something "smart"
-
-	// menu selection
-	//TODO: this is bad, I need to stay here to clean the serial buffer in python as explained above
-	USART_RxDouble(USART1);
-	USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
-
 	// send the user action option through TX.
-	for(int i=0;i<strlen(buf);i++){
-		USART_Tx(USART1,buf[i]);
-	}
 	USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
 
-	rxData8 = USART_Rx(USART1);
-	USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
-
-	switch (rxData8) {
-	case 49:
-		MADRE_Change_Config();
-		break;
-	case 50:
-		break;
+	while (menu_out==1) {
+		if((USART1->STATUS & USART_STATUS_RXFULL)){
+			rxData16 = USART_RxDouble(USART1);
+			USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
+			switch (rxData16) {
+			case 0x5242:
+				MADRE_Change_baudrate();
+				menu_out=0;
+				break;
+			case 0x4152:
+				MADRE_Change_AUX1();
+				menu_out=0;
+				break;
+			case 0x4353:
+				MADRE_set_up_time();
+				menu_out=0;
+				break;
+			case 0x4347:
+				MADRE_get_Config();
+				menu_out=0;
+				break;
+			case 0x5352:
+				MADRE_reset();
+				MADRE_Config();
+				standby4setup(1);
+				madre_state=MADRE_resume_sampling();
+				menu_out=0;
+				break;
+			default:
+				// send the user action option through TX.
+				MADRE_tx_buf(buf1);
+				USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
+				break;
+			}
+		}
 	}
 }
 
 
 /******************************************************************************
- * @name MADRE_Change_Config
+ * @name MADRE_Change_baudrate
  * @brief
  *   TODO
  * @details
  *	TODO
  * @Author A. Le Boyer
  *****************************************************************************/
-void MADRE_Change_Config(void) {
+void MADRE_Change_baudrate(void) {
 
-	char buf0[100] = {"\0"};
-	char buf11[100]= {"\0"};
-	char buf12[100]= {"\0"};
-	char buf2[100]= {"\0"};
-	uint16_t rxData1 = 0;
-	uint16_t rxData2 = 0;
-	uint32_t param;
-	sprintf(buf0,"01:Sensors \n 02: SBE \n 03: Whatever? \n");
-	sprintf(buf11,"Number of sensor (default:%i,current:%i): \n",8,(int) map_setup_ptr->number_sensor);
-	sprintf(buf12,"Aux1 Flag status (0:no SBE,1: SBE,current:%i): \n",(int) madre_setup_ptr->AUX_flag);
-	sprintf(buf2,"Setting up the new Start Date");
-	for(int i=0;i<strlen(buf0);i++){
-		USART_Tx(USART1,buf0[i]);
-	}
-	rxData1 = USART_RxDouble(USART1);
-	USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
+	sprintf(buf1,"TRY AGAIN\n");
+	sprintf(buf,"Change baud rate (default:%i,current:%i): 1-460800 , 2-115200 , 3 - 38400 \n",460800,(int) madre_setup_ptr->usart_baudrate);
+    menu_out=1;
+	MADRE_tx_buf(buf);
 
-	switch(rxData1){
-		case 49:
-			param=0;
-			for(int i=0;i<strlen(buf11);i++){
-				USART_Tx(USART1,buf11[i]);
-			}
-			rxData1 = USART_RxDouble(USART1);
-			USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
-			param = (int32_t) rxData1;
-			map_setup_ptr->number_sensor=param;
-			sprintf(buf11,"new number of sensor %i \n",(int) param);
-			for(int i=0;i<strlen(buf11);i++){
-				USART_Tx(USART1,buf11[i]);
-			}
+	while (menu_out==1){
+		rxData8 = USART_Rx(USART1);
+		USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
+		switch (rxData8){
+		case 0x31:
+			madre_setup_ptr->usart_baudrate=460800;
+			menu_out=0;
 			break;
-		case 12848: // 12848 in hex equal '20' -> it is the inverse of '02' from the laptop
-			param=0;
-			for(int i=0;i<strlen(buf12);i++){
-				USART_Tx(USART1,buf12[i]);
-			}
-			rxData1 = USART_RxDouble(USART1);
-			USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
-			param = (int32_t) rxData1;
-			madre_setup_ptr->AUX_flag=param;
-			sprintf(buf12,"AUX_flag status %i \n",(int) param);
-			for(int i=0;i<strlen(buf12);i++){
-				USART_Tx(USART1,buf12[i]);
-			}
+		case 0x32:
+			madre_setup_ptr->usart_baudrate=115200;
+			menu_out=0;
 			break;
-
-
+		case 0x33:
+			madre_setup_ptr->usart_baudrate=38400;
+			menu_out=0;
+			break;
 		default:
+			// send the user action option through TX.
+			MADRE_tx_buf(buf1);
+			USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
 			break;
+		}
 	}
-	// gather the the new Start date every time we enter in the menu mode
-	for(int i=0;i<strlen(buf2);i++){
-		USART_Tx(USART1,buf2[i]);
-	}
-
-	param=0;
-	rxData1 = USART_RxDouble(USART1);
-	USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
-	param = param | rxData1 <<16;
-	rxData2 = USART_RxDouble(USART1);
-	USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
-	param = param | rxData2;
-
-	madre_setup_ptr->Start_time= (time_t) param;
-	sprintf(buf2,"new date %i \n",(int) param);
-	for(int i=0;i<strlen(buf2);i++){
-		USART_Tx(USART1,buf2[i]);
-	}
-
-	clear_madre();
-	standby4setup(1);
-	MADRE_Config();
-
-
+	MADRE_menu();
 }
+/******************************************************************************
+ * @name MADRE_Change_AUX1
+ * @brief
+ *   TODO
+ * @details
+ *	TODO
+ * @Author A. Le Boyer
+ *****************************************************************************/
+void MADRE_Change_AUX1(void) {
+    menu_out=1;
+	sprintf(buf1,"TRY AGAIN\n");
+	sprintf(buf,"Change AUX1 (default:%i,current:%i): 1-SBE , 2-none \n",1,(int) madre_setup_ptr->AUX_flag);
+
+	MADRE_tx_buf(buf);
+
+	while (menu_out==1){
+		rxData8 = USART_Rx(USART1);
+		USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
+		switch (rxData8){
+		case 0x31:
+			madre_setup_ptr->AUX_flag=1;
+			menu_out=0;
+			break;
+		case 0x32:
+			madre_setup_ptr->AUX_flag=0;
+			menu_out=0;
+			break;
+		default:
+			// send the user action option through TX.
+			MADRE_tx_buf(buf1);
+			USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
+			break;
+		}
+	}
+	MADRE_menu();
+}
+
+/******************************************************************************
+ * @name MADRE_Change_Time
+ * @brief
+ *   TODO
+ * @details
+ *	TODO
+ * @Author A. Le Boyer
+ *****************************************************************************/
+void MADRE_set_up_time(void) {
+
+    int count=0;
+	char strnewtime[20]= {"\0"};
+
+	sprintf(buf,"Set up new time for resume sampling (current:%s , USE THE SAME FORMAT): \n",madre_setup_ptr->Start_time);
+	MADRE_tx_buf(buf);
+
+	while (count<19){
+		strnewtime[count] = USART_Rx(USART1);
+		USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
+		madre_setup_ptr->Start_time[count]=strnewtime[count];
+		count ++;
+	}
+//	struct tm tsplt;
+//	strptime("2001-11+25 18:31:01", "%Y-%m-%d %H:%M:%S", &tsplt);
+
+	sprintf(buf,"New time: %s \n",madre_setup_ptr->Start_time);
+	MADRE_tx_buf(buf);
+
+	MADRE_menu();
+}
+
+/******************************************************************************
+ * @name MADRE_get_Config
+ * @brief
+ *   TODO
+ * @details
+ *	TODO
+ * @Author A. Le Boyer
+ *****************************************************************************/
+void MADRE_get_Config(void) {
+
+	sprintf(buf,"\nMADRE SET UP\n");
+	MADRE_tx_buf(buf);
+	sprintf(buf1,"%i \n",(int) madre_setup_ptr->core_clock);
+	MADRE_tx_buf(buf1);
+	sprintf(buf1,"%i \n",(int) madre_setup_ptr->maximum_samples);
+	MADRE_tx_buf(buf1);
+	sprintf(buf1,"%i \n",(int) madre_setup_ptr->pinInterupt);
+	MADRE_tx_buf(buf1);
+	sprintf(buf1,"%i \n",(int) madre_setup_ptr->blocksize);
+	MADRE_tx_buf(buf1);
+	sprintf(buf1,"%i \n",(int) madre_setup_ptr->sample_frequency);
+	MADRE_tx_buf(buf1);
+	sprintf(buf1,"%i \n",(int) madre_setup_ptr->master_clock_frequency);
+	MADRE_tx_buf(buf1);
+	sprintf(buf1,"%i \n",(int) madre_setup_ptr->timer1Sync);
+	MADRE_tx_buf(buf1);
+	sprintf(buf1,"%i \n",(int) madre_setup_ptr->spi_baudrate);
+	MADRE_tx_buf(buf1);
+	sprintf(buf1,"%i \n",(int) madre_setup_ptr->usart_baudrate);
+	MADRE_tx_buf(buf1);
+	sprintf(buf1,"%s \n",madre_setup_ptr->Start_time);
+	MADRE_tx_buf(buf1);
+	sprintf(buf1,"%i \n",(int) madre_setup_ptr->AUX_flag);
+	MADRE_tx_buf(buf1);
+
+	sprintf(buf,"\nMAP SET UP\n");
+	MADRE_tx_buf(buf);
+	sprintf(buf1,"%i \n",(int) map_setup_ptr->number_sensor);
+	MADRE_tx_buf(buf1);
+	sprintf(buf1,"%i,%i,%i,%i,%i,%i,%i,%i \n",(int) map_setup_ptr->sensorID[0],   \
+			                                  (int) map_setup_ptr->sensorID[1],   \
+			                                  (int) map_setup_ptr->sensorID[2],   \
+			                                  (int) map_setup_ptr->sensorID[3],   \
+			                                  (int) map_setup_ptr->sensorID[4],   \
+			                                  (int) map_setup_ptr->sensorID[5],   \
+			                                  (int) map_setup_ptr->sensorID[6],   \
+			                                  (int) map_setup_ptr->sensorID[7]
+											  );
+	MADRE_tx_buf(buf1);
+	sprintf(buf1,"%i \n",(int) map_setup_ptr->ADCtempconfig);
+	MADRE_tx_buf(buf1);
+	sprintf(buf1,"%i \n",(int) map_setup_ptr->ADCshearconfig);
+	MADRE_tx_buf(buf1);
+	sprintf(buf1,"%i \n",(int) map_setup_ptr->ADCcondconfig);
+	MADRE_tx_buf(buf1);
+	sprintf(buf1,"%i \n",(int) map_setup_ptr->ADCaccelconfig);
+	MADRE_tx_buf(buf1);
+	sprintf(buf1,"%i,%i \n",(int) map_setup_ptr->t1_ID[0],(int) map_setup_ptr->t1_ID[1]);
+	MADRE_tx_buf(buf1);
+	sprintf(buf1,"%i,%i \n",(int) map_setup_ptr->t2_ID[0],(int) map_setup_ptr->t2_ID[1]);
+	MADRE_tx_buf(buf1);
+	sprintf(buf1,"%i,%i \n",(int) map_setup_ptr->s1_ID[0],(int) map_setup_ptr->s1_ID[1]);
+	MADRE_tx_buf(buf1);
+	sprintf(buf1,"%i,%i \n",(int) map_setup_ptr->s2_ID[0],(int) map_setup_ptr->s2_ID[1]);
+	MADRE_tx_buf(buf1);
+	sprintf(buf1,"%i,%i \n",(int) map_setup_ptr->cond_ID[0],(int) map_setup_ptr->cond_ID[1]);
+	MADRE_tx_buf(buf1);
+
+
+	sprintf(buf,"\nAUX SET UP\n");
+	MADRE_tx_buf(buf);
+	sprintf(buf1,"%i \n",(int) aux1_setup_ptr->usart_baudrate);
+	MADRE_tx_buf(buf1);
+	sprintf(buf1,"%i \n",(int) aux1_setup_ptr->Auxword_length);
+	MADRE_tx_buf(buf1);
+	sprintf(buf1,"%i \n",(int) aux1_setup_ptr->aux_frequency);
+	MADRE_tx_buf(buf1);
+	sprintf(buf1,"%i \n",(int) aux1_setup_ptr->endchar);
+	MADRE_tx_buf(buf1);
+
+	MADRE_menu();
+}
+
+/******************************************************************************
+ * @name MADRE_resume_sampling
+ * @brief
+ *   TODO
+ * @details
+ *	TODO
+ * @Author A. Le Boyer
+ *****************************************************************************/
+void MADRE_tx_buf(char * buf) {
+	for(int i=0;i<strlen(buf);i++){
+		USART_Tx(USART1,buf[i]);
+	}
+}
+
+/******************************************************************************
+ * @name MADRE_resume_sampling
+ * @brief
+ *   TODO
+ * @details
+ *	TODO
+ * @Author A. Le Boyer
+ *****************************************************************************/
+void MADRE_reset(void) {
+	if(data_buffer) free(data_buffer);
+	if(header_buffer) free(header_buffer);
+	if(aux1_sample) free(aux1_sample);
+	memset(data_buffer, 0, sizeof(uint8_t)*buffer_size);
+	memset(header_buffer, 0,sizeof(char)*header_length);
+	memset(aux1_sample, 0,sizeof(uint8_t) *aux1_setup_ptr->Auxword_length);
+	AD7124_Reset();
+	standby4setup(2);
+}
+
+
+
+
 
 
 
@@ -181,7 +344,7 @@ void MADRE_Config(void) {
 
 	init_TIMER(coreclock_cycle,timer1_phase_shift); //set up timer MCLOCK and SYNC. MCLOCK (TIMER0) is send to the ADC
 
-    standby4setup(0);       // delay so the user can change the date after power up the board. TODO: get rid of it when menu mode is working
+	standby4setup(1);
 
 	// initialize SD: mount the driver, open file, write a header
 	initSD();
@@ -209,7 +372,7 @@ void MADRE_Config(void) {
 void init_MADRE(void){
 
    // define all the madre variables declared in common.h
-	byte_per_sample    = map_setup_ptr->number_sensor*madre_setup_ptr->ADCword_length;          // 6 bytes per channel (hex) * number of channel+ \n
+	byte_per_sample    = map_setup_ptr->number_sensor*map_setup_ptr->ADCword_length;          // 6 bytes per channel (hex) * number of channel+ \n
 	buffer_size        = madre_setup_ptr->maximum_samples*byte_per_sample;                                //
 	coreclock_cycle    = madre_setup_ptr->core_clock/madre_setup_ptr->master_clock_frequency/2-1;    //
 	timer1_phase_shift = .5 * coreclock_cycle;
@@ -299,16 +462,6 @@ uint8_t itohexa_helper(uint8_t x) {
 		dest=x+55;
 	}
 	return dest;
-}
-
-void clear_madre(void){
-	memset(data_buffer, 0, sizeof(uint8_t)*buffer_size);
-	memset(header_buffer, 0,sizeof(char)*header_length);
-	memset(aux1_sample, 0,sizeof(uint8_t) *aux1_setup_ptr->Auxword_length);
-	if(data_buffer) free(data_buffer);
-	if(header_buffer) free(header_buffer);
-	if(aux1_sample) free(aux1_sample);
-	USART_Reset(USART0);
 }
 
 

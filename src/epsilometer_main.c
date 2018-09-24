@@ -71,12 +71,11 @@ int main(void) {
 
 		switch (madre_state){
 			case Sampling:
-				MADRE_Sampling();
+				//MADRE_Sampling();
 				poll_RX();
 				break;
 			case Menu:
 				MADRE_menu();
-				madre_state=MADRE_resume_sampling();
 				break;
 		}
 	}// end while loop

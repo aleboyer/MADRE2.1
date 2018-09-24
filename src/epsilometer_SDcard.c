@@ -61,7 +61,8 @@ void initSD(void){
 	// local time
 	//TODO check out local time and sync the board time with user time
 	struct tm tsplt_start;
-	gmtime_r(&madre_setup_ptr->Start_time,&tsplt_start);
+	strptime(madre_setup_ptr->Start_time, "%Y-%m-%d %H:%M:%S", &tsplt_start);
+	//gmtime_r(&,&tsplt_start);
 	clockSetStartCalendar(&tsplt_start);
 
 	strftime(buf1, sizeof buf1, "%Y%m%d_%H%M%S", &tsplt_start);
@@ -135,18 +136,15 @@ void writeSD(){
 	int32_t count=(sd_bytes_sent+bytes_per_block)%buffer_size;
 	SDwritten = 0;
     f_write(&fsrc, "$EPSI",5, &SDwritten);
-    err_write=err_write+SDwritten;
     SDwritten = 0;
     if (count<bytes_per_block){ //in case sd_byte_sent is close to the end of the buffer. and we want to avoid memory leak
-    	f_write(&fsrc, data_buffer+(sd_bytes_sent% buffer_size),bytes_per_block-count, &SDwritten);
-        err_write=err_write+SDwritten;
+    	err_write=f_write(&fsrc, data_buffer+(sd_bytes_sent% buffer_size),bytes_per_block-count, &SDwritten);
    	    SDwritten = 0;
-    	f_write(&fsrc, data_buffer,count, &SDwritten);
+   	    err_write=f_write(&fsrc, data_buffer,count, &SDwritten);
     }
     else{
-    	f_write(&fsrc, data_buffer+(sd_bytes_sent % buffer_size),bytes_per_block, &SDwritten);
+    	err_write=f_write(&fsrc, data_buffer+(sd_bytes_sent % buffer_size),bytes_per_block, &SDwritten);
     }
-    err_write=err_write+SDwritten;
 	SDwritten = 0;
     sd_bytes_sent+=bytes_per_block;
 }
@@ -164,10 +162,8 @@ void writeSD(){
 void writeSD_aux(uint8_t * Buffer, uint32_t Bufferlength){
 	SDwritten = 0;
     f_write(&fsrc, "$AUX1",5, &SDwritten);
-    err_write=err_write+SDwritten;
 	SDwritten = 0;
     f_write(&fsrc, Buffer,Bufferlength, &SDwritten);
-    err_write=err_write+SDwritten;
 	SDwritten = 0;
 	//
 }
@@ -185,7 +181,6 @@ void writeSD_aux(uint8_t * Buffer, uint32_t Bufferlength){
 void writeSD_header(char * Buffer, uint32_t Bufferlength){
 	SDwritten = 0;
     f_write(&fsrc, Buffer,Bufferlength, &SDwritten);
-    err_write=err_write+SDwritten;
 	SDwritten = 0;
 	//
 }

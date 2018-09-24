@@ -91,20 +91,17 @@ void poll_RX(void){
 	// quick check if the RX buffer empty
 	//uint16_t rxData = USART_RxDouble(USART1);
 	uint16_t rxData = 0;
-	if((USART1->STATUS & USART_STATUS_RXDATAV)){
+	if((USART1->STATUS & USART_STATUS_RXFULL)){
 		rxData = USART_RxDouble(USART1);
 		USART1->CMD =(USART1->CMD & ~_USART_CMD_CLEARRX_MASK)|USART_CMD_CLEARRX;
 
-		if (rxData==0x1e1e){
+		if (rxData==0x7171){
 			LEUART_IntDisable(LEUART0, LEUART_IEN_SIGF);
 			USART_IntDisable(USART1, USART_IEN_TXBL);
 			DMA_IntDisable(DMA_IEN_CH0DONE);
 			AD7124_StopConversion();
-
-		    GPIO_PinModeSet(gpioPortA, 13, gpioModePushPull, 1); //
 		    madre_state=Menu;
 		    tx_state=SetUp;sd_state=Wait;
-		    GPIO_PinModeSet(gpioPortA, 13, gpioModePushPull, 0);
 	    }
 	}
 }
