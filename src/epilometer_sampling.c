@@ -99,6 +99,8 @@ void poll_RX(void){
 			LEUART_IntDisable(LEUART0, LEUART_IEN_SIGF);
 			USART_IntDisable(USART1, USART_IEN_TXBL);
 			DMA_IntDisable(DMA_IEN_CH0DONE);
+			MICROSD_Deinit();
+		    f_close(&fsrc);
 			AD7124_StopConversion();
 		    madre_state=Menu;
 		    tx_state=SetUp;sd_state=Wait;
